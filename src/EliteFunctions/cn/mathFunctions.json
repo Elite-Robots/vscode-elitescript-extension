@@ -1,0 +1,591 @@
+[
+    {
+        "name": "get_inverse_kin",
+        "description": " 该指令用于运动学逆解计算，即从笛卡尔空间到关节空间的转换。如果定义了qnear，则返回最接 近qnear的解。否则，将返回最接近当前关节位置的解。如果未提供tcp，则将使用控制器的当前激活 tcp。",
+        "parameters": [
+            {
+                "name": "p",
+                "description": "位姿，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、Rz单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "qnear",
+                "description": "最接近的关节角度，缺省值为当前机器人关节角，list型数据（可选参数）； ",
+                "type": "list",
+                "default": "''"
+            },
+            {
+                "name": "tcp",
+                "description": "工具形状（可选参数）。",
+                "type": "str",
+                "default": "'active tcp'"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，关节角度，单位：弧度。",
+        "tips": ""
+    },
+    {
+        "name": "get_inverse_kin_has_solution",
+        "description": " 该指令用于检查get_inverse_kin是否有解，并返回布尔类型的结果（True或False），可避免 get_inverse_kin无解时触发运行时报警。",
+        "parameters": [
+            {
+                "name": "p",
+                "description": "位姿，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、Rz单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "qnear",
+                "description": "最接近的关节角度，缺省值为当前机器人关节角，list型数据（可选参数）； ",
+                "type": "list",
+                "default": "''"
+            },
+            {
+                "name": "tcp",
+                "description": "工具形状，缺省值为系统当前的激活工具（可选参数）。",
+                "type": "str",
+                "default": "'active tcp'"
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "是否有解，，true或false。",
+        "tips": ""
+    },
+    {
+        "name": "get_forward_kin",
+        "description": " 该指令用于正运动学计算，即通过关节角度获取位姿，使用当前系统激活的TCP数据。如果未提 供关节位置矢量，则将使用机器人本体的当前关节角度。如果未提供tcp，则将使用控制器的当前激活tcp。",
+        "parameters": [
+            {
+                "name": "q",
+                "description": "机器人的关节角度，缺省值为当前机器人关节角度，单位为弧度，list型数据（可选参数）。",
+                "type": "list",
+                "default": "''"
+            },
+            {
+                "name": "tcp",
+                "description": "工具形状（可选参数）。",
+                "type": "str",
+                "default": "'active tcp'"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "机器人位姿，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "binary_list_to_integer",
+        "description": " 该指令用于计算并返回列表l 中包含的布尔值代表的整数值。",
+        "parameters": [
+            {
+                "name": "l",
+                "description": "要转换为整数的布尔值列表。索引0处的布尔值作为最低有效位。False代表0，True代表 1。 如果列表是空的，此函数返回0。如果列表含有超过32个布尔值，此函数返回列表中前32个布尔值所 转换的有符号整数值，list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，二进制列表所代表的整数值。",
+        "tips": ""
+    },
+    {
+        "name": "integer_to_binary_list",
+        "description": " 该指令用于计算并返回布尔值列表作为有符号整数值x的二进制数。",
+        "parameters": [
+            {
+                "name": "x",
+                "description": "要转换为二进制列表的整数值，返回值含有32个布尔值的列表，其中False代表0，True代 表1，list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，二进制布尔值列表，列表索引0处的值为输入值x的最低位。",
+        "tips": ""
+    },
+    {
+        "name": "get_list_length",
+        "description": " 该指令用于计算并返回列表变量的长度，列表长度是列表包含的条目数。",
+        "parameters": [
+            {
+                "name": "v",
+                "description": "列表变量，list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，用于规定既定列表长度的一个整数。",
+        "tips": ""
+    },
+    {
+        "name": "length",
+        "description": " 该指令用于计算并返回一个列表变量或字符串变量的长度。",
+        "parameters": [
+            {
+                "name": "v",
+                "description": "一个列表或字符串变量，string型数据或list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，列表或字符串长度。",
+        "tips": ""
+    },
+    {
+        "name": "acos",
+        "description": " 该指令用于计算并返回参数f的反余弦值，返回值单位为rad。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "待计算角度的余弦值，定义域为：[-1, 1]，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，f的反余弦值，单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "asin",
+        "description": " 该指令用于计算并返回参数f的反正弦值，返回值单位为rad。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "待计算角度的正弦值，定义域为：[-1, 1]，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，f的反正弦值，单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "atan",
+        "description": " 该指令用于计算并返回参数f的反正切值，返回值单位为rad。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "待计算角度的正切值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，f的反正切值，单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "atan2",
+        "description": " 该指令用于计算并返回x/y的反正切值，返回值单位为rad，x和y值的符号决定了正确的象限。",
+        "parameters": [
+            {
+                "name": "x",
+                "description": "用于计算的值，float型数据； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "y",
+                "description": "用于计算的值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，x/y的反正切值，单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "cos",
+        "description": " 该指令用于计算并返回参数f弧度角的余弦。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "待计算的值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，f的余弦值。",
+        "tips": ""
+    },
+    {
+        "name": "sin",
+        "description": " 该指令用于计算并返回参数f弧度角的正弦。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "待计算数值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，f的正弦值。",
+        "tips": ""
+    },
+    {
+        "name": "tan",
+        "description": " 该指令用于计算并返回参数f弧度角的正切值。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "待计算数值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，f的正切值。",
+        "tips": ""
+    },
+    {
+        "name": "d2r",
+        "description": " 该指令用于角度单位换算，将参数d的角度值转换成弧度值。",
+        "parameters": [
+            {
+                "name": "d",
+                "description": "以degree为单位的角度，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，以rad为单位的角度。",
+        "tips": ""
+    },
+    {
+        "name": "r2d",
+        "description": " 该指令用于角度单位换算，将参数r的弧度值转换成角度值。",
+        "parameters": [
+            {
+                "name": "r",
+                "description": "以rad为单位的弧度，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，以degree为单位的角度。",
+        "tips": ""
+    },
+    {
+        "name": "ceil",
+        "description": " 该指令用于计算并返回不小于参数f的最小整数值，向上取整。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "待计算的值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，向上取整后的整数。",
+        "tips": ""
+    },
+    {
+        "name": "floor",
+        "description": " 该指令用于计算并返回不大于f的最大整数，向下取整。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "输入的浮点值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，f向下取整的整数。",
+        "tips": ""
+    },
+    {
+        "name": "log",
+        "description": " 该指令用于计算并返回以b为底f的对数，如果b或f为负数，运行时会提示错误。",
+        "parameters": [
+            {
+                "name": "b",
+                "description": "底数，float型数据； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "f",
+                "description": "真数，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，以b为底f的对数。",
+        "tips": ""
+    },
+    {
+        "name": "sqrt",
+        "description": " 该指令用于计算并返回参数f的平方根。如果f为负，运行时会提示错误。",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "待计算数值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，f的平方根。",
+        "tips": ""
+    },
+    {
+        "name": "pow",
+        "description": " 该指令用于计算并返回以base为底数，exponent为指数进行幂运算的值。",
+        "parameters": [
+            {
+                "name": "base",
+                "description": "底数值，float型数据； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "exponent",
+                "description": "指数值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，幂运算的结果。",
+        "tips": ""
+    },
+    {
+        "name": "norm",
+        "description": " 该指令用于计算并返回自变量的范数； \n 自变量可以是四种不同类型的其中一种： \n 姿态：在这种情况下，返回姿态的欧几里德范数； \n 浮点数：在这种情况下，返回绝对值（a）； \n 整数：在这种情况下，返回绝对值（a）； \n 列表：在这种情况下，返回列表的欧几里德范数，列表元素必须是数字。",
+        "parameters": [
+            {
+                "name": "a",
+                "description": "姿态、浮点数、整数或列表，list型数据、integer型数据或float型数据。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，a的范数。",
+        "tips": ""
+    },
+    {
+        "name": "normalize",
+        "description": " 该指令用于对给定的由浮点数组成的列表内的数据进行归一化处理。若数组内所有数据均为0，运 行时会提示触发无效参数异常。",
+        "parameters": [
+            {
+                "name": "v",
+                "description": "给定的浮点数列表，list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，对所有数据单位化后的数组。",
+        "tips": ""
+    },
+    {
+        "name": "point_dist",
+        "description": " 该指令用于计算点p_from到点p_to的距离。",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "工具起始位姿，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、 Ry、Rz单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_to",
+                "description": "工具目标位姿，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、 Rz单位为rad。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，两个工具位置之间的距离（不考虑旋转）。",
+        "tips": ""
+    },
+    {
+        "name": "pose_add",
+        "description": " 该指令用于点p_1和点p_2位置和姿态的求和运算。p_1和p_2均含有三个位置参数（x、y、 z），合称为P，以及三个旋转参数（Rx、Ry、Rz），合称为R。此函数用于计算既定姿态相加的结果p_3， 如下所示： \n p_3.P=p_1.P + p_2.P \n p_3.R=p_1.R * p_2.R",
+        "parameters": [
+            {
+                "name": "p_1",
+                "description": "工具位姿1，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、Rz 单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_2",
+                "description": "工具位姿2，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、Rz 单位为rad。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "位置部分与旋转部分乘积之和的列表，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "pose_dist",
+        "description": " 该指令用于计算并返回点p_from到点p_to之间的姿态距离。",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "工具起始姿态，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z 单位为m，Rx、Ry、 Rz 单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_to",
+                "description": "工具目标姿态，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z 单位为m，Rx、Ry、 Rz 单位为rad。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，两个姿态之间的距离，包括旋转。",
+        "tips": ""
+    },
+    {
+        "name": "pose_inv",
+        "description": " 该指令用于计算并返回位姿的逆。",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "工具位姿，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、 Rz单位为rad。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "p_from的逆，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "pose_trans",
+        "description": " 该指令用于姿态变换。第一个自变量p_from用于变换第二个自变量p_from_to，然后返回结果。 这意味着结果是从p_from坐标系开始，然后坐标系移动p_from_to 生成的姿态。如果姿态被视为变 换矩阵，则如下所示： \n T_world->to=T_world->from * T_from->to \n T_x->to=T_x->from * T_from->to",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "起始姿态，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z 单位为m，Rx、Ry、Rz 单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_from_to",
+                "description": "相对于起始姿态的姿态变化，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z 单 位为m，Rx、Ry、Rz单位为rad。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "生成的姿态，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "rotvec2rpy",
+        "description": " 该指令用于计算与旋转向量rotation_vector相对应的RPY向量。",
+        "parameters": [
+            {
+                "name": "rotation_vector",
+                "description": "旋转向量（Vector3d）弧度，也称为轴角向量（单位旋转轴乘以弧度为单位的 旋转角度），list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，以弧度表示的rpy向量(vector3d)，描述了一个围绕x-y-z的外在旋转的滚转-俯仰-偏航序列轴，（相对于绕z-y’-x”的固有旋转轴）。矩阵形式中，rpy向量定义为rrpy=rz(yaw)ry(pitch)rx(roll)。",
+        "tips": ""
+    },
+    {
+        "name": "rpy2rotvec",
+        "description": " 该指令用于计算并返回与参数rpy_vector相对应的旋转向量。",
+        "parameters": [
+            {
+                "name": "rpy_vector",
+                "description": "以弧度表示的RPY向量 (Vector3d)，描述了一个围绕X-Y-Z的外在旋转的滚转-俯仰 -偏航序列轴，（相对于绕Z-Y’-X” 的固有旋转轴）。矩阵形式中，RPY向量定义为 Rrpy=Rz(yaw)Ry(pitch)Rx(roll)，list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，以弧度为单位的旋转矢量(vector3d)，也称为axis-angle向量（单位旋转轴乘以弧度为单位的旋转角度）。",
+        "tips": ""
+    },
+    {
+        "name": "interpolate_pose",
+        "description": " 该指令用于工具位置和方位的线性插值； \n alpha是0时，返回p_from。alpha是1时，返回p_to； \n alpha从0变为1时，返回从p_from到p_to的直线姿态（以及大地定向变化）； \n 如果alpha小于0，返回直线上p_from之前的点； \n 如果alpha大于1，返回直线上p_to之后的姿态。",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "工具起始位姿，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、 Ry、Rz 单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_to",
+                "description": "工具目标位姿，格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、 Rz单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "alpha",
+                "description": "浮点数，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "插值姿态，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "random",
+        "description": " 该指令用于产生一个值域为[0,1]的随机数。",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，0到1之间的伪随机数。",
+        "tips": ""
+    }
+]

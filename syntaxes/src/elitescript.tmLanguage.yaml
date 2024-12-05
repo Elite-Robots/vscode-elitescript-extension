@@ -1,0 +1,1440 @@
+---
+name: elitescript
+scopeName: source.elitescript
+# NOTE: remember to update package.json with VSCode file types.
+fileTypes: [script]
+firstLineMatch: ^#![ \t]*/.*\bpython[\d\.]*\b
+
+patterns:
+  - include: '#statement'
+  - include: '#expression'
+
+repository:
+  $apply:
+    - file: 'regexp-common.inc.syntax.yaml'
+
+    - file: 'comment.inc.syntax.yaml'
+      vars:
+        suffix: '-base'
+        marker: ""
+
+    - file: 'comment.inc.syntax.yaml'
+      vars:
+        suffix: '-string-single-three'
+        marker: "|(?=''')"
+
+    - file: 'comment.inc.syntax.yaml'
+      vars:
+        suffix: '-string-double-three'
+        marker: '|(?=""")'
+
+    - file: 'regexp.inc.syntax.yaml'
+      vars:
+        prefix: 'single-one-'
+        basename: 'regexp'
+        marker: "|(?=\\')"
+        nested: ''
+        guard: "|((?=(?<!\\\\)\\n))"
+
+    - file: 'regexp.inc.syntax.yaml'
+      vars:
+        prefix: 'single-three-'
+        basename: 'regexp'
+        marker: "|(?=\\'\\'\\')"
+        nested: "- include: '#comments-string-single-three'"
+        guard: ""
+
+    - file: 'regexp.inc.syntax.yaml'
+      vars:
+        prefix: 'double-one-'
+        basename: 'regexp'
+        marker: '|(?=")'
+        nested: ''
+        guard: "|((?=(?<!\\\\)\\n))"
+
+    - file: 'regexp.inc.syntax.yaml'
+      vars:
+        prefix: 'double-three-'
+        basename: 'regexp'
+        marker: '|(?=""")'
+        nested: "- include: '#comments-string-double-three'"
+        guard: ""
+
+    - file: 'regexp.wrapper.syntax.yaml'
+      vars:
+        scopename: string.regexp.quoted.single.elitescript
+        prefix: 'single-one-'
+        basename: 'regexp'
+        nested: ''
+        modifier: '[bB]'
+        bquote: "(\\')"
+        equote: "(\\')|(?<!\\\\)(\\n)"
+
+    - file: 'regexp.wrapper.syntax.yaml'
+      vars:
+        scopename: string.regexp.quoted.multi.elitescript
+        prefix: 'single-three-'
+        basename: 'regexp'
+        nested: "- include: '#comments-string-single-three'"
+        modifier: '[bB]'
+        bquote: "(\\'\\'\\')"
+        equote: "(\\'\\'\\')"
+
+    - file: 'regexp.wrapper.syntax.yaml'
+      vars:
+        scopename: string.regexp.quoted.single.elitescript
+        prefix: 'double-one-'
+        basename: 'regexp'
+        nested: ''
+        modifier: '[bB]'
+        bquote: '(")'
+        equote: '(")|(?<!\\)(\n)'
+
+    - file: 'regexp.wrapper.syntax.yaml'
+      vars:
+        scopename: string.regexp.quoted.multi.elitescript
+        prefix: 'double-three-'
+        basename: 'regexp'
+        nested: "- include: '#comments-string-double-three'"
+        modifier: '[bB]'
+        bquote: '(""")'
+        equote: '(""")'
+
+    - file: 'pystring.inc.syntax.yaml'
+      vars:
+        line: single
+        marker: (['"])
+        guard: "|((?<!\\\\)\\n)"
+
+    - file: 'pystring.inc.syntax.yaml'
+      vars:
+        line: multi
+        marker: "'''|\"\"\""
+        guard: ""
+
+    - file: 'pyfstring.inc.syntax.yaml'
+      vars:
+        line: single
+        marker: (['"])
+        fguard: "|(?=\\n)"
+        guard: "|((?<!\\\\)\\n)"
+
+    - file: 'pyfstring.inc.syntax.yaml'
+      vars:
+        line: multi
+        marker: "'''|\"\"\""
+        fguard: ""
+        guard: ""
+
+
+  impossible:
+    comment: This is a special rule that should be used where no match
+             is desired. It is not a good idea to match something like
+             '1{0}' because in some cases that can result in infinite
+             loops in token generation. So the rule instead matches
+             and impossible expression to allow a match to fail and
+             move to the next token.
+    match: '$.^'
+
+  statement:
+    patterns:
+      - include: '#import'
+      - include: '#class-declaration'
+      - include: '#function-declaration'
+      - include: '#generator'
+      - include: '#statement-keyword'
+      - include: '#assignment-operator'
+      - include: '#decorator'
+      - include: '#docstring-statement'
+      - include: '#semicolon'
+
+  semicolon:
+    patterns:
+      - name: invalid.deprecated.semicolon.elitescript
+        match: '\;$'
+
+  comments:
+    patterns:
+      - name: comment.line.number-sign.elitescript
+        contentName: meta.typehint.comment.elitescript
+
+        begin: |
+          (?x)
+            (?:
+              \# \s* (type:)
+              \s*+ (?# we want `\s*+` which is possessive quantifier since
+                       we do not actually want to backtrack when matching
+                       whitespace here)
+              (?! $ | \#)
+            )
+
+        end: (?:$|(?=\#))
+        beginCaptures:
+          '0': {name: meta.typehint.comment.elitescript}
+          '1': {name: comment.typehint.directive.notation.elitescript}
+
+        patterns:
+          - name: comment.typehint.ignore.notation.elitescript
+            match: |
+              (?x)
+                \G ignore
+                (?= \s* (?: $ | \#))
+
+          - name: comment.typehint.type.notation.elitescript
+            match: |
+              (?x)
+                (?<!\.)\b(
+                  bool | bytes | float | int | object | str
+                  | List | Dict | Iterable | Sequence | Set
+                  | FrozenSet | Callable | Union | Tuple
+                  | Any | None
+                )\b
+
+          - name: comment.typehint.punctuation.notation.elitescript
+            match: ([\[\]\(\),\.\=\*]|(->))
+
+          - name: comment.typehint.variable.notation.elitescript
+            match: ([[:alpha:]_]\w*)
+
+      - include: '#comments-base'
+
+  docstring-statement:
+    begin: ^(?=\s*[rR]?(\'\'\'|\"\"\"|\'|\"))
+    comment: the string either terminates correctly or by the
+             beginning of a new line (this is for single line
+             docstrings that aren't terminated) AND it's not followed
+             by another docstring
+    end: ((?<=\1)|^)(?!\s*[rR]?(\'\'\'|\"\"\"|\'|\"))
+    patterns:
+      - include: '#docstring'
+
+  docstring:
+    patterns:
+      - name: string.quoted.docstring.multi.elitescript
+        begin: (\'\'\'|\"\"\")
+        end: (\1)
+        beginCaptures:
+          '1': {name: punctuation.definition.string.begin.elitescript}
+        endCaptures:
+          '1': {name: punctuation.definition.string.end.elitescript}
+        patterns:
+          - include: '#docstring-prompt'
+          - include: '#codetags'
+          - include: '#docstring-guts-unicode'
+
+      - name: string.quoted.docstring.raw.multi.elitescript
+        begin: ([rR])(\'\'\'|\"\"\")
+        end: (\2)
+        beginCaptures:
+          '1': {name: storage.type.string.elitescript}
+          '2': {name: punctuation.definition.string.begin.elitescript}
+        endCaptures:
+          '1': {name: punctuation.definition.string.end.elitescript}
+        patterns:
+          - include: '#string-consume-escape'
+          - include: '#docstring-prompt'
+          - include: '#codetags'
+
+      - name: string.quoted.docstring.single.elitescript
+        begin: (\'|\")
+        end: (\1)|(\n)
+        beginCaptures:
+          '1': {name: punctuation.definition.string.begin.elitescript}
+        endCaptures:
+          '1': {name: punctuation.definition.string.end.elitescript}
+          '2': {name: invalid.illegal.newline.elitescript}
+        patterns:
+          - include: '#codetags'
+          - include: '#docstring-guts-unicode'
+
+      - name: string.quoted.docstring.raw.single.elitescript
+        begin: ([rR])(\'|\")
+        end: (\2)|(\n)
+        beginCaptures:
+          '1': {name: storage.type.string.elitescript}
+          '2': {name: punctuation.definition.string.begin.elitescript}
+        endCaptures:
+          '1': {name: punctuation.definition.string.end.elitescript}
+          '2': {name: invalid.illegal.newline.elitescript}
+        patterns:
+          - include: '#string-consume-escape'
+          - include: '#codetags'
+
+  docstring-guts-unicode:
+    patterns:
+      - include: '#escape-sequence-unicode'
+      - include: '#escape-sequence'
+      - include: '#string-line-continuation'
+
+  docstring-prompt:
+    match: |
+      (?x)
+        (?:
+          (?:^|\G) \s* (?# '\G' is necessary for ST)
+          ((?:>>>|\.\.\.) \s) (?=\s*\S)
+        )
+    captures:
+      '1': {name: keyword.control.flow.elitescript}
+
+  statement-keyword:
+    patterns:
+      - name: storage.type.function.elitescript
+        match: \b((async\s+)?\s*def)\b
+      - name: keyword.control.flow.elitescript
+        comment: |
+          if `as` is eventually followed by `:` or line continuation
+          it's probably control flow like:
+              with foo as bar, \
+                   Foo as Bar:
+                try:
+                  do_stuff()
+                except Exception as e:
+                  pass
+        match: \b(?<!\.)as\b(?=.*[:\\])
+      - name: keyword.control.import.elitescript
+        comment: other legal use of `as` is in an import
+        match: \b(?<!\.)as\b
+      - name: keyword.control.flow.elitescript
+        match: |
+          (?x)
+            \b(?<!\.)(
+              async | continue | del | assert | break | finally | for
+              | from | elif | else | if | except | pass | raise
+              | return | try | while | with
+            )\b
+      - name: storage.modifier.declaration.elitescript
+        match: |
+          (?x)
+            \b(?<!\.)(
+              global | nonlocal
+            )\b
+      - name: storage.type.class.elitescript
+        match: \b(?<!\.)(class)\b
+      - match: |
+          (?x)
+            ^\s*(
+              case | match
+            )(?=\s*([-+\w\d(\[{'":#]|$))\b
+        captures:
+          '1': {name: keyword.control.flow.elitescript}
+
+  expression-bare:
+    comment: valid Python expressions w/o comments and line continuation
+    patterns:
+      - include: '#backticks'
+      - include: '#illegal-anno'
+      - include: '#literal'
+      - include: '#regexp'
+      - include: '#string'
+      - include: '#lambda'
+      - include: '#generator'
+      - include: '#illegal-operator'
+      - include: '#operator'
+      - include: '#curly-braces'
+      - include: '#item-access'
+      - include: '#list'
+      - include: '#odd-function-call'
+      - include: '#round-braces'
+      - include: '#function-call'
+      - include: '#builtin-functions'
+      - include: '#builtin-types'
+      - include: '#builtin-exceptions'
+      - include: '#magic-names'
+      - include: '#special-names'
+      - include: '#illegal-names'
+      - include: '#special-variables'
+      - include: '#ellipsis'
+      - include: '#punctuation'
+      - include: '#line-continuation'
+
+  expression-base:
+    comment: valid Python expressions with comments and line continuation
+    patterns:
+      - include: '#comments'
+      - include: '#expression-bare'
+      - include: '#line-continuation'
+
+  expression:
+    comment: All valid Python expressions
+    patterns:
+      - include: '#expression-base'
+      - include: '#member-access'
+      - comment: Tokenize identifiers to help linters
+        match: (?x) \b ([[:alpha:]_]\w*) \b
+
+  member-access:
+    name: meta.member.access.elitescript
+    begin: (\.)\s*(?!\.)
+    end: |
+      (?x)
+        # stop when you've just read non-whitespace followed by non-word
+        # i.e. when finished reading an identifier or function call
+        (?<=\S)(?=\W) |
+        # stop when seeing the start of something that's not a word,
+        # i.e. when seeing a non-identifier
+        (^|(?<=\s))(?=[^\\\w\s]) |
+        $
+    beginCaptures:
+      '1': {name: punctuation.separator.period.elitescript}
+    patterns:
+      - include: '#function-call'
+      - include: '#member-access-base'
+      - include: '#member-access-attribute'
+
+  member-access-base:
+    patterns:
+      - include: '#magic-names'
+      - include: '#illegal-names'
+      - include: '#illegal-object-name'
+      - include: '#special-names'
+      - include: '#line-continuation'
+      - include: '#item-access'
+
+  member-access-attribute:
+    comment: Highlight attribute access in otherwise non-specialized cases.
+    name: meta.attribute.elitescript
+    match: |
+      (?x)
+        \b ([[:alpha:]_]\w*) \b
+
+  special-names:
+    name: constant.other.caps.elitescript
+    match: |
+      (?x)
+        \b
+          # we want to see "enough", meaning 2 or more upper-case
+          # letters in the beginning of the constant
+          #
+          # for more details refer to:
+          #   https://github.com/MagicStack/MagicPython/issues/42
+          (
+            _* [[:upper:]] [_\d]* [[:upper:]]
+          )
+          [[:upper:]\d]* (_\w*)?
+        \b
+
+  curly-braces:
+    begin: \{
+    end: \}
+    beginCaptures:
+      '0': {name: punctuation.definition.dict.begin.elitescript}
+    endCaptures:
+      '0': {name: punctuation.definition.dict.end.elitescript}
+    patterns:
+      - name: punctuation.separator.dict.elitescript
+        match: ":"
+      - include: '#expression'
+
+  list:
+    begin: \[
+    end: \]
+    beginCaptures:
+      '0': {name: punctuation.definition.list.begin.elitescript}
+    endCaptures:
+      '0': {name: punctuation.definition.list.end.elitescript}
+    patterns:
+      - include: '#expression'
+
+  odd-function-call:
+    comment: |
+      A bit obscured function call where there may have been an
+      arbitrary number of other operations to get the function.
+      E.g. "arr[idx](args)"
+    begin: |
+      (?x)
+        (?<= \] | \) ) \s*
+        (?=\()
+    end: (\))
+    endCaptures:
+      '1': {name: punctuation.definition.arguments.end.elitescript}
+    patterns:
+      - include: '#function-arguments'
+
+  round-braces:
+    begin: \(
+    end: \)
+    beginCaptures:
+      '0': {name: punctuation.parenthesis.begin.elitescript}
+    endCaptures:
+      '0': {name: punctuation.parenthesis.end.elitescript}
+    patterns:
+      - include: '#expression'
+
+  line-continuation:
+    patterns:
+      - match: '(\\)\s*(\S.*$\n?)'
+        captures:
+          '1': {name: punctuation.separator.continuation.line.elitescript}
+          '2': {name: invalid.illegal.line.continuation.elitescript}
+      - begin: '(\\)\s*$\n?'
+        # Line continuation matching ends on anything that is not a
+        # potential docstring. For docstring-like strings we explicitly
+        # match regexp and string.
+        end: |
+          (?x)
+            (?=^\s*$)
+            |
+            (?! (\s* [rR]? (\'\'\'|\"\"\"|\'|\"))
+                |
+                (\G $)  (?# '\G' is necessary for ST)
+            )
+        beginCaptures:
+          '1': {name: punctuation.separator.continuation.line.elitescript}
+        patterns:
+          - include: '#regexp'
+          - include: '#string'
+
+  assignment-operator:
+    name: keyword.operator.assignment.elitescript
+    match: |
+      (?x)
+           <<= | >>= | //= | \*\*=
+          | \+= | -= | /= | @=
+          | \*= | %= | ~= | \^= | &= | \|=
+          | =(?!=)
+
+  operator:
+    match: |
+      (?x)
+          \b(?<!\.)
+            (?:
+              (and | or | not | in | is)                         (?# 1)
+              |
+              (for | if | else | await | (?:yield(?:\s+from)?))  (?# 2)
+            )
+          (?!\s*:)\b
+
+          | (<< | >> | & | \| | \^ | ~)                          (?# 3)
+
+          | (\*\* | \* | \+ | - | % | // | / | @)                (?# 4)
+
+          | (!= | == | >= | <= | < | >)                          (?# 5)
+
+          | (:=)                                                 (?# 6)
+
+    captures:
+      '1': {name: keyword.operator.logical.elitescript}
+      '2': {name: keyword.control.flow.elitescript}
+      '3': {name: keyword.operator.bitwise.elitescript}
+      '4': {name: keyword.operator.arithmetic.elitescript}
+      '5': {name: keyword.operator.comparison.elitescript}
+      '6': {name: keyword.operator.assignment.elitescript}
+
+  punctuation:
+    patterns:
+      - name: punctuation.separator.colon.elitescript
+        match: ":"
+      - name: punctuation.separator.element.elitescript
+        match: ","
+
+  literal:
+    patterns:
+      - name: constant.language.elitescript
+        match: \b(True|False|None|NotImplemented|Ellipsis)\b
+
+      - include: '#number'
+
+  number:
+    name: constant.numeric.elitescript
+    patterns:
+      - include: '#number-float'
+      - include: '#number-dec'
+      - include: '#number-hex'
+      - include: '#number-oct'
+      - include: '#number-bin'
+      - include: '#number-long'
+      - name: invalid.illegal.name.elitescript
+        match: \b[0-9]+\w+
+
+  number-float:
+    name: constant.numeric.float.elitescript
+    match: |
+      (?x)
+        (?<! \w)(?:
+          (?:
+            \.[0-9](?: _?[0-9] )*
+            |
+            [0-9](?: _?[0-9] )* \. [0-9](?: _?[0-9] )*
+            |
+            [0-9](?: _?[0-9] )* \.
+          ) (?: [eE][+-]?[0-9](?: _?[0-9] )* )?
+          |
+          [0-9](?: _?[0-9] )* (?: [eE][+-]?[0-9](?: _?[0-9] )* )
+        )([jJ])?\b
+    captures:
+      '1': {name: storage.type.imaginary.number.elitescript}
+
+  number-dec:
+    name: constant.numeric.dec.elitescript
+    match: |
+      (?x)
+        (?<![\w\.])(?:
+            [1-9](?: _?[0-9] )*
+            |
+            0+
+            |
+            [0-9](?: _?[0-9] )* ([jJ])
+            |
+            0 ([0-9]+)(?![eE\.])
+        )\b
+    captures:
+      '1': {name: storage.type.imaginary.number.elitescript}
+      '2': {name: invalid.illegal.dec.elitescript}
+
+  number-hex:
+    name: constant.numeric.hex.elitescript
+    match: |
+      (?x)
+        (?<![\w\.])
+          (0[xX]) (_?[0-9a-fA-F])+
+        \b
+    captures:
+      '1': {name: storage.type.number.elitescript}
+
+  number-oct:
+    name: constant.numeric.oct.elitescript
+    match: |
+      (?x)
+        (?<![\w\.])
+          (0[oO]) (_?[0-7])+
+        \b
+    captures:
+      '1': {name: storage.type.number.elitescript}
+
+  number-bin:
+    name: constant.numeric.bin.elitescript
+    match: |
+      (?x)
+        (?<![\w\.])
+          (0[bB]) (_?[01])+
+        \b
+    captures:
+      '1': {name: storage.type.number.elitescript}
+
+  number-long:
+    name: constant.numeric.bin.elitescript
+    comment: this is to support python2 syntax for long ints
+    match: |
+      (?x)
+        (?<![\w\.])
+          ([1-9][0-9]* | 0) ([lL])
+        \b
+    captures:
+      '2': {name: storage.type.number.elitescript}
+
+  regexp:
+    patterns:
+      - include: '#regexp-single-three-line'
+      - include: '#regexp-double-three-line'
+      - include: '#regexp-single-one-line'
+      - include: '#regexp-double-one-line'
+
+  string:
+    patterns:
+      - include: '#string-quoted-multi-line'
+      - include: '#string-quoted-single-line'
+      - include: '#string-bin-quoted-multi-line'
+      - include: '#string-bin-quoted-single-line'
+      - include: '#string-raw-quoted-multi-line'
+      - include: '#string-raw-quoted-single-line'
+      - include: '#string-raw-bin-quoted-multi-line'
+      - include: '#string-raw-bin-quoted-single-line'
+      - include: '#fstring-fnorm-quoted-multi-line'
+      - include: '#fstring-fnorm-quoted-single-line'
+      - include: '#fstring-normf-quoted-multi-line'
+      - include: '#fstring-normf-quoted-single-line'
+      - include: '#fstring-raw-quoted-multi-line'
+      - include: '#fstring-raw-quoted-single-line'
+
+  string-unicode-guts:
+    patterns:
+      - include: '#escape-sequence-unicode'
+      - include: '#string-entity'
+      - include: '#string-brace-formatting'
+
+  string-consume-escape:
+    match: \\['"\n\\]
+
+  string-raw-guts:
+    patterns:
+      - include: '#string-consume-escape'
+      - include: '#string-formatting'
+      - include: '#string-brace-formatting'
+
+  string-raw-bin-guts:
+    patterns:
+      - include: '#string-consume-escape'
+      - include: '#string-formatting'
+
+  string-entity:
+    patterns:
+      - include: '#escape-sequence'
+      - include: '#string-line-continuation'
+      - include: '#string-formatting'
+
+  fstring-guts:
+    patterns:
+      - include: '#escape-sequence-unicode'
+      - include: '#escape-sequence'
+      - include: '#string-line-continuation'
+      - include: '#fstring-formatting'
+
+  fstring-raw-guts:
+    patterns:
+      - include: '#string-consume-escape'
+      - include: '#fstring-formatting'
+
+  fstring-illegal-single-brace:
+    comment: it is illegal to have a multiline brace inside a single-line
+             string
+    begin: (\{)(?=[^\n}]*$\n?)
+    end: (\})|(?=\n)
+    beginCaptures:
+      '1': {name: constant.character.format.placeholder.other.elitescript}
+    endCaptures:
+      '1': {name: constant.character.format.placeholder.other.elitescript}
+    patterns:
+      - include: '#fstring-terminator-single'
+      - include: '#f-expression'
+
+  fstring-illegal-multi-brace:
+    patterns:
+      - include: '#impossible'
+
+  f-expression:
+    comment: All valid Python expressions, except comments and line continuation
+    patterns:
+      - include: '#expression-bare'
+      - include: '#member-access'
+      - comment: Tokenize identifiers to help linters
+        match: (?x) \b ([[:alpha:]_]\w*) \b
+
+  escape-sequence-unicode:
+    patterns:
+      - name: constant.character.escape.elitescript
+        match: |
+          (?x)
+            \\ (
+                  u[0-9A-Fa-f]{4}
+                  | U[0-9A-Fa-f]{8}
+                  | N\{[\w\s]+?\}
+               )
+
+  escape-sequence:
+    name: constant.character.escape.elitescript
+    match: |
+      (?x)
+        \\ (
+              x[0-9A-Fa-f]{2}
+              | [0-7]{1,3}
+              | [\\"'abfnrtv]
+           )
+
+  string-line-continuation:
+    name: constant.language.elitescript
+    match: \\$
+
+  string-formatting:
+    name: meta.format.percent.elitescript
+    match: |
+      (?x)
+        (
+          % (\([\w\s]*\))?
+            [-+#0 ]*
+            (\d+|\*)? (\.(\d+|\*))?
+            ([hlL])?
+            [diouxXeEfFgGcrsab%]
+        )
+    captures:
+      '1': {name: constant.character.format.placeholder.other.elitescript}
+
+  string-brace-formatting:
+    patterns:
+      - name: meta.format.brace.elitescript
+        match: |
+          (?x)
+            (
+              {{ | }}
+              | (?:
+                {
+                  \w* (\.[[:alpha:]_]\w* | \[[^\]'"]+\])*
+                  (![rsa])?
+                  ( : \w? [<>=^]? [-+ ]? \#?
+                    \d* ,? (\.\d+)? [bcdeEfFgGnosxX%]? )?
+                })
+            )
+        captures:
+          # We use this awkward scope name instead of perhaps more
+          # elegant "support.other.format.elitescript" because it appears
+          # that by default it gives a better visual result in various
+          # systems (e.g. GitHub). This is due to the fact that
+          # "storage.type..." is more likely to have special
+          # highlighting in any given color scheme than
+          # "support.other..."
+          '1': {name: constant.character.format.placeholder.other.elitescript}
+          '3': {name: storage.type.format.elitescript}
+          '4': {name: storage.type.format.elitescript}
+
+      # The reason for 2 separate rules is to establish which one
+      # should be matched with a higher priority. The rule below is
+      # more generic, so it should be matched only if the specific one
+      # didn't.
+      - name: meta.format.brace.elitescript
+        match: |
+          (?x)
+            (
+              {
+                \w* (\.[[:alpha:]_]\w* | \[[^\]'"]+\])*
+                (![rsa])?
+                (:)
+                  [^'"{}\n]* (?:
+                    \{ [^'"}\n]*? \} [^'"{}\n]*
+                  )*
+              }
+            )
+        captures:
+          '1': {name: constant.character.format.placeholder.other.elitescript}
+          '3': {name: storage.type.format.elitescript}
+          '4': {name: storage.type.format.elitescript}
+
+  fstring-formatting:
+    patterns:
+      - include: '#fstring-formatting-braces'
+      - include: '#fstring-formatting-singe-brace'
+
+  fstring-formatting-singe-brace:
+    name: invalid.illegal.brace.elitescript
+    match: (}(?!}))
+
+  import:
+    comment: |
+      Import statements used to correctly mark `from`, `import`, and `as`
+    patterns:
+      - begin: \b(?<!\.)(from)\b(?=.+import)
+        end: $|(?=import)
+        beginCaptures:
+          '1': {name: keyword.control.import.elitescript}
+        patterns:
+          - name: punctuation.separator.period.elitescript
+            match: \.+
+          - include: '#expression'
+
+      - begin: \b(?<!\.)(import)\b
+        end: $
+        beginCaptures:
+          '1': {name: keyword.control.import.elitescript}
+        patterns:
+          - name: keyword.control.import.elitescript
+            match: \b(?<!\.)as\b
+          - include: '#expression'
+
+  class-declaration:
+    patterns:
+      - name: meta.class.elitescript
+        begin: |
+          (?x)
+            \s*(class)\s+
+              (?=
+                [[:alpha:]_]\w* \s* (:|\()
+              )
+        end: (:)
+        beginCaptures:
+          '1': {name: storage.type.class.elitescript}
+        endCaptures:
+          '1': {name: punctuation.section.class.begin.elitescript}
+        patterns:
+          - include: '#class-name'
+          - include: '#class-inheritance'
+
+  class-name:
+    patterns:
+      - include: '#illegal-object-name'
+      - include: '#builtin-possible-callables'
+      - name: entity.name.type.class.elitescript
+        match: |
+          (?x)
+            \b ([[:alpha:]_]\w*) \b
+
+  class-inheritance:
+    name: meta.class.inheritance.elitescript
+    begin: (\()
+    end: (\))
+    beginCaptures:
+      '1': {name: punctuation.definition.inheritance.begin.elitescript}
+    endCaptures:
+      '1': {name: punctuation.definition.inheritance.end.elitescript}
+    patterns:
+      - name: keyword.operator.unpacking.arguments.elitescript
+        match: (\*\*|\*)
+      - name: punctuation.separator.inheritance.elitescript
+        match: ','
+      - name: keyword.operator.assignment.elitescript
+        match: =(?!=)
+      - name: support.type.metaclass.elitescript
+        match: \bmetaclass\b
+      - include: '#illegal-names'
+      - include: '#class-kwarg'
+      - include: '#call-wrapper-inheritance'
+      - include: '#expression-base'
+      - include: '#member-access-class'
+      - include: '#inheritance-identifier'
+
+  class-kwarg:
+    match: |
+      (?x)
+        \b ([[:alpha:]_]\w*) \s*(=)(?!=)
+    captures:
+      # "variable.parameter.class.elitescript" scope is more important
+      # and hence we specify it first to highlight class parameters
+      # as kwargs in Atom/VSCode/GH.
+      '1': {name: variable.parameter.class.elitescript
+                  entity.other.inherited-class.elitescript}
+      '2': {name: keyword.operator.assignment.elitescript}
+
+  inheritance-identifier:
+    match: |
+      (?x)
+        \b ([[:alpha:]_]\w*) \b
+    captures:
+      '1': {name: entity.other.inherited-class.elitescript}
+
+  member-access-class:
+    name: meta.member.access.elitescript
+    begin: (\.)\s*(?!\.)
+    end: (?<=\S)(?=\W)|$
+    beginCaptures:
+      '1': {name: punctuation.separator.period.elitescript}
+    patterns:
+      - include: '#call-wrapper-inheritance'
+      - include: '#member-access-base'
+      - include: '#inheritance-identifier'
+
+  lambda:
+    patterns:
+      - match: ((?<=\.)lambda|lambda(?=\s*[\.=]))
+        captures:
+          '1': {name: keyword.control.flow.elitescript}
+      - match: \b(lambda)\s*?(?=[,\n]|$)
+        captures:
+          '1': {name: storage.type.function.lambda.elitescript}
+      - name: meta.lambda-function.elitescript
+        begin: |
+          (?x)
+            \b (lambda) \b
+        end: (:)|(\n)
+        beginCaptures:
+          '1': {name: storage.type.function.lambda.elitescript}
+        endCaptures:
+          '1': {name: punctuation.section.function.lambda.begin.elitescript}
+
+        contentName: meta.function.lambda.parameters.elitescript
+        patterns:
+          - name: keyword.operator.positional.parameter.elitescript
+            match: /
+          - name: keyword.operator.unpacking.parameter.elitescript
+            match: (\*\*|\*)
+          - include: '#lambda-nested-incomplete'
+          - include: '#illegal-names'
+          - match: ([[:alpha:]_]\w*)\s*(?:(,)|(?=:|$))
+            captures:
+              '1': {name: variable.parameter.function.language.elitescript}
+              '2': {name: punctuation.separator.parameters.elitescript}
+
+          - include: '#comments'
+          - include: '#backticks'
+          - include: '#illegal-anno'
+          - include: '#lambda-parameter-with-default'
+          - include: '#line-continuation'
+          - include: '#illegal-operator'
+
+  lambda-incomplete:
+    name: storage.type.function.lambda.elitescript
+    match: \blambda(?=\s*[,)])
+
+  lambda-nested-incomplete:
+    name: storage.type.function.lambda.elitescript
+    match: \blambda(?=\s*[:,)])
+
+  lambda-parameter-with-default:
+    begin: |
+      (?x)
+        \b
+        ([[:alpha:]_]\w*) \s* (=)
+    end: (,)|(?=:|$)
+    beginCaptures:
+      '1': {name: variable.parameter.function.language.elitescript}
+      '2': {name: keyword.operator.elitescript}
+    endCaptures:
+      '1': {name: punctuation.separator.parameters.elitescript}
+    patterns:
+      - include: '#expression'
+
+  generator:
+    comment: |
+      Match "for ... in" construct used in generators and for loops to
+      correctly identify the "in" as a control flow keyword.
+    begin: \bfor\b
+    beginCaptures:
+      '0': {name: keyword.control.flow.elitescript}
+    end: \bin\b
+    endCaptures:
+      '0': {name: keyword.control.flow.elitescript}
+    patterns:
+      - include: '#expression'
+
+  function-declaration:
+    name: meta.function.elitescript
+    begin: |
+      (?x)
+        \s*
+        (?:\b(async) \s+)? \b(def)\s+
+          (?=
+            [[:alpha:]_][[:word:]]* \s* \(
+          )
+
+    end: (:|(?=[#'"\n]))
+    beginCaptures:
+      '1': {name: storage.type.function.async.elitescript}
+      '2': {name: storage.type.function.elitescript}
+
+    endCaptures:
+      '1': {name: punctuation.section.function.begin.elitescript}
+
+    patterns:
+      - include: '#function-def-name'
+      - include: '#parameters'
+      - include: '#line-continuation'
+      - include: '#return-annotation'
+
+  function-def-name:
+    patterns:
+      - include: '#illegal-object-name'
+      - include: '#builtin-possible-callables'
+      - name: entity.name.function.elitescript
+        match: |
+          (?x)
+            \b ([[:alpha:]_]\w*) \b
+
+  parameters:
+    name: meta.function.parameters.elitescript
+    begin: (\()
+    end: (\))
+    beginCaptures:
+      '1': {name: punctuation.definition.parameters.begin.elitescript}
+    endCaptures:
+      '1': {name: punctuation.definition.parameters.end.elitescript}
+
+    patterns:
+      - name: keyword.operator.positional.parameter.elitescript
+        match: /
+      - name: keyword.operator.unpacking.parameter.elitescript
+        match: (\*\*|\*)
+      - include: '#lambda-incomplete'
+      - include: '#illegal-names'
+      - include: '#illegal-object-name'
+      - include: '#parameter-special'
+      - match: |
+          (?x)
+            ([[:alpha:]_]\w*)
+              \s* (?: (,) | (?=[)#\n=]))
+        captures:
+          '1': {name: variable.parameter.function.language.elitescript}
+          '2': {name: punctuation.separator.parameters.elitescript}
+
+      - include: '#comments'
+      - include: '#loose-default'
+      - include: '#annotated-parameter'
+
+  parameter-special:
+    match: |
+      (?x)
+        \b ((self)|(cls)) \b \s*(?:(,)|(?=\)))
+    captures:
+      '1': {name: variable.parameter.function.language.elitescript}
+      '2': {name: variable.parameter.function.language.special.self.elitescript}
+      '3': {name: variable.parameter.function.language.special.cls.elitescript}
+      '4': {name: punctuation.separator.parameters.elitescript}
+
+  loose-default:
+    begin: (=)
+    end: (,)|(?=\))
+    beginCaptures:
+      '1': {name: keyword.operator.elitescript}
+    endCaptures:
+      '1': {name: punctuation.separator.parameters.elitescript}
+    patterns:
+      - include: '#expression'
+
+  annotated-parameter:
+    begin: |
+      (?x)
+        \b
+        ([[:alpha:]_]\w*) \s* (:)
+    end: (,)|(?=\))
+    beginCaptures:
+      '1': {name: variable.parameter.function.language.elitescript}
+      '2': {name: punctuation.separator.annotation.elitescript}
+    endCaptures:
+      '1': {name: punctuation.separator.parameters.elitescript}
+    patterns:
+      - include: '#expression'
+      - name: keyword.operator.assignment.elitescript
+        match: =(?!=)
+
+  return-annotation:
+    begin: (->)
+    end: (?=:)
+    beginCaptures:
+      '1': {name: punctuation.separator.annotation.result.elitescript}
+    patterns:
+      - include: '#expression'
+
+  item-access:
+    patterns:
+      - name: meta.item-access.elitescript
+        begin: |
+          (?x)
+            \b(?=
+              [[:alpha:]_]\w* \s* \[
+            )
+        end: (\])
+        endCaptures:
+          '1': {name: punctuation.definition.arguments.end.elitescript}
+        patterns:
+          - include: '#item-name'
+          - include: '#item-index'
+          - include: '#expression'
+
+  item-name:
+    patterns:
+      - include: '#special-variables'
+      - include: '#builtin-functions'
+      - include: '#special-names'
+      - name: meta.indexed-name.elitescript
+        match: |
+          (?x)
+            \b ([[:alpha:]_]\w*) \b
+
+  item-index:
+    begin: (\[)
+    end: (?=\])
+    beginCaptures:
+      '1': {name: punctuation.definition.arguments.begin.elitescript}
+    contentName: meta.item-access.arguments.elitescript
+    patterns:
+      - name: punctuation.separator.slice.elitescript
+        match: ":"
+      - include: '#expression'
+
+  decorator:
+    name: meta.function.decorator.elitescript
+    begin: |
+      (?x)
+        ^\s*
+        ((@)) \s* (?=[[:alpha:]_]\w*)
+    end: |
+        (?x)
+          ( \) )
+            # trailing whitespace and comments are legal
+            (?: (.*?) (?=\s*(?:\#|$)) )
+          | (?=\n|\#)
+    beginCaptures:
+      '1': {name: entity.name.function.decorator.elitescript}
+      '2': {name: punctuation.definition.decorator.elitescript}
+    endCaptures:
+      '1': {name: punctuation.definition.arguments.end.elitescript}
+      '2': {name: invalid.illegal.decorator.elitescript}
+
+    patterns:
+      - include: '#decorator-name'
+      - include: '#function-arguments'
+
+  decorator-name:
+    patterns:
+      - include: '#builtin-callables'
+      - include: '#illegal-object-name'
+      - name: entity.name.function.decorator.elitescript
+        match: |
+          (?x)
+            ([[:alpha:]_]\w*) | (\.)
+        captures:
+          '2': {name: punctuation.separator.period.elitescript}
+      - include: '#line-continuation'
+      - name: invalid.illegal.decorator.elitescript
+        match: |
+          (?x)
+            \s* ([^([:alpha:]\s_\.#\\] .*?) (?=\#|$)
+        captures:
+          '1': {name: invalid.illegal.decorator.elitescript}
+
+  call-wrapper-inheritance:
+    comment: same as a function call, but in inheritance context
+    name: meta.function-call.elitescript
+    begin: |
+      (?x)
+        \b(?=
+          ([[:alpha:]_]\w*) \s* (\()
+        )
+    end: (\))
+    endCaptures:
+      '1': {name: punctuation.definition.arguments.end.elitescript}
+    patterns:
+      - include: '#inheritance-name'
+      - include: '#function-arguments'
+
+  inheritance-name:
+    patterns:
+      - include: '#lambda-incomplete'
+      - include: '#builtin-possible-callables'
+      - include: '#inheritance-identifier'
+
+  function-call:
+    name: meta.function-call.elitescript
+    comment: Regular function call of the type "name(args)"
+    begin: |
+      (?x)
+        \b(?=
+          ([[:alpha:]_]\w*) \s* (\()
+        )
+    end: (\))
+    endCaptures:
+      '1': {name: punctuation.definition.arguments.end.elitescript}
+    patterns:
+      - include: '#special-variables'
+      - include: '#function-name'
+      - include: '#function-arguments'
+
+  function-name:
+    patterns:
+      - include: '#builtin-possible-callables'
+      - comment: Some color schemas support meta.function-call.generic scope
+        name: meta.function-call.generic.elitescript
+        match: |
+          (?x)
+            \b ([[:alpha:]_]\w*) \b
+
+  function-arguments:
+    begin: (\()
+    end: (?=\))(?!\)\s*\()
+    beginCaptures:
+      '1': {name: punctuation.definition.arguments.begin.elitescript}
+    contentName: meta.function-call.arguments.elitescript
+    patterns:
+      - name: punctuation.separator.arguments.elitescript
+        match: (,)
+      - match: |
+          (?x)
+            (?:(?<=[,(])|^) \s* (\*{1,2})
+        captures:
+          '1': {name: keyword.operator.unpacking.arguments.elitescript}
+      - include: '#lambda-incomplete'
+      - include: '#illegal-names'
+      - match: '\b([[:alpha:]_]\w*)\s*(=)(?!=)'
+        captures:
+          '1': {name: variable.parameter.function-call.elitescript}
+          '2': {name: keyword.operator.assignment.elitescript}
+
+      - name: keyword.operator.assignment.elitescript
+        match: =(?!=)
+      - include: '#expression'
+      - match: \s*(\))\s*(\()
+        captures:
+          '1': {name: punctuation.definition.arguments.end.elitescript}
+          '2': {name: punctuation.definition.arguments.begin.elitescript}
+
+  builtin-callables:
+    patterns:
+      - include: '#illegal-names'
+      - include: '#illegal-object-name'
+      - include: '#builtin-exceptions'
+      - include: '#builtin-functions'
+      - include: '#builtin-types'
+
+  builtin-possible-callables:
+    patterns:
+      - include: '#builtin-callables'
+      - include: '#magic-names'
+
+  builtin-exceptions:
+    name: support.type.exception.elitescript
+    match: |
+      (?x) (?<!\.) \b(
+        (
+          Arithmetic | Assertion | Attribute | Buffer | BlockingIO
+          | BrokenPipe | ChildProcess
+          | (Connection (Aborted | Refused | Reset)?)
+          | EOF | Environment | FileExists | FileNotFound
+          | FloatingPoint | IO | Import | Indentation | Index | Interrupted
+          | IsADirectory | NotADirectory | Permission | ProcessLookup
+          | Timeout
+          | Key | Lookup | Memory | Name | NotImplemented | OS | Overflow
+          | Reference | Runtime | Recursion | Syntax | System
+          | Tab | Type | UnboundLocal | Unicode(Encode|Decode|Translate)?
+          | Value | Windows | ZeroDivision | ModuleNotFound
+        ) Error
+      |
+        ((Pending)?Deprecation | Runtime | Syntax | User | Future | Import
+          | Unicode | Bytes | Resource
+        )? Warning
+      |
+        SystemExit | Stop(Async)?Iteration
+        | KeyboardInterrupt
+        | GeneratorExit | (Base)?Exception
+      )\b
+
+  builtin-functions:
+    patterns:
+      - name: support.function.builtin.elitescript
+        match: |
+          (?x)
+            (?<!\.) \b(
+              __import__ | abs | aiter | all | any | anext | ascii | bin
+              | breakpoint | callable | chr | compile | copyright | credits
+              | delattr | dir | divmod | enumerate | eval | exec | exit
+              | filter | format | getattr | globals | hasattr | hash | help
+              | hex | id | input | isinstance | issubclass | iter | len
+              | license | locals | map | max | memoryview | min | next
+              | oct | open | ord | pow | print | quit | range | reload | repr
+              | reversed | round | setattr | sorted | sum | vars | zip
+            )\b
+
+      - name: variable.legacy.builtin.elitescript
+        match: |
+          (?x)
+            (?<!\.) \b(
+              file | reduce | intern | raw_input | unicode | cmp | basestring
+              | execfile | long | xrange
+            )\b
+
+  builtin-types:
+    name: support.type.elitescript
+    match: |
+      (?x)
+        (?<!\.) \b(
+          bool | bytearray | bytes | classmethod | complex | dict
+          | float | frozenset | int | list | object | property
+          | set | slice | staticmethod | str | tuple | type
+
+          (?# Although 'super' is not a type, it's related to types,
+              and is special enough to be highlighted differently from
+              other built-ins)
+          | super
+        )\b
+
+  magic-function-names:
+    comment: |
+      these methods have magic interpretation by python and are generally called
+      indirectly through syntactic constructs
+    match: |
+      (?x)
+        \b(
+          __(?:
+            abs | add | aenter | aexit | aiter | and | anext
+            | await | bool | call | ceil | class_getitem
+            | cmp | coerce | complex | contains | copy
+            | deepcopy | del | delattr | delete | delitem
+            | delslice | dir | div | divmod | enter | eq
+            | exit | float | floor | floordiv | format | ge
+            | get | getattr | getattribute | getinitargs
+            | getitem | getnewargs | getslice | getstate | gt
+            | hash | hex | iadd | iand | idiv | ifloordiv |
+            | ilshift | imod | imul | index | init
+            | instancecheck | int | invert | ior | ipow
+            | irshift | isub | iter | itruediv | ixor | le
+            | len | long | lshift | lt | missing | mod | mul
+            | ne | neg | new | next | nonzero | oct | or | pos
+            | pow | radd | rand | rdiv | rdivmod | reduce
+            | reduce_ex | repr | reversed | rfloordiv |
+            | rlshift | rmod | rmul | ror | round | rpow
+            | rrshift | rshift | rsub | rtruediv | rxor | set
+            | setattr | setitem | set_name | setslice
+            | setstate | sizeof | str | sub | subclasscheck
+            | truediv | trunc | unicode | xor | matmul
+            | rmatmul | imatmul | init_subclass | set_name
+            | fspath | bytes | prepare | length_hint
+          )__
+        )\b
+    captures:
+      '1': {name: support.function.magic.elitescript}
+
+  magic-variable-names:
+    comment: magic variables which a class/module may have.
+    match: |
+      (?x)
+        \b(
+          __(?:
+            all | annotations | bases | builtins | class
+            | closure | code | debug | defaults | dict | doc | file | func
+            | globals | kwdefaults | match_args | members | metaclass | methods
+            | module | mro | mro_entries | name | qualname | post_init | self
+            | signature | slots | subclasses | version | weakref | wrapped
+            | classcell | spec | path | package | future | traceback
+          )__
+        )\b
+    captures:
+      '1': {name: support.variable.magic.elitescript}
+
+  magic-names:
+    patterns:
+      - include: '#magic-function-names'
+      - include: '#magic-variable-names'
+
+  illegal-names:
+    match: |
+      (?x)
+        \b(?:
+          (
+            and | assert | async | await | break | class | continue | def
+            | del | elif | else | except | finally | for | from | global
+            | if | in | is | (?<=\.)lambda | lambda(?=\s*[\.=])
+            | nonlocal | not | or | pass | raise | return | try | while | with
+            | yield
+          ) | (
+            as | import
+          )
+        )\b
+    captures:
+      '1': {name: keyword.control.flow.elitescript}
+      '2': {name: keyword.control.import.elitescript}
+
+
+  special-variables:
+    match: |
+      (?x)
+        \b (?<!\.) (?:
+          (self) | (cls)
+        )\b
+    captures:
+      '1': {name: variable.language.special.self.elitescript}
+      '2': {name: variable.language.special.cls.elitescript}
+
+  ellipsis:
+    name: constant.other.ellipsis.elitescript
+    match: \.\.\.
+
+  backticks:
+    name: invalid.deprecated.backtick.elitescript
+    begin: \`
+    end: (?:\`|(?<!\\)(\n))
+    patterns:
+      - include: '#expression'
+
+  illegal-operator:
+    patterns:
+      - name: invalid.illegal.operator.elitescript
+        match: '&&|\|\||--|\+\+'
+      - name: invalid.illegal.operator.elitescript
+        match: '[?$]'
+      - name: invalid.illegal.operator.elitescript
+        comment: We don't want `!` to flash when we're typing `!=`
+        match: '!\b'
+
+  illegal-object-name:
+    comment: It's illegal to name class or function "True"
+    name: keyword.illegal.name.elitescript
+    match: \b(True|False|None)\b
+
+  illegal-anno:
+    name: invalid.illegal.annotation.elitescript
+    match: '->'
+...

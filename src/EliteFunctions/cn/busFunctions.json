@@ -1,0 +1,278 @@
+[
+    {
+        "name": "modbus_add_signal",
+        "description": " 该指令用于为控制器添加一个新的modbus信号用于监督；预期无响应；在当前版本中，modbus 可添加最多200个信号。",
+        "parameters": [
+            {
+                "name": "IP",
+                "description": "用于指定modbus信号所接modbus装置的IP地址。string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "slave_number",
+                "description": "通常设置为255，可在[0: 247]之间自由选择，设置为0时为广播，设置为[248: 254] 之间时会被设置为255。Integer型数据：[0: 247, 255] ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "signal_address",
+                "description": "用于指定此新信号应当反映的线圈或寄存器的地址。有关此信息，请查阅 modbus装置的配置。integer型数据：[0：65535]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "signal_type",
+                "description": "用于指定要添加的信号类型。0=数字输入，1=数字输出，2＝寄存器输入，3＝寄 存器输出。integer型数据：[0：3]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "signal_name",
+                "description": "专用于识别信号。如果提供一个与已添加的信号相同的字符串，新的信号将代替旧 的信号。string型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_delete_signal",
+        "description": " 该指令用于删除所提供的信号名称识别的信号。",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "信号名，与应当删除的信号名称相同。string型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_get_signal_status",
+        "description": " 该指令用于读取特定信号的当前值。",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "信号名，与应当获取数值的信号名称相同。string型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "对于数字信号：true或false，boolean型数据；\n对于寄存器信号：以无符号整数显示的寄存器数值，。",
+        "tips": ""
+    },
+    {
+        "name": "modbus_send_custom_command",
+        "description": " 该指令用于将用户指定的命令发送到位于指定IP地址的modbus装置。无法用于索取数据，因为 不会收到响应。用户负责提供对所提供的函数代码有意义的数据。内建函数注意构建modbus框架， 因此用户无需担心命令的长度。",
+        "parameters": [
+            {
+                "name": "IP",
+                "description": "用于指定自定义命令应当发送至的modbus装置的IP地址。string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "slave_number",
+                "description": "通常设为255，可在[0: 247]之间自由选择，设置为0时为广播，设置为[248: 254]之间时会被设置为255。Integer型数据：[0: 247, 255] ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "function_code",
+                "description": "用于指定自定义命令所用的函数代码,目前只支持6(设置单个寄存器)。integer 型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "一个整数列表，每个条目必须是有效的字节[0:255]值。integer list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_set_output_register",
+        "description": " 该指令用于将既定名称识别的输出寄存器信号设为既定值。",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "信号名，用于识别已事先添加的输出寄存器信号。string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "register_value",
+                "description": "必须是有效的字符值。若超出范围，会自动按照内存类型转换或内存截断的方式 强制转换至范围内，integer 型数据：[0：65535]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_set_output_signal",
+        "description": " 该指令用于将既定名称识别的输出数字信号设为既定值。",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "信号名，用于识别已事先添加的输出数字信号。string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "digital_value",
+                "description": "信号将被设置为此值。boolean型数据。",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_set_runstate_dependent_choice",
+        "description": " 该指令用于设置输出信号是必须保持来自程序的状态，还是程序不运行设高或设低。",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "信号名，用于识别已事先添加的输出数字信号。string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "runstate_choice",
+                "description": "0=保持程序状态；1=程序不运行时设低；2=程序不运行时设高；3=程序停止时 输出低电平，程序运行时输出高电平。integer型数据：[0：3]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_set_signal_update_frequency",
+        "description": " 该指令用于设置机器人将请求发送给Modbus控制器读取或写入信号值的频率。",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "信号名，用于识别已事先添加的输出数字信号。string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "update_frequency",
+                "description": "用于指定更新频率，以Hz 为单位。integer型数据：[0：250]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "read_port_bit",
+        "description": " 该指令用于读取本机Modbus从站数字（线圈）地址的值。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "端口的地址（请参阅支持网站“使用Modbus服务器”页面上的端口映射器）。integer 型数据：[0:127]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "端口保存的数值，。",
+        "tips": ""
+    },
+    {
+        "name": "read_port_register",
+        "description": " 该指令用于读取本机Modbus从站寄存器地址的值。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "端口的地址，integer型数据。",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "is_signed",
+                "description": "是否是有符号的数据，默认为False，可选参数，boolean型数据。",
+                "type": "bool",
+                "default": "False"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，端口保存的有符号整数值[-32768:32767]或[0:65535]。",
+        "tips": ""
+    },
+    {
+        "name": "write_port_bit",
+        "description": " 该指令用于向本机Modbus从站数字（线圈）地址写入值。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "端口的地址（请参阅支持网站“使用Modbus服务器”页面上的端口映射器）integer 型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "寄存器中要设置的数值。boolean型数据。",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "write_port_register",
+        "description": " 该指令用于向本机Modbus从站寄存器写入值。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "端口的地址。integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "端口中要设置的数值（0：65536）或（-32768：32767）。integer型数据。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

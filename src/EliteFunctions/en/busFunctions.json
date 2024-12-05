@@ -1,0 +1,278 @@
+[
+    {
+        "name": "modbus_add_signal",
+        "description": " This command is used to add a new modbus signal to the controller for supervision; no response is expected; in the current version, modbus can add up to 200 signals.",
+        "parameters": [
+            {
+                "name": "IP",
+                "description": "Used to specify the IP address of Modbus appliance to which modbus signal is connected. string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "slave_number",
+                "description": "Normally set to 255, can be freely selected between [0: 247], when set to 0, it is broadcast. When it is set to between [248: 254], it will be set to 255. Integer type data: [0: 247, 255] ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "signal_address",
+                "description": "Specifies the address of the coil or register that this new signal should reflect. For this information, consult the configuration of the modbus appliance. Integer type data: [0:65535]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "signal_type",
+                "description": "Uses for specifying the type of signal to add. 0=digital input, 1=digital output, 2=register input, 3=register output. Integer type data: [0:3]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "signal_name",
+                "description": "Dedicated to identifying signals. If the string same as the added signal is provided, the new signal replaces the old signal. String type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_delete_signal",
+        "description": " This command is used to delete signals identified by the given signal name.",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "The signal name, it's same as the signal name that should be deleted. String type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_get_signal_status",
+        "description": " This command is used to read the current value of a specific signal.",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "The name of the signal, the same as the name of the signal that should obtain the value. string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "for digital signals: true or false, boolean type data; \n for register signals: register values displayed as unsigned integers, .",
+        "tips": ""
+    },
+    {
+        "name": "modbus_send_custom_command",
+        "description": " This command is used to send a command specified by the user to Modbus unit located on the specified IP address. Cannot be used to request data, since the response will not be received. The user is responsible for supplying data which is meaningful to the supplied function code. The built-in function takes care of constructing Modbus frame, so the user should not be concerned with the length of the command.",
+        "parameters": [
+            {
+                "name": "IP",
+                "description": "Specifies the IP address of Modbus appliance that custom command should send to. String Type data. string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "slave_number",
+                "description": "Normally set to 255, can be freely selected between [0: 247], when set to 0, it is broadcast. when it is set to between [248: 254], it will be set to 255. integer type data: [0: 247, 255]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "function_code",
+                "description": "The function code used to specify custom commands, currently only supports 6 (setting a single register). integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "A list of integers, each entry must be a valid byte [0:255] value. integer list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_set_output_register",
+        "description": " This command is used to set the output register signal identified by the given name to the given value.",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "The signal name that identifies the output register signal that has been added in advance. string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "register_value",
+                "description": "Must be a valid character value. If it exceeds the range, it will be automatically converted to the range by memory type conversion or memory truncation, integer type data: [0:65535].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_set_output_signal",
+        "description": " This command is used to set the output digital signal identified by a given name to a given value.",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "The signal name that identifies the output digital signal that has been added in advance. string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "digital_value",
+                "description": "The signal will be set to this value. boolean type data.",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_set_runstate_dependent_choice",
+        "description": " This command is used to set whether the output signal must remain in the state from the program, or whether the program is not running high or low.",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "The signal name that identifies the output digital signal that has been added in advance. string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "runstate_choice",
+                "description": "0 = Maintain program state; 1 = Set low when the program is not running; 2 = Set high when the program is not running; 3 = Output low when the program stops, Output high when the program is running. Integer type data: [0:3].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "modbus_set_signal_update_frequency",
+        "description": " This command is used to set the frequency at which the robot sends a request to the Modbus controller to read or write a signal value.",
+        "parameters": [
+            {
+                "name": "signal_name",
+                "description": "The signal name that identifies the output digital signal that has been added in advance. string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "update_frequency",
+                "description": "Used to specify the update frequency, in Hz. Integer type data: [0:250].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "read_port_bit",
+        "description": " This command is used to read the address value of the slave digital (coil) on the Modbus.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "The address of the port (see Port Mapper on the Using Modbus Server page of the support website). Integer type data: [0:127].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "port saved values, .",
+        "tips": ""
+    },
+    {
+        "name": "read_port_register",
+        "description": " This command is used to read the address values from the slave register on the Modbus.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "the address of the port, integer type data. ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "is_signed",
+                "description": "Whether the data is signed, default is False, optional parameter, boolean type data.",
+                "type": "bool",
+                "default": "False"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the port holds a signed integer value [-32768:32767] or [0:65535].",
+        "tips": ""
+    },
+    {
+        "name": "write_port_bit",
+        "description": " This command is used to write the address values in the slave digital (coils) on the Modbus.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "The address of the port (see Port Mapper on the \"Using Modbus Server\" page of the support website) integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "The value to be set in the register. boolean type data.",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "write_port_register",
+        "description": " This command is used to write the address values in the slave register on the Modbus.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "The address of the port. integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "The value to be set in the port (0:65536) or (-32768:32767). integer type data.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

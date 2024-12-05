@@ -1,0 +1,268 @@
+[
+    {
+        "name": "socket_open",
+        "description": " This command is used to establish TCP/IP network communication, and the connection timeout is 2 seconds.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "server address, string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "port",
+                "description": "port number, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter).",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ". first call: if the connection is successful, return true; if it fails,  return false. subsequent calls: if the connection is active, return true; if it is disconnected,  the current socket will be closed and reconnected. if the reconnection is successful, return  true; if it fails, return false.",
+        "tips": ""
+    },
+    {
+        "name": "socket_close",
+        "description": " This command is used to close TCP/IP network communication.",
+        "parameters": [
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter).",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "socket_is_connected",
+        "description": " This command is used to get the communication status of the TCP/IP network  to determine whether it is connected to the server.",
+        "parameters": [
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter).",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", returns true if connection succeeded, returns false if the connection failed.",
+        "tips": ""
+    },
+    {
+        "name": "socket_read_ascii_float",
+        "description": " This command is used to read multiple float type data in ASCII format from a connected TCP/IP server; \n If the data transmitted by the server needs to be enclosed in parentheses, and the data is separated by commas \",\" or spaces \", similar to \"(3.14, 2.562, 8.24, 3.4434)\"; \n If the data transmitted by the server is in a format similar to \"(3.14, ,,2.562, ,8.24, 3.4434)\", and the four data are still read correctly.",
+        "parameters": [
+            {
+                "name": "number",
+                "description": "the number of data to be read, integer type data: [1:30] ; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter); ",
+                "type": "str",
+                "default": "\"socket_0\""
+            },
+            {
+                "name": "timeout",
+                "description": "The unit is seconds. If the value is less than or equal to 0, then wait timeout is infinite, float type data (optional parameter).",
+                "type": "float",
+                "default": "2"
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "a list data is returned, where the first element is length of successfully recieved data and the remaining elements are  read. \n if the read fails, the first element of the list is 0 and the other elements are nan, similar to [0, nan, nan]; \n if the read is successful, a list of data is returned, similar to [3, 1.444, 2.234, 3.444]; \n if the first element of the list is not equal to the parameter <number>. the returned data list includes the data length and data that were successfully read, then the unread data will be nan, like [2, 1.444, 2.234, nan].",
+        "tips": ""
+    },
+    {
+        "name": "socket_read_binary_integer",
+        "description": " This command is used to read multiple 32-bit integer data from a connected TCP/IP server in the form of network byte order.",
+        "parameters": [
+            {
+                "name": "number",
+                "description": "the number of data to be read, integer type data: [1:30] ; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter); ",
+                "type": "str",
+                "default": "\"socket_0\""
+            },
+            {
+                "name": "timeout",
+                "description": "The unit is seconds. If the value is less than or equal to 0, then wait timeout is infinite, float type data (optional parameter).",
+                "type": "float",
+                "default": "2"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", the list of data read, the first element of the list is the number of data successfully read, the second element begins as the integer data read; \n if the read fails, the first element of the list is 0 and the other elements will be -1, like [0, -1, -1, -1]; \n if the read is successful, a list of data is returned, like [2, 100, 200]; \n if the length of recieved data is not equal to the parameter <number>, the returned data list includes the data length and data that were successfully read, and the unread data will be -1, like [2, 100, 200, -1].",
+        "tips": ""
+    },
+    {
+        "name": "socket_read_byte_list",
+        "description": " This command is used to read multiple bytes of data from a connected TCP/IP server.",
+        "parameters": [
+            {
+                "name": "number",
+                "description": "the number of data to be read, integer type data: [1:512] ; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter); ",
+                "type": "str",
+                "default": "\"socket_0\""
+            },
+            {
+                "name": "timeout",
+                "description": "The unit is seconds. If the value is less than or equal to 0, then wait timeout is infinite, float type data (optional parameter).",
+                "type": "float",
+                "default": "2"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", the list of data read, the first element of the list is the number of successfully read data, the second element begins as the read byte data; \n if the read fails, the first element of the list is 0 and the other elements are -1, like [0, -1, -1, -1]; \n if the read is successful, a list of data is returned, similar to [2, 100, 200]; \n if the length of received data is not equal to the parameter <number>, and returned data list includes the data length and data that were successfully read, then the unread data is -1,[2, 100, 200, -1].",
+        "tips": ""
+    },
+    {
+        "name": "socket_send_byte_list",
+        "description": " This command is used to send a set of byte data to a connected TCP/IP server.",
+        "parameters": [
+            {
+                "name": "value",
+                "description": "the byte data to be sent, a list of integer, list type data; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter);",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", if it is successful to send the byte data, the sent byte data is returned.",
+        "tips": ""
+    },
+    {
+        "name": "socket_read_string",
+        "description": " This command is used to read all data from the socket according to the rules of <prefix> and <suffix> settings and return the string data.",
+        "parameters": [
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter); ",
+                "type": "str",
+                "default": "\"socket_0\""
+            },
+            {
+                "name": "prefix",
+                "description": "string matching prefix, string type data (optional parameter); ",
+                "type": "str",
+                "default": "\"\""
+            },
+            {
+                "name": "suffix",
+                "description": "string matching suffix, string type data (optional parameter); ",
+                "type": "str",
+                "default": "\"\""
+            },
+            {
+                "name": "timeout",
+                "description": "The unit is seconds. If the value is less than or equal to 0, then wait timeout is infinite, float type data (optional parameter).",
+                "type": "float",
+                "default": "2"
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": ", read string variables. when prefix and suffix are not specified, all string data read will be returned; when only prefix is specified, all read string data after prefix will be returned except the prefix string itself; when only suffix is specified, all read string data before suffix will be returned except the suffix string itself; when both prefix and suffix are specified, the function will return the string between prefix and suffix, excluding the prefix and suffix strings themselves. the data that has not been read this time will remain in the socket and can be read cyclically. when the read timeout, the function will return an empty string.",
+        "tips": ""
+    },
+    {
+        "name": "socket_send_int",
+        "description": " This command is used to send integer (int32_t) data to a connected TCP/IP server in the form of network byte order.",
+        "parameters": [
+            {
+                "name": "value",
+                "description": "the byte data that needs to be sent, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter).",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", returns true if sent successfully, returns false if sent fails.",
+        "tips": ""
+    },
+    {
+        "name": "socket_send_string",
+        "description": " This command is used to send string data in ASCII encoding to a connected TCP/IP server.",
+        "parameters": [
+            {
+                "name": "str",
+                "description": "Support Python built-in data types: string, list, boolean, integer, float and other data types; any type data ",
+                "type": "any",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "name of socket, when the name is not specified or the specified name is empty, use the default name \"socket_0\", string type data (optional parameter).",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", if sent successfully, return true, if the send failed, return false.",
+        "tips": ""
+    },
+    {
+        "name": "rpc_factory",
+        "description": " This command is used to create a remote call (RPC) handle for implementing remote call functionality.",
+        "parameters": [
+            {
+                "name": "type",
+                "description": "RPC type, currently only support \"xmlrpc\" type, string type data;",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "url",
+                "description": "RPC server address, the format is \"<ip-address>:<port>\" or \"http://<ip address>:<port>/<path>\", such as \"127.0.0.1:5050\" or \"http://127.0.0.1:5050/RPC2\", string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    }
+]

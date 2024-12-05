@@ -1,0 +1,418 @@
+[
+    {
+        "name": "start_thread",
+        "description": " 该指令用于启动线程。",
+        "parameters": [
+            {
+                "name": "fundef",
+                "description": "定义的函数，any型数据。",
+                "type": "any",
+                "default": ""
+            },
+            {
+                "name": "arg",
+                "description": "传入fundef的参数，tuple型数据。",
+                "type": "tuple",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "stop_thread",
+        "description": " 该指令用于关闭线程；线程外关闭线程。",
+        "parameters": [
+            {
+                "name": "thread_id",
+                "description": "启动线程返回的线程ID。any型数据。",
+                "type": "any",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "pause",
+        "description": " 该指令用于暂停任务运行。",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "halt",
+        "description": " 该指令用于停止任务运行。",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "textmsg",
+        "description": " 该指令用于发送s1和s2连接后的字符串到EliRobot，并显示在EliRobot的日志栏中。",
+        "parameters": [
+            {
+                "name": "s1",
+                "description": "消息字符串，也可发送其他类型的变量，integer,boolean,list型数据等； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "s2",
+                "description": "消息字符串，也可发送其他类型的变量，integer,boolean,list型数据等（可选参数，默认为 空字符串）。",
+                "type": "list",
+                "default": "''"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "popup",
+        "description": " 该指令用于弹出窗口并显示消息。",
+        "parameters": [
+            {
+                "name": "s",
+                "description": "消息字符串，支持Python内置数据类型：string、list、boolean、integer、float等数据类型；any型数据 ",
+                "type": "any",
+                "default": ""
+            },
+            {
+                "name": "title",
+                "description": "标题字符串，支持Python内置数据类型：string、list、boolean、integer、float等数据类型；any型数据 ",
+                "type": "any",
+                "default": "'Popup'"
+            },
+            {
+                "name": "warning",
+                "description": "警告消息，boolean型数据； ",
+                "type": "bool",
+                "default": "False"
+            },
+            {
+                "name": "error",
+                "description": "错误消息，boolean型数据； ",
+                "type": "bool",
+                "default": "False"
+            },
+            {
+                "name": "blocking",
+                "description": "是否为阻塞式弹出窗口（sec函数中强制为非阻塞式弹出窗口）。",
+                "type": "bool",
+                "default": "False"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "str_at",
+        "description": " 该指令用于提供对字符串字节的直接访问。此接口返回一个字符串，该字符串包含源字符串中与指 定索引对应的位置处的字符。",
+        "parameters": [
+            {
+                "name": "src",
+                "description": "源字符串，string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "index",
+                "description": "指定字符串中的位置，integer型数据。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": "，索引号对应的字符，如果索引无效，则会引发异常。",
+        "tips": ""
+    },
+    {
+        "name": "str_cat",
+        "description": " 该指令用于实现将输入的两个数据按照一定规则转换为字符串并进行连接，输入的两个数据可以为 任意Python内置数据类型。其中浮点数类型将被格式化为6位小数，并删除末尾无效的0。连接后的 字符串最大长度为1023个字符，超过该长度会触发运行时异常。",
+        "parameters": [
+            {
+                "name": "object1",
+                "description": "第一个数据，string、boolean、integer、float、list型数据； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "object2",
+                "description": "第二个数据，string、boolean、integer、float、list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": "，拼接后的字符串。",
+        "tips": ""
+    },
+    {
+        "name": "str_empty",
+        "description": " 该指令用于str为空时返回true，否则返回false。",
+        "parameters": [
+            {
+                "name": "str",
+                "description": "源字符串，string型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，如果字符串为空则为true，否则为false。",
+        "tips": ""
+    },
+    {
+        "name": "str_find",
+        "description": " 该指令用于在src中查找子字符串目标的第一个匹配项，字符串为零索引。",
+        "parameters": [
+            {
+                "name": "src",
+                "description": "源字符串，string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "target",
+                "description": "要搜索的子字符串，string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "start_from",
+                "description": "可选起始位置（默认为0），integer型数据。",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，如果在src中找到了目标字串，则返回目标字串的位置。如果src中找不到目标字串，则为-1。",
+        "tips": ""
+    },
+    {
+        "name": "str_len",
+        "description": " 该指令用于返回字符串中的字节数。",
+        "parameters": [
+            {
+                "name": "str",
+                "description": "源字符串，string型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，输入字符串中的字节数。",
+        "tips": ""
+    },
+    {
+        "name": "str_sub",
+        "description": " 该指令用于返回src的子字符串。结果是src的子字符串，从index指定的字节开始，长度最多为 len字节。如果请求的子字符串超出了原始字符串的末尾（即index+len>src length），则结果子字符 串的长度将限制为src的大小。如果index或len不在范围内，则引发异常。字符串为零索引。",
+        "parameters": [
+            {
+                "name": "src",
+                "description": "源字符串，string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "index",
+                "description": "整型值，指定范围[0，src length]中的初始字节，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "子字符串的长度。如果未指定len，则为范围[索引，src 长度]中的字符串，integer型数 据（可选参数）。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": "，src中从索引开始并截取len个字符的部分。",
+        "tips": ""
+    },
+    {
+        "name": "to_num",
+        "description": " 该指令用于将字符串转换为整型或浮点型数字。‘.’小数点是区分二者的关键，但注意的是科学计数 法默认为浮点型。合法的字符串包含可选的开头“+”/“-”号后跟上下列字串 (不区分大小写): \n (1)由十进制数字组成的十进制数 (如,40),拥有‘.’的浮点数 (如,10.1,-2.,.3)，采用科学计数法表示 的浮点数 (如,10E1,1.5E4)。 \n (2)以‘0X’开头的十六进制数 (如,0XABC,0x4a)。 \n (3)用“INF”或“INFINITY”代表的无穷大。 \n (4)用“NAN”代表的无意义数。 \n 如果字符串所代表的数字过大将会出现异常 (如,1.18973e+4932)。",
+        "parameters": [
+            {
+                "name": "str",
+                "description": "要转换的字符串，string型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "float型数据或，字符串所代表的数值。",
+        "tips": ""
+    },
+    {
+        "name": "to_str",
+        "description": " 该指令用于获取值的字符串表示形式； \n 结果字符串不能超过1023个字符。浮点数的格式为6位小数，尾随的0将被移除。",
+        "parameters": [
+            {
+                "name": "val",
+                "description": "要转换的值，float型数据或integer型数据。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": "，给定值的字符串表示形式。",
+        "tips": ""
+    },
+    {
+        "name": "sleep",
+        "description": " 该指令用于休眠一段时间。",
+        "parameters": [
+            {
+                "name": "t",
+                "description": "时间[s],float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_flag",
+        "description": " 该指令用于设置系统内部标记位的值，类似虚拟数字输出IO，用于在不同程序运行时保存数据信息。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "标记的索引，integer型数据：[0:31]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "b",
+                "description": "标记值，boolean型数据。",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_flag",
+        "description": " 该指令用于获取系统内部标记位的值，类似虚拟数字输出IO，用于在不同程序运行时保存数据信息。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "标记的索引，integer型数据：[0:31]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，内部标记位的值。",
+        "tips": ""
+    },
+    {
+        "name": "get_steptime",
+        "description": " 该指令用于返回机器人时间步长的持续时间（以秒为单位）。在每个时间步长中，机器人控制器会 从机器人接收测量的关节位置和速度，并将所需的关节位置和速度发送回机器人。上述过程以预定的频 率在有规律的间隔发生。该间隔长度是机器人的时间步长。",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，机器人步长的持续时间。",
+        "tips": ""
+    },
+    {
+        "name": "rtsi_set_watchdog",
+        "description": " 该指令用于启用RTSI的看门狗功能，可监视RTSI输入变量的设置频率。若其监视到的频率小于 设置频率，运行中的程序将会触发“无操作”、“暂停”或“停止”动作。一旦程序停止，所有被监视的 变量将不再被监视。",
+        "parameters": [
+            {
+                "name": "variable",
+                "description": "待监视的变量名，字符串数据，例如：“speed_slider_mask”； string型数据",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "frequency",
+                "description": "指定的频率；float型数据 ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "触发的动作，字符串数据，例如：“ignore”、“pause”、“stop”。string型数据",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "servoj",
+        "description": " 该指令用于实时控制机器人的关节位置，在前瞻时间内利用时间间隔处理接收到的关节角度，并进 行均值滤波，再将滤波的数据进行样条拟合，从而得到实时控制所需的关节位置。",
+        "parameters": [
+            {
+                "name": "q",
+                "description": "关节角度，单位：弧度，list型数据（可选参数）； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "t",
+                "description": "时间间隔，单位：秒，范围为大于0.008，执行该指令时会阻塞该时间长度，float型数据（可 选参数）； ",
+                "type": "float",
+                "default": "0.010"
+            },
+            {
+                "name": "lookahead_time",
+                "description": "前瞻时间，单位：秒，范围为[0.03, 0.2]，float型数据（可选参数）； ",
+                "type": "float",
+                "default": "0.1"
+            },
+            {
+                "name": "gain",
+                "description": "增益，无数据范围，该参数暂不使用，将在后续版本中生效，float型数据（可选参数）。",
+                "type": "float",
+                "default": "300"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "powerdown",
+        "description": " 该指令用于停止机器人运行并关闭机器人和控制柜的电源。",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

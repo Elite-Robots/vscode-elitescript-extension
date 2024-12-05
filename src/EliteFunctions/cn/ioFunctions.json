@@ -1,0 +1,1568 @@
+[
+    {
+        "name": "get_configurable_digital_in",
+        "description": " 该指令用于获取可配置数字输入信号电平； \n 另请参阅：4.5 get_standard_digital_in指令。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输入的索引，integer型数据：[0:7]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "信号电平，，true或false。",
+        "tips": ""
+    },
+    {
+        "name": "get_configurable_digital_out",
+        "description": " 该指令用于获取可配置数字输出信号电平； \n 另请参阅：4.6 get_standard_digital_out 指令。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输出的索引，integer型数据：[0:7]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "信号电平，，true或false。",
+        "tips": ""
+    },
+    {
+        "name": "get_standard_analog_in",
+        "description": " 该指令用于获取标准模拟输入信号电平； \n 另请参阅：4.7 get_tool_analog_in指令。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输入的索引，integer型数据：[0:1]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "模拟信号电平，，单位为a或者v。",
+        "tips": ""
+    },
+    {
+        "name": "get_standard_analog_out",
+        "description": " 该指令用于获取标准模拟输出信号电平； \n 另请参阅：4.8 get_tool_analog_out 指令。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输出的索引，integer型数据：[0:1]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "模拟信号电平，，单位为a或者v。",
+        "tips": ""
+    },
+    {
+        "name": "get_standard_digital_in",
+        "description": " 该指令用于获取标准数字输入信号电平； \n 另请参阅：4.1 get_configurable_digital_in指令。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输入的索引，integer型数据：[0:15]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "信号电平，，true或false。",
+        "tips": ""
+    },
+    {
+        "name": "get_standard_digital_out",
+        "description": " 该指令用于获取标准数字输出信号电平； \n 另请参阅：4.2 get_configurable_digital_out指令。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输出的索引，integer型数据：[0:15]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "信号电平，，true或false。",
+        "tips": ""
+    },
+    {
+        "name": "get_tool_analog_in",
+        "description": " 该指令用于获取工具模拟输入电平； \n 另请参阅：4.3 get_standard_analog_in指令。",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "模拟输入电平，，单位为a或v。",
+        "tips": ""
+    },
+    {
+        "name": "get_tool_analog_out",
+        "description": " 该指令用于获取工具模拟输出电平； \n 另请参阅：4.4 get_standard_analog_out指令。",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "模拟输出电平，，单位为a或v。",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_analog_output_domain",
+        "description": " 该指令用于设置模拟输出的域； \n 另请参阅：4.15 set_tool_analog_output_domain指令。",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输出的索引，integer型数据：[0:1]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "domain",
+                "description": "模拟输出域，integer型数据：0：电流模式（4-20mA），1：电压模式（0-10V）。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_configurable_digital_out",
+        "description": " 该指令用于设置可配置的数字输出信号电平； \n 另请参阅：4.13 set_standard_digital_out指令。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输出的索引，integer型数据：[0:7]；",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "b",
+                "description": "信号电平，boolean型数据，True或False。",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_analog_input_domain",
+        "description": " 该指令用于设置控制箱内标准模拟输入的域； \n 另请参阅：4.14 set_tool_analog_input_domain指令。",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输入的索引，integer型数据：[0:1]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "domain",
+                "description": "模拟输入域，integer型数据：0代表电流模式（4-20mA），1代表电压模式（0-10V）。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_analog_out",
+        "description": " 该指令用于设置标准模拟输出IO的相对信号电平值。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输出的索引，integer型数据：[0:1]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "f",
+                "description": "相对模拟信号电平（模拟输出范围百分比），float型数据：[0:1]，给定的值若大于1， 则设置为1，小于0，则设置为0。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_digital_out",
+        "description": " 该指令用于设置标准数字输出IO信号电平； \n 另请参阅：4.10 set_configurable_digital_out指令。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "输出的索引，integer型数据：[0:15]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "b",
+                "description": "信号电平，boolean型数据，True或False。",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_analog_input_domain",
+        "description": " 该指令用于设置工具末端模拟输入的域； \n 有关控制箱输入，另请参阅4.11 set_standard_analog_input_domain指令。",
+        "parameters": [
+            {
+                "name": "domain",
+                "description": "模拟输入域，integer型数据：0代表电流模式（4-20mA），1代表电压模式（0-10V）。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_analog_output_domain",
+        "description": " 该指令用于设置工具末端模拟输出的域； \n 有关控制箱输出，另请参阅4.9 set_standard_analog_output_domain指令。",
+        "parameters": [
+            {
+                "name": "domain",
+                "description": "模拟输出域，integer型数据：0代表电流模式（4-20mA），1代表电压模式（0-10V）。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_digital",
+        "description": " 该指令用于设置给定的索引对应工具数字IO电平。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "工具数字IO的索引，integer型数据：[0:3]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "b",
+                "description": "信号电平，boolean型数据，True或False。",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_tool_digital",
+        "description": " 该指令用于获取给定的索引对应的工具数字IO信号电平。",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "工具数字IO 的索引，integer型数据：[0:3]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "信号电平，，true或false。",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_configurable_digital_output_to_value",
+        "description": " 该指令用于设置输出信号电平跟随任务运行状态改变（运行或停止）。 \n 另请参阅： \n 4.19 set_runstate_gp_boolean_output_to_value指令 \n 4.22 set_runstate_standard_digital_output_to_value指令 \n 4.23 set_runstate_tool_digital_output_to_value指令",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输出的索引，integer型数据：[0:7]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer型数据：[0:3]： 0：维持信号电平不变； 1：任务在非运行状态时信号电平为低，任务运行状态信号电平不变； 2：任务在非运行状态时信号电平为高，任务运行状态信号电平不变； 3：任务在非运行状态时信号电平为低，任务运行状态信号电平为高。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_gp_boolean_output_to_value",
+        "description": " 该指令用于设置输出信号电平跟随任务运行状态改变（运行或停止）； \n 另请参阅： \n 4.18 set_runstate_configurable_digital_output_to_value指令 \n 4.22 set_runstate_standard_digital_output_to_value指令 \n 4.23 set_runstate_tool_digital_output_to_value指令",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输出的索引，integer型数据：[0:127]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer 型数据：[0:3]：  0：维持信号电平不变；  1：任务在非运行状态时信号电平为低，任务运行状态信号电平不变； 2：任务在非运行状态时信号电平为高，任务运行状态信号电平不变； 3：任务在非运行状态时信号电平为低，任务运行状态信号电平为高。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_standard_analog_output_to_value",
+        "description": " 该指令用于设置输出模拟信号电平跟随任务运行状态改变（运行或停止）。",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输出的索引，integer型数据：[0:1]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer型数据：[0:3]：  0：维持模拟信号电平不变；  1：任务在非运行状态时模拟信号电平最低值，任务运行状态模拟信号电平不变；  2：任务在非运行状态时模拟信号电平为最高值，任务运行状态模拟信号电平不变；  3：任务在非运行状态时模拟信号电平为最低值，任务运行状态模拟信号电平为最高值。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_tool_analog_output_to_value",
+        "description": " 该指令用于设置工具模拟输出模拟信号电平跟随任务运行状态改变（运行或停止）。",
+        "parameters": [
+            {
+                "name": "runstate",
+                "description": "integer型数据：[0:3]：  0：维持模拟信号电平不变；  1：任务在非运行状态时模拟信号电平最低值，任务运行状态模拟信号电平不变；  2：任务在非运行状态时模拟信号电平为最高值，任务运行状态模拟信号电平不变；  3：任务在非运行状态时模拟信号电平为最低值，任务运行状态模拟信号电平为最高值。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_standard_digital_output_to_value",
+        "description": " 该指令用于设置输出信号电平跟随任务运行状态改变（运行或停止）； \n 另请参阅： \n 4.18 set_runstate_configurable_digital_output_to_value指令 \n 4.19 set_runstate_gp_boolean_output_to_value指令 \n 4.23 set_runstate_tool_digital_output_to_value指令",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输出的索引，integer型数据：[0:15]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer型数据：[0:3]：  0：维持信号电平不变；  1：任务在非运行状态时信号电平为低，任务运行状态信号电平不变；  2：任务在非运行状态时信号电平为高，任务运行状态信号电平不变；  3：任务在非运行状态时信号电平为低，任务运行状态信号电平为高。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_tool_digital_output_to_value",
+        "description": " 该指令用于设置输出信号电平跟随任务运行状态改变（运行或停止）； \n 另请参阅： \n 4.18 set_runstate_configurable_digital_output_to_value指令 \n 4.19 set_runstate_gp_boolean_output_to_value指令 \n 4.22 set_runstate_standard_digital_output_to_value指令",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输出的索引，integer型数据：[0:3]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer型数据：[0:3]：  0：维持信号电平不变；  1：任务在非运行状态时信号电平为低，任务运行状态信号电平不变；  2：任务在非运行状态时信号电平为高，任务运行状态信号电平不变；  3：任务在非运行状态时信号电平为低，任务运行状态信号电平为高。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_input_actions_to_default",
+        "description": " 该指令用于将所有标准数字输入、可配置数字输入、工具数字输入以及通用布尔输入寄存器的IO 触发动作设置为“defalut”； \n 另请参阅： \n 4.26 set_standard_digital_input_action指令 \n 4.25 set_configurable_digital_input_action指令 \n 4.27 set_tool_digital_input_action指令 \n 4.28 set_gp_boolean_input_action指令",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_configurable_digital_input_action",
+        "description": " 该指令用于将可配置数字输入绑定触发动作，包括默认触发动作（“default”）和拖动模式触发动 作（“freedrive”），并在绑定的输入信号电平为高时触发相应动作； \n 另请参阅： \n 4.24 set_input_actions_to_default指令 \n 4.26 set_standard_digital_input_action指令 \n 4.27 set_tool_digital_input_action指令 \n 4.28 set_gp_boolean_input_action指令",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输入的索引，integer型数据：[0:7]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "触发动作类型“default”或“freedrive”，string 型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_digital_input_action",
+        "description": " 该指令用于将标准数字输入绑定触发动作，包括默认触发动作（“default”）和拖动模式触发动作 （“freedrive”），并在绑定的输入信号电平为高时触发相应动作； \n 另请参阅： \n 4.24 set_input_actions_to_default指令 \n 4.25 set_configurable_digital_input_action指令 \n 4.27 set_tool_digital_input_action指令 \n 4.28 set_gp_boolean_input_action指令",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输入的索引，integer型数据：[0:15]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "触发动作类型“default”或“freedrive”，string 型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_digital_input_action",
+        "description": " 该指令用于将工具数字输入绑定触发动作，包括默认触发动作（“default”）和拖动模式触发动作 （“freedrive”），并在绑定的输入信号电平为高时触发相应动作； \n 另请参阅： \n 4.24 set_input_actions_to_default指令 \n 4.25 set_configurable_digital_input_action指令 \n 4.26 set_standard_digital_input_action指令 \n 4.28 set_gp_boolean_input_action指令",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输入的索引，integer型数据：[0:3]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "触发动作类型“default”或“freedrive”，string型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_gp_boolean_input_action",
+        "description": " 该指令用于将通用布尔输入寄存器绑定触发动作，包括默认触发动作（“default”）和拖动模式触 发动作（“freedrive”），并在绑定的输入信号电平为高时触发相应动作； \n 另请参阅： \n 4.24 set_input_actions_to_default指令 \n 4.25 set_configurable_digital_input_action指令 \n 4.26 set_standard_digital_input_action指令 \n 4.27 set_tool_digital_input_action指令",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "输入的索引，integer型数据：[0:127]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "触发动作类型“default”或“freedrive”，string型数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_is_open",
+        "description": " 该指令用于返回机器人工具末端RS-485通信功能是否打开。",
+        "parameters": [],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "串口通信的打开状态，，true为打开状态，false为关闭状态。",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_config",
+        "description": " 该指令用于打开或者关闭机器人工具末端RS-485通信功能，并对其进行配置。",
+        "parameters": [
+            {
+                "name": "enabled",
+                "description": "工具串口通信的使能状态，boolean型数据； ",
+                "type": "bool",
+                "default": ""
+            },
+            {
+                "name": "baud_rate",
+                "description": "串口波特率，integer型数据: 9600,19200,38400,57600,115200,1000000,2000000； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "parity",
+                "description": "奇偶校验位，integer型数据:0(none),1(odd),2(even)； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "stop_bits",
+                "description": "停止位，integer型数据:1,2； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "size",
+                "description": "串口的位宽。不指定时，使用默认参数8，若使能modbus-rtu则该参数自动设置为8； ",
+                "type": "int",
+                "default": "8"
+            },
+            {
+                "name": "modbus_rtu",
+                "description": "是否启用modbus-rtu模式，指定为True时为Modbus-rtu模式，指定为False 时为RS485模式，不指定时使用默认参数False，boolean型数据； ",
+                "type": "bool",
+                "default": "False"
+            },
+            {
+                "name": "usage",
+                "description": "可选参数，int型数据：0（脚本模式），1（Daemon模式），不指定时，使用默认值0， 即脚本模式。脚本模式指的是通过脚本接口访问串口，具体可参阅相关的工具接口（即tool_serial、 tool_modbus）。Daemon模式指的是通过ELITECO SDK Daemon插件访问串口ttyTCI0，并对其进 行读写操作，若此时通过脚本接口进行访问，则会触发运行时异常报警。",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "串口通信的打开状态，，true为打开状态，false为关闭状态。",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_read",
+        "description": " 该指令用于读取机器人工具末端RS-485通信的数据。",
+        "parameters": [
+            {
+                "name": "read_count",
+                "description": "读取数据长度，integer型数据：大于等于0； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "is_number",
+                "description": "是否按照整数格式返回字节数据，boolean型数据； ",
+                "type": "bool",
+                "default": ""
+            },
+            {
+                "name": "time_out",
+                "description": "超时时间，单位：秒，若小于等于0，则等待超时时间为无限长，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_write",
+        "description": " 该指令用于机器人工具末端RS-485发送数据。",
+        "parameters": [
+            {
+                "name": "write_data",
+                "description": "待发送的字节数据，string型数据、integer型数据、整数list型数据或bytearray 型数据，若为integer或整数list型数据，会写入一个或多个整数数据，数据值若超过[0-255]范围， 会自动按照内存类型转换或内存截断的方式强制转换至范围内。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，成功发送的字节数据长度，小于等于0时，表示发送失败。",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_read_registers",
+        "description": " 该指令用于机器人工具末端RS-485读取MODBUS-RTU从站保持寄存器，MODBUS功能码为0x03。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "要读取数据长度，范围为1-125，当len大于1时，将会从slave的addr开始顺序向下读取，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "time_out",
+                "description": "超时时间，单位：秒，若小于等于0，则等待超时时间为无限长，float型数据。",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表。",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_read_bits",
+        "description": " 该指令用于机器人工具末端RS-485读取MODBUS-RTU从站线圈，MODBUS功能码为0x01。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "要读取数据长度，范围为1-125，当len大于1时，将会从slave的addr开始顺序向下 读取，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "time_out",
+                "description": "超时时间，单位：秒，若小于等于0，则等待超时时间为无限长，float型数据。",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表。",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_write_registers",
+        "description": " 该指令用于机器人工具末端RS-485写入多个MODBUS-RTU从站保持寄存器，MODBUS功能码为0x10。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "待写入的数据，integer[0, 65535]、list型数据（列表的每个元素需为integer[0, 65535]）。 当数据为list时，将会向slave的addr地址处顺序向下写；",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，float型数据。",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，写成功返回true，否则为false。",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_write_bits",
+        "description": " 该指令用于机器人工具末端RS-485写入多个MODBUS-RTU从站线圈，MODBUS功能码为0x0F。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "待写入的数据，boolean、integer（0 会被隐式转换为False，非0元素会被隐式转换为 True）、list型数据（列表的每个元素需为integer或boolean）。当数据为list时，将会向slave的 addr地址处顺序向下写；",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，float型数据。",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，写成功返回true，否则为false。",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_read_input_registers",
+        "description": " 该指令用于机器人工具末端RS-485读取MODBUS-RTU从站输入寄存器，MODBUS功能码为0x04。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "待读取的数据长度，范围为1–125，当len大于1时，将会向slave的addr地址处顺序向 下读，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位：秒，若小于等于0，则等待时间为无限长，float型数据。",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表。",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_read_input_bits",
+        "description": " 该指令用于机器人工具末端RS-485读取MODBUS-RTU从站输入线圈，MODBUS功能码为0x02。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "待读取的数据长度，范围为1–125，当len大于1时，将会向slave的addr地址处顺序向 下读，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位：秒，若小于等于0，则等待时间为无限长，float型数据。",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表。",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_write_single_bit",
+        "description": " 该指令用于机器人工具末端RS-485写入单个MODBUS-RTU从站线圈，MODBUS功能码为0x05。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "待写入的数据，integer型数据；",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，float型数据。",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，写入成功的数据数量，即1，小于等于0为写入失败。",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_write_single_register",
+        "description": " 该指令用于机器人工具末端RS-485写入单个MODBUS-RTU从站寄存器，MODBUS功能码为0x06。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "待写入的数据，integer型数据；",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，float型数据。",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，写入成功的数据数量，即1，小于等于0为写入失败。",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_mode",
+        "description": " 该指令用于查询机器人工具末端RS-485处于哪种模式下。",
+        "parameters": [],
+        "note": "",
+        "return_type": "str",
+        "return_description": "，“modbus-rtu”或“rs485”，若二者都未使能则为“close”。",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_voltage",
+        "description": " 该指令用于设置机器人工具法兰的外部工具接头提供电源的电压，电压可以为 0、12或24伏。",
+        "parameters": [
+            {
+                "name": "voltage",
+                "description": "外部工具接头提供电源的电压，单位：伏，integer型数据：0、12或24。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "serial_config",
+        "description": " 该指令用于打开或关闭机器人控制柜RS-485通信功能，并对其进行配置。",
+        "parameters": [
+            {
+                "name": "enable",
+                "description": "串口通信的使能状态，boolean型数据； ",
+                "type": "bool",
+                "default": ""
+            },
+            {
+                "name": "baud",
+                "description": "波特率，integer型数据：2400、4800、9600、19200、38400、57600、115200、230400、 460800、921600、500000； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "parity_bit",
+                "description": "串口奇偶校验，integer型数据：0（不校验）、1（奇校验）、2（偶校验）； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "stop_bit",
+                "description": "串口停止位，integer型数据：1、2； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "size",
+                "description": "串口的位宽。不指定时，使用默认参数8，integer型数据：7或8（可选参数）。若为MODBUSRTU 模式，则必须为8； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "modbus_rtu",
+                "description": "是否启用modbus-rtu模式，指定为True时为Modbus-rtu模式，指定为False 时为RS485模式，不指定时使用默认参数False，boolean型数据； ",
+                "type": "bool",
+                "default": ""
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持:“_dev_ttymxc0” 。不指定名称时，使用默认名称 “_dev_ttymxc0”，string 型数据（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "如果配置成功，返回true，如果配置失败，返回false，。",
+        "tips": ""
+    },
+    {
+        "name": "serial_read",
+        "description": " 该指令用于读取机器人控制柜RS-485通信的数据。",
+        "parameters": [
+            {
+                "name": "len",
+                "description": "要读取的字节数，注意假设要读取的字节数为5，但实际只接收到2字节数据，最后读出的 长度为2字节。integer type data； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "is_number",
+                "description": "是否按照整数格式返回字节数据。若不指定，使用默认参数True，boolean型数据 （可选参数）； ",
+                "type": "bool",
+                "default": "True"
+            },
+            {
+                "name": "time_out",
+                "description": "超时时间，单位：秒，若小于等于0，则等待超时时间为无限长，不指定时，使用默 认值0.1，float型数据（可选参数）； ",
+                "type": "float",
+                "default": "0.1"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持:”_dev_ttymxc0” 。不指定名称时，使用默认名称 “_dev_ttymxc0”，string型数据（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "bytearray或，若is_number参数true，则返回值为整数类型的list，若is_number参数false，则返回值为bytesarray，若发生超时，则返回所有已经读取到的数据。",
+        "tips": ""
+    },
+    {
+        "name": "serial_write",
+        "description": " 该指令用于机器人控制柜RS-485发送数据。",
+        "parameters": [
+            {
+                "name": "data",
+                "description": "待发送的数据，string型数据、integer型数据、整数list型数据、bytes型数据或bytearray 型数据，若为integer或整数list型数据，会写入一个或多个整数数据，数据值若超过[0-255]范围， 会自动按照内存类型转换或内存截断的方式强制转换至范围内。 ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持:“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "如果发送成功，返回true，如果发送失败，返回false，。",
+        "tips": ""
+    },
+    {
+        "name": "serial_is_open",
+        "description": " 该指令返回机器人控制柜RS-485通信功能是否打开。",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持:“_dev_ttymxc0” 。不指定名称时，使用默认名称 “_dev_ttymxc0”，string 型数据（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "如果打开，返回true，如果没打开，返回false，。",
+        "tips": ""
+    },
+    {
+        "name": "serial_mode",
+        "description": " 该指令用于查询机器人控制柜RS-485处于何种模式下。",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持: “_dev_ttymxc0” 。不指定名称时，使用默认名称 “_dev_ttymxc0”，string型数据（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": "，“modbus-rtu”或“rs485”，若二者均未使能，则为“close”。",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_write_registers",
+        "description": " 该指令用于机器人控制柜RS-485写入多个MODBUS-RTU从站保持寄存器，MODBUS功能码为0x10。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "待写入的数据，integer[0, 65535]、list型数据（列表的每个元素需为integer[0, 65535]）。 当数据为list时，将会向slave的addr地址处顺序向下写； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，默认为5秒，float 型数据（可选参数）； ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，成功写入寄存器的数量，小于等于0可视为写入失败。",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_write_bits",
+        "description": " 该指令用于机器人控制柜RS-485写入多个MODBUS-RTU从站线圈，MODBUS功能码为0x0F。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "待写入的数据，boolean、integer（0 会被隐式转换为False，非0元素会被隐式转换为 True）、list 型数据（列表的每个元素需为integer或boolean）。当数据为list时，将会向slave的 addr地址处顺序向下写； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，默认为5秒，float 型数据（可选参数）； ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，成功写入线圈的数量，小于等于0可视为写入失败。",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_read_registers",
+        "description": " 该指令用于机器人控制柜RS-485读取MODBUS-RTU从站保持寄存器，MODBUS功能码为0x03。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "待读取的数据长度，范围为1–125，当len大于1时，将会从slave的addr开始顺序向下 读取，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，默认为5秒，float 型数据（可选参数）； ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表。",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_read_bits",
+        "description": " 该指令用于机器人控制柜RS-485读取MODBUS-RTU从站线圈，MODBUS功能码为0x01。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "待读取的数据长度，范围为1–125，当len大于1时，将会从slave的addr开始顺序向下 读取，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，默认为5秒，float 型数据（可选参数）； ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表。",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_read_input_registers",
+        "description": " 该指令用于机器人控制柜RS-485读取MODBUS-RTU从站输入寄存器，MODBUS功能码为0x04。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "待读取的数据长度，范围为1–125，当len大于1时，将会从slave的addr开始顺序向下 读取，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位：秒，若小于等于0，则等待时间为无限长，默认为5秒，float 型数据（可选参数）； ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表。",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_read_input_bits",
+        "description": " 该指令用于机器人控制柜RS-485读取MODBUS-RTU从站输入线圈，MODBUS功能码为0x02。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "待读取的数据长度，范围为1–125，当len大于1时，将会从slave的addr开始顺序向下 读取，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位：秒，若小于等于0，则等待时间为无限长，默认为5秒，float 型数据（可选参数）； ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表。",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_write_single_bit",
+        "description": " 该指令用于机器人控制柜RS-485写入单个MODBUS-RTU从站线圈，MODBUS功能码为0x05。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "待写入的数据，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，默认为5秒，float 型数据（可选参数）； ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，写入成功的数据数量，即1，小于等于0为写入失败。",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_write_single_register",
+        "description": " 该指令用于机器人控制柜RS-485写入单个MODBUS-RTU从站寄存器，MODBUS功能码为0x06。",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "从站，范围为1-247，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "地址，范围为大于等于0，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "待写入的数据，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位为秒，若小于等于0，则等待超时时间为无限长，默认为5秒，float 型数据（可选参数）； ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，写入成功的数据数量，即1，小于等于0为写入失败。",
+        "tips": ""
+    },
+    {
+        "name": "serial_flush",
+        "description": " 该指令用于刷新控制柜RS-485的数据。",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "串口的端口名，目前仅支持：“_dev_ttymxc0”。不指定名称时，使用默认名称“_dev_ttymxc0”， string（可选参数）。",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_task_path",
+        "description": " 该指令用于返回EliRobot的任务存储目录。",
+        "parameters": [],
+        "note": "",
+        "return_type": "str",
+        "return_description": "，elirobot的任务存储目录。",
+        "tips": ""
+    },
+    {
+        "name": "read_input_boolean_register",
+        "description": " 该指令用于从输入寄存器中读取布尔值，也可以通过现场总线访问。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：127]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，选定输入寄存器的值。",
+        "tips": ""
+    },
+    {
+        "name": "read_input_float_register",
+        "description": " 该指令用于从输入寄存器中读取浮点数，也可以通过现场总线访问。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：47]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，选定输入寄存器的值。",
+        "tips": ""
+    },
+    {
+        "name": "read_input_integer_register",
+        "description": " 该指令用于从输入寄存器中读取整数，也可以通过现场总线访问。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：47]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，选定输入寄存器的值。",
+        "tips": ""
+    },
+    {
+        "name": "read_output_boolean_register",
+        "description": " 该指令用于从输出寄存器中读取布尔值，也可以通过现场总线访问。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：127]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，选定输出寄存器的值。",
+        "tips": ""
+    },
+    {
+        "name": "read_output_float_register",
+        "description": " 该指令用于从输出寄存器中读取浮点数，也可以通过现场总线访问。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：47]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，选定输出寄存器的值。",
+        "tips": ""
+    },
+    {
+        "name": "read_output_integer_register",
+        "description": " 该指令用于从输出寄存器中读取整数，也可以通过现场总线访问。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：47]。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，选定输出寄存器的值。",
+        "tips": ""
+    },
+    {
+        "name": "write_output_boolean_register",
+        "description": " 该指令用于将布尔值写入一个输出寄存器。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：127]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "需要写入寄存器的值，boolean型数据。",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "write_output_float_register",
+        "description": " 该指令用于将浮点数写入一个输出寄存器。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：47]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "需要写入寄存器的值。float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "write_output_integer_register",
+        "description": " 该指令用于将整数写入一个输出寄存器。该寄存器存储在系统内存空间。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "寄存器地址。integer型数据：[0：47]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "需要写入寄存器的值。integer型数据。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

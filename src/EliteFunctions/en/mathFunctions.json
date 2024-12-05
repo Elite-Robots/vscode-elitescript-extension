@@ -1,0 +1,591 @@
+[
+    {
+        "name": "get_inverse_kin",
+        "description": " This command is used for solving the inverse kinematic functions, i.e. convert Cartesian coordinates into the joint space coordinates. If qnear is defined, the solution closest to qnear is returned.Otherwise, the solution closest to the current joint positions is returned. If no tcp is provided the currently active tcp of the controller will be used.",
+        "parameters": [
+            {
+                "name": "p",
+                "description": "pose, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "qnear",
+                "description": "the closest joint angle, the default value is the current robot joint angle, list type data (optional parameter); ",
+                "type": "list",
+                "default": "''"
+            },
+            {
+                "name": "tcp",
+                "description": "tcp offset pose (optional parameter).",
+                "type": "str",
+                "default": "'active tcp'"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", joint angle, unit: rad.",
+        "tips": ""
+    },
+    {
+        "name": "get_inverse_kin_has_solution",
+        "description": " This command is used for checking if the function get_inverse_kin has a solution and returning to a boolean type result (True or False). It can avoid triggering the running alarm when there is no solution for the function get_inverse_kin.",
+        "parameters": [
+            {
+                "name": "p",
+                "description": "pose, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "qnear",
+                "description": "the closest joint angle, the default value is the current robot joint angle, list type data (optional parameter); ",
+                "type": "list",
+                "default": "''"
+            },
+            {
+                "name": "tcp",
+                "description": "tcp offset pose, the default value is the current activation tool of the system (optional parameter).",
+                "type": "str",
+                "default": "'active tcp'"
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "whether there is a solution or not, , true or false.",
+        "tips": ""
+    },
+    {
+        "name": "get_forward_kin",
+        "description": " This command is used for solving the forward kinematics functions, i.e. convert joint space coordinates into the Cartesian coordinates. If no joint position vector is provided the current joint angles of the robot arm will be used. If no tcp is provided the currently active tcp of the controller will be used.",
+        "parameters": [
+            {
+                "name": "q",
+                "description": "robot joint angle, unit is rad, list type data (optional parameter); ",
+                "type": "list",
+                "default": "''"
+            },
+            {
+                "name": "tcp",
+                "description": "tcp offset pose(optional parameter).",
+                "type": "str",
+                "default": "'active tcp'"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "robot pose, the format is [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "binary_list_to_integer",
+        "description": " This command is used to calculate and return the integer value represented by the boolean value contained in the list l.",
+        "parameters": [
+            {
+                "name": "l",
+                "description": "The list of bools to be converted to an integer. boolean value at index 0 as least significant bit. False represents 0 and True represents 1. If the list is empty, this function returns 0. If the list contains more than 32 boolean values, this function returns the signed integer values converted by the first 32 boolean values in the list, list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", an integer value represented by a binary list.",
+        "tips": ""
+    },
+    {
+        "name": "integer_to_binary_list",
+        "description": " This command is used to calculate and return a list of boolean values as a binary number of signed integer values x.",
+        "parameters": [
+            {
+                "name": "x",
+                "description": "To convert an integer value to a binary list, the return value contains a list of 32 boolean values, where False represents 0, True represents 1, list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", binary boolean list, the value at list index 0 is the lowest bit of the input value x.",
+        "tips": ""
+    },
+    {
+        "name": "get_list_length",
+        "description": " This command is used to calculate and return the length of a list variable, which is the number of entries the list contains.",
+        "parameters": [
+            {
+                "name": "v",
+                "description": "list variable, list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", an integer that specifies the length of a given list.",
+        "tips": ""
+    },
+    {
+        "name": "length",
+        "description": " This command is used to calculate and return the length of a list variable or string variable.",
+        "parameters": [
+            {
+                "name": "v",
+                "description": "A list or string variable, string type data or list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", list or string length.",
+        "tips": ""
+    },
+    {
+        "name": "acos",
+        "description": " This command is used to calculate and return the arccosine value of the parameter f, and the return value is in rad.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "The cosine value of the angle to be calculated, the defined domain is: [-1 , 1], float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the arccosine value of f, in rad.",
+        "tips": ""
+    },
+    {
+        "name": "asin",
+        "description": " This command is used to calculate and return the arcsine value of the parameter f, the return value unit is rad.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "The sine value of the angle to be calculated, the defined domain is: [-1 , 1], float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the arcsine value of f, in rad.",
+        "tips": ""
+    },
+    {
+        "name": "atan",
+        "description": " This command is used to calculate and return the arctangent value of the parameter f, and the return value is in rad.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "The tangent value of the angle to be calculated, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the arctangent value of f, in rad.",
+        "tips": ""
+    },
+    {
+        "name": "atan2",
+        "description": " This command is used to calculate and return the arctangent of x/y, the return value units are rad, and the signs of the x and y values determine the correct quadrant.",
+        "parameters": [
+            {
+                "name": "x",
+                "description": "the value used for calculation, float type data; ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "y",
+                "description": "the value used for calculation, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the arctangent of x/y, in rad.",
+        "tips": ""
+    },
+    {
+        "name": "cos",
+        "description": " This command is used to calculate and return the cosine of the parameter f radian angle.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "The value to be calculated, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", cosine value of f.",
+        "tips": ""
+    },
+    {
+        "name": "sin",
+        "description": " This command is used to calculate and return the sine of the parameter f radian angle.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "the value to be calculated, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", sinusoidal value of f.",
+        "tips": ""
+    },
+    {
+        "name": "tan",
+        "description": " This command is used to calculate and return the tangent of the radian angle of the parameter f.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "the value to be calculated, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", tangent of f.",
+        "tips": ""
+    },
+    {
+        "name": "d2r",
+        "description": " This command is used to convert the unit of anglular value d from degrees to radians.",
+        "parameters": [
+            {
+                "name": "d",
+                "description": "The angle in degrees, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the angle in rad.",
+        "tips": ""
+    },
+    {
+        "name": "r2d",
+        "description": " This command is used to convert the unit of anglular value r from radians to degrees.",
+        "parameters": [
+            {
+                "name": "r",
+                "description": "radians in rad, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the angle in degrees.",
+        "tips": ""
+    },
+    {
+        "name": "ceil",
+        "description": " This command returns the smallest integer not less than f. The integer rounds up.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "The value to be calculated, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", rounded integer.",
+        "tips": ""
+    },
+    {
+        "name": "floor",
+        "description": " This command returns the largest integer not greater than f. The integer rounds down.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "The input floating-point value, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", integer rounds down from f.",
+        "tips": ""
+    },
+    {
+        "name": "log",
+        "description": " This command calculate base b logarithm of f. If b or f is negative, an error will be reported during running.",
+        "parameters": [
+            {
+                "name": "b",
+                "description": "base number, float type data; ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "f",
+                "description": "true number, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", with b as the logarithm of f.",
+        "tips": ""
+    },
+    {
+        "name": "sqrt",
+        "description": " This command calculate square root of f. If b or f is negative, an error will be reported during running.",
+        "parameters": [
+            {
+                "name": "f",
+                "description": "the value to be calculated, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the square root of f.",
+        "tips": ""
+    },
+    {
+        "name": "pow",
+        "description": " This command calculates the exponentiation with the given base and exponent values.",
+        "parameters": [
+            {
+                "name": "base",
+                "description": "base value, float type data; ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "exponent",
+                "description": "exponential value, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the result of the power operation.",
+        "tips": ""
+    },
+    {
+        "name": "norm",
+        "description": " This command is used to calculate and return the norm of variables; \n The variables can be one of four different types: \n pose: in this case, returns the Euclidean norm of the pose; \n Floating-point number: in this case, returns the absolute value (a); \n Integer: In this case, the absolute value (a) is returned; \n List: In this case, returns the Euclidean norm of the list. The list elements must be numeric.",
+        "parameters": [
+            {
+                "name": "a",
+                "description": "Pose, floating-point number, integer or list, list type data, integer type data or float type data.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the norm of a.",
+        "tips": ""
+    },
+    {
+        "name": "normalize",
+        "description": " This command normalizes the data in a given list of floating-point numbers. If all elements in the list are 0, an error will be reported during running.",
+        "parameters": [
+            {
+                "name": "v",
+                "description": "A given list of floating-point numbers, list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", an array of all data united.",
+        "tips": ""
+    },
+    {
+        "name": "point_dist",
+        "description": " This command is used to calculate the distance from the point p_from to the point p_to.",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "the starting pose of the tool, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_to",
+                "description": "the target pose of the tool, the format is [x, y,z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", distance between two tool positions (rotation is not taken into account).",
+        "tips": ""
+    },
+    {
+        "name": "pose_add",
+        "description": " This command is used for summing point p_1 and point p_2 position and pose. P_1 and p_2 contain three positional parameters (x, y, z), collectively referred to as P, and three rotational parameters (Rx, Ry, Rz), collectively referred to as R. This function is used to calculate the result of a given pose addition p_3, as follows: \n p_3.P=p_1.P+p_2.P \n p_3.R=p_1.R*p_2.R",
+        "parameters": [
+            {
+                "name": "p_1",
+                "description": "tool pose 1, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_2",
+                "description": "tool pose 2, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "a list of the sum of the products of the position part and the rotated part, in the form of [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "pose_dist",
+        "description": " This command is used to calculate and return the pose distance between the point p_from and the point p_to.",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "The starting pose of the tool,the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_to",
+                "description": "tool target pose, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the distance between two pose, including rotation.",
+        "tips": ""
+    },
+    {
+        "name": "pose_inv",
+        "description": " This command is used to calculate and return the inverse of the pose.",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "tool pose, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the inverse of p_from is in the form of [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "pose_trans",
+        "description": " The first argument p_from used to transform the second argument the p_from_to. The result will be returned. The result of the pose is calculated by moving the coordinate system of p_from to position of p_from_to, then rotating the coordinate system by Rx, Ry, Rz of p_from_to. If the pose is treated as a transformation matrix, it looks like this: \n T_world->to=T_world->from*T_from->to \n T_x->to=T_x->from*T_from->to",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "starting pose, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_from_to",
+                "description": "the pose change relative to the starting pose, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the generated pose, the format is [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "rotvec2rpy",
+        "description": " This command is used to calculate the RPY vector corresponding to the rotation_vector.",
+        "parameters": [
+            {
+                "name": "rotation_vector",
+                "description": "rotation vector (Vector3d) radian, also called the Axis-angle vector (rotation angle multiplied by radians per unit of rotation axis), list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", an rpy vector in radians (vector3d), describing a roll-pitch-yaw sequence axis of external rotation around x-y-z, (as opposed to the inherent axis of rotation around z-y'- x\"). in matrix form, the rpy vector is defined as rrpy=rz(yaw)ry(pitch)rx(roll).",
+        "tips": ""
+    },
+    {
+        "name": "rpy2rotvec",
+        "description": " This command is used to calculate and return rotation vectors corresponding to the parameter rpy_vector.",
+        "parameters": [
+            {
+                "name": "rpy_vector",
+                "description": "An RPY vector in radians (Vector3d), describing a roll-pitch-yaw sequence axis of external rotation around X-Y-Z, (relative to the inherent axis of rotation around Z-Y'-X\"). In matrix form, the RPY vector is defined as Rrpy=Rz(yaw)Ry(pitch)Rx(roll), list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", a rotation vector in radians (vector3d), also known as axis-angle vectors (rotation angles multiplied by radians per axis of rotation).",
+        "tips": ""
+    },
+    {
+        "name": "interpolate_pose",
+        "description": " This command is used for linear interpolation of tool positions and orientations; \n When alpha is 0, p_from is returned. When alpha is 1, p_to returned; \n When alpha changes from 0 to 1, it returns the straight-line pose from p_from to p_to (and changes in geodetic orientation); \n If alpha is less than 0, returns the point before the p_from on the line; \n If alpha is greater than 1, return to the position after p_to on the line.",
+        "parameters": [
+            {
+                "name": "p_from",
+                "description": "the starting pose of the tool, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "p_to",
+                "description": "the target pose of the tool, the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "alpha",
+                "description": "floating-point number, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "interpolated pose, the format is [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "random",
+        "description": " This command is used to generate a random number with a value range of [0, 1].",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", pseudo-random number between 0 and 1.",
+        "tips": ""
+    }
+]

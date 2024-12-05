@@ -1,0 +1,722 @@
+[
+    {
+        "name": "movej",
+        "description": " 该指令用于关节运动，即通过该指令可以将机器人移动到位置q，使用该指令时，机器人必须处于 停止状态，或者是movej和movel的转接状态。",
+        "parameters": [
+            {
+                "name": "q",
+                "description": "目标点的关节位置（可使用逆运动学函数将笛卡尔空间坐标系转换为关节空间坐标系后输入）， 格式为[Base,Shoulder,Elbow,Wrist1,Wrist2,Wrist3]，list型数据，单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "关节加速度，单位rad/$s^2$，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "v",
+                "description": "关节速度，单位rad/s，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "t",
+                "description": "时间，单位s，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "r",
+                "description": "交融半径，单位m，float型数据。",
+                "type": "float",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "movec",
+        "description": " 该指令用于圆弧轨迹运动指令，即从当前位置起始经过pose_via中间点到达pose_to目标点。 当加速到恒定的工具速度v后，然后以此速度运动。",
+        "parameters": [
+            {
+                "name": "pose_via",
+                "description": "中间点的工具位姿（可使用正运动学函数将关节空间坐标转化为笛卡尔空间坐标后输 入），格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、Rz单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "pose_to",
+                "description": "目标点的工具位姿（可使用正运动学函数将关节空间坐标转化为笛卡尔空间坐标后输入）， 格式为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、Rz单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "工具加速度，单位m/$s^2$，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "v",
+                "description": "工具速度，单位m/s，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "r",
+                "description": "交融半径，单位m，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "mode",
+                "description": "圆弧模式（0为固定模式，其他值为无约束模式，不写默认为0），integer型数据。",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "movel",
+        "description": " 该指令用于直线运动指令，即通过该指令可以将机器人移动到位置p，使用该指令时，机器人必须 处于停止状态，或者是movej和movel的转接状态。",
+        "parameters": [
+            {
+                "name": "p",
+                "description": "目标点的工具位姿（可使用正运动学函数将关节空间坐标转化为笛卡尔空间坐标后输入），格式 为[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z单位为m，Rx、Ry、Rz单位为rad； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "工具加速度，单位m/$s^2$，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "v",
+                "description": "工具速度，单位m/s，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "t",
+                "description": "时间，单位s，float型数据； ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "r",
+                "description": "交融半径，单位m，float型数据。",
+                "type": "float",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_joint_positions",
+        "description": " 该指令用于获取所有关节的实际关节角位置。实际关节角位置以弧度为单位，并以长度为6的矢量 返回。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "：[base,shoulder,elbow,wrist1,wrist2,wrist3]，以弧度为单位的当前实际关节角位置。",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_joint_speeds",
+        "description": " 该指令用于获取所有关节的实际关节速度。实际关节速度以rad/s为单位，并以长度为6的矢量返 回。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "：[base,shoulder,elbow,wrist1,wrist2,wrist3]，以rad/s=为单位的当前实际关节速度。",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_tcp_pose",
+        "description": " 该指令用于获取当前TCP位姿。返回6D位姿——6D位姿表示基架中规定的工具位置和方位。此 姿态的计算基于实际机器人编码器读数。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "当前实际tcp的位姿，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_tcp_speed",
+        "description": " 该指令用于获取当前TCP 速度。返回长度为6的速度列表，列表前三个数值是TCP的 x、y、z三 个方向上的速度分量，后三个数值表示当前TCP姿态的旋转轴方向。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "当前实际tcp速度矢量，格式为[vx,vy,vz,rvx,rvy,rvz]，，其中vx、vy、vz表示tcp的x、y、z三个方向上的速度分量，单位为m/s，rvx、rvy、rvz表示当前tcp姿态的旋转轴方向（基坐标系下），其模长|rvx,rvy,rvz|表示绕旋转轴的速度，单位为rad/s。",
+        "tips": ""
+    },
+    {
+        "name": "get_controller_temperature",
+        "description": " 该指令用于获取控制柜主板温度。",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，控制柜主板温度，单位：摄氏度。",
+        "tips": ""
+    },
+    {
+        "name": "get_joint_temperatures",
+        "description": " 该指令用于获取机器人所有关节的温度。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "：[base,shoulder,elbow,wrist1,wrist2,wrist3]，所有关节的温度，单位：摄氏度。",
+        "tips": ""
+    },
+    {
+        "name": "get_joint_torques",
+        "description": " 该指令用于获取所有关节的力矩，单位：Nm；\n 关节力矩——通过所需的力矩校正使机器人自身移动（重力、摩擦力等），以长度为6的矢量返回。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，关节力矩矢量。",
+        "tips": ""
+    },
+    {
+        "name": "get_target_joint_positions",
+        "description": " 该指令用于获取所有关节目标关节角位置；目标关节角位置以rad为单位，并以长度为6的矢量 返回。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，以rad为单位的当前目标关节角位置：[base,shoulder,elbow,wrist1,wrist2,wrist3]。",
+        "tips": ""
+    },
+    {
+        "name": "get_target_joint_speeds",
+        "description": " 该指令用于获取所有关节的目标关节速度。目标关节速度以rad/s为单位，并以长度为6的矢量返 回。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "：[base,shoulder,elbow,wrist1,wrist2,wrist3]，以rad/s为单位的目标关节速度。",
+        "tips": ""
+    },
+    {
+        "name": "get_target_tcp_pose",
+        "description": " 该指令用于获取当前目标工具姿态。返回6D姿态，6D姿态表示基架中规定的工具位置和方位。 此姿态的计算基于当前目标关节位置。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "当前目标tcp矢量：[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "get_target_tcp_speed",
+        "description": " 该指令用于获取目标TCP速度。返回长度为6的速度列表，列表前三个数值是TCP的 x、y、z三 个方向上的速度分量，后三个数值表示当前TCP姿态的旋转轴方向。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "目标tcp速度矢量，格式为[vx,vy,vz,rvx,rvy,rvz]，，其中vx、vy、vz表示tcp的x、y、z三个方向上的速度分量，单位为m/s，rvx、rvy、rvz表示当前tcp姿态的旋转轴方向（基坐标系下），其模长|rvx,rvy,rvz|表示绕旋转轴的速度，单位为rad/s。",
+        "tips": ""
+    },
+    {
+        "name": "set_gravity",
+        "description": " 该指令用于设置机器人经历的加速方向。机器人安装座固定好时，这对应于远离地面中心的加速度。",
+        "parameters": [
+            {
+                "name": "d",
+                "description": "3D矢量，描述了相对于机器人基座的重力方向，list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_payload",
+        "description": " 该指令用于设置机器人有效负载的质量、重心和转动惯量； \n 机器人的有效负载发生明显的改变时（比如拿起或放下较重的工件），需要调用该函数设置新的有 效负载信息。",
+        "parameters": [
+            {
+                "name": "m",
+                "description": "有效负载的质量，float型数据：范围不小于0，不大于当前型号机器人最大标称负载，单位：kg； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "CoG",
+                "description": "有效负载的重心坐标（相对于法兰盘坐标系），list型数据：[CoGx,CoGy,CoGz]，单位：m； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "inertia",
+                "description": "有效负载的转动惯量，可选参数，list型数据：[lxx,lyy,lzz,lxy,lxz,lyz]，单位：kg/$m^2$。",
+                "type": "list",
+                "default": "[0,0,0,0,0,0]"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_target_payload_cog",
+        "description": " 该指令用于获取机器人当前负载重心坐标，单位：m。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，[cogx,cogy,cogz]。",
+        "tips": ""
+    },
+    {
+        "name": "get_target_payload_mass",
+        "description": " 该指令用于获取机器人当前有效负载的质量。",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，以kg为单位的质量。",
+        "tips": ""
+    },
+    {
+        "name": "set_tcp",
+        "description": " 该指令用于设置机器人工具中心点的坐标和姿态。",
+        "parameters": [
+            {
+                "name": "pose",
+                "description": "描述变换的一种姿态。[x,y,z,Rx,Ry,Rz]，list型数据，其中x、y、z 单位为m，Rx、Ry、Rz单位为rad。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "encoder_enable_set_tick_count",
+        "description": " 该指令用于设置一个能够通过encoder_set_tick_count函数更新滴答计数的编码器。",
+        "parameters": [
+            {
+                "name": "encoder_index",
+                "description": "编码器的序号，必须是0或者1，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "range_id",
+                "description": "译码器的序号：用于指定编码器的范围，integer型数据。需要为编码器选择合适的范围：  0是一个32位有符号的译码器，范围是[-2147483648 : 2147483647]；  1是一个8位无符号的译码器，范围是[0 : 255]；  2是一个16位无符号的译码器，范围是[0 : 65535]；  3是一个24位无符号的译码器，范围是[0 : 16777215]；  4是一个32位无符号的译码器，范围是[0 : 4294967295]，integer型数据。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "encoder_get_tick_count",
+        "description": " 该指令用于返回选定编码器的嘀嗒计数。",
+        "parameters": [
+            {
+                "name": "encoder_index",
+                "description": "被访问的编码器序号，序号值必须是0或者1，integer型数据。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，传送带编码器的嘀嗒计数。",
+        "tips": ""
+    },
+    {
+        "name": "encoder_set_tick_count",
+        "description": " 该指令用于告诉机器人控制器当前编码器的嘀嗒计数。该函数可在绝对编码器条件下使用(e.g. MODBUS)； \n 另请参阅：2.1.20 encoder_enable_set_tick_count()指令。",
+        "parameters": [
+            {
+                "name": "encoder_index",
+                "description": "编码器序号，序号值必须是0或者1，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "count",
+                "description": "所设置的嘀嗒计数。必须在编码器设定的范围内，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "encoder_unwind_delta_tick_count",
+        "description": " 该指令用于：如果编码器发生了计数越界行为，则返回重构后的delta_tick_count。如果编码器 未发生计数越界行为，则不对delta_tick_count 进行任何修改，直接返回。",
+        "parameters": [
+            {
+                "name": "encoder_index",
+                "description": "被访问的编码器序号，序号值必须是0或者1，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "delta_tick_count",
+                "description": "需要被重构的两次滴答计数的差值，float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "，重构后的delta_tick_count。",
+        "tips": ""
+    },
+    {
+        "name": "stop_conveyor_tracking",
+        "description": " 该指令用于停止由track_conveyor_linear()或track_conveyor_circular()触发的传送带跟踪功 能，同时将工具速度降为0。",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "speedj",
+        "description": " 该指令用于将每个关节加速到qd，并以此速度移动。时间参数t可选，如不指定t，函数将在达到 目标速度时返回；指定t时，函数将在t秒后返回，无论是否已经达到目标速度。该指令受速度百分比 影响，当且仅当速度百分比为100\\%时符合预期参数效果。",
+        "parameters": [
+            {
+                "name": "qd",
+                "description": "每个关节的速度（rad/s），list型数据：长度为6，每个元素依次指代了关节目标速度； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "（主轴的）关节加速度（rad/$s^2$），float型数据； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "t",
+                "description": "函数返回的最短时间（s），float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "speedl",
+        "description": " 该指令用于工具端加速到恒定的速度xd，并以此速度移动。时间参数t可选，如不指定t，函数将 在达到目标速度时返回；指定t时，函数将在t秒后返回，无论是否已经达到目标速度。角加速度参数 aRot可选，若使用该参数，请先确认已指定时间参数t。该指令受速度百分比影响，当且仅当速度百分 比为100\\%时符合预期参数效果。",
+        "parameters": [
+            {
+                "name": "xd",
+                "description": "工具速度（m/s），格式为[Vx,Vy,Vz,RVx,RVy,RVz]，list型数据，其中Vx、Vy、Vz单位为 m/s，RVx、RVy、RVz单位为rad/s； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "工具加速度（m/$s^2$），float型数据； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "t",
+                "description": "函数返回前的最短时间，float型数据； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "aRot",
+                "description": "角加速度（rad/$s^2$），默认值为a。若设置了角加速度，则使用已设置的速度作为角加速度； 若只设置了线加速度，则角加速度默认等于线加速度。",
+                "type": "str",
+                "default": "'a'"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "stopj",
+        "description": " 该指令用于将关节速度减速到零。",
+        "parameters": [
+            {
+                "name": "a",
+                "description": "关节加速度,单位为rad/$s^2$,float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "stopl",
+        "description": " 该指令用于将工具末端速度减速到零。",
+        "parameters": [
+            {
+                "name": "a",
+                "description": "关节加速度，单位为m/$s^2$。 float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "track_conveyor_circular",
+        "description": " 该指令用于使机器人运动（movej() 等）追踪圆形传送带。",
+        "parameters": [
+            {
+                "name": "center",
+                "description": "姿态矢量，用于确定机器人基座坐标系中传送带的中心位置，list型数据； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "ticks_per_revolution",
+                "description": "传送带移动一圈时编码器变化的刻度数，float型数据； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "rotate_tool",
+                "description": "工具应当与传送带一起旋转，或者停留在轨迹（movel() 等）规定的方位。不指定 布尔值时，使用默认布尔值为False，boolean型数据（可选参数）； ",
+                "type": "bool",
+                "default": "False"
+            },
+            {
+                "name": "encoder_index",
+                "description": "与传送带跟踪相联系的编码器序号，序号值必须为0或者1。不指定序号值时， 使用默认序号值为0，integer型数据（可选参数）。",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "track_conveyor_linear",
+        "description": " 该指令用于使机器人运动（movej() 等）追踪线性传送带。",
+        "parameters": [
+            {
+                "name": "direction",
+                "description": "姿态矢量，用于确定机器人基座坐标系中传送带的方向，list型数据； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "ticks_per_meter",
+                "description": "传送带移动一米时编码器变化的刻度数，float型数据； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "encoder_index",
+                "description": "与传送带跟踪相联系的编码器序号，序号值必须为0或者1。不指定序号值时， 使用默认序号值为0，integer型数据（可选参数）。",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_tool_flange_pose",
+        "description": " 该指令用于获得当前工具法兰位姿。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "当前测量的工具法兰位姿，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "get_target_waypoint",
+        "description": " 该指令用于获得当前移动的目标路径点。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "当前移动的目标路径点，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "get_tcp_offset",
+        "description": " 该指令用于获得当前目标工具偏移量。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "当前目标工具偏移量，格式为[x,y,z,rx,ry,rz]，，其中x、y、z单位为m，rx、ry、rz单位为rad。",
+        "tips": ""
+    },
+    {
+        "name": "load_micro_line_file",
+        "description": " 该指令用于通过微段文件名称，设置微段相邻两点间的时间间隔、微段文件数据类型、微段文件单 位类型参数加载微段文件，生成并返回唯一的标识序号。",
+        "parameters": [
+            {
+                "name": "file_name",
+                "description": "微段文件名称，string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "interval_time",
+                "description": "微段文件中两个点位之间的时间间隔，单位为ms，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "pos_type",
+                "description": "微段文件数据类型，integer型数据：0：关节空间数据，1：笛卡尔空间数据（可选参数）； ",
+                "type": "int",
+                "default": "0"
+            },
+            {
+                "name": "unit_type",
+                "description": "微段文件单位类型，integer型数据：0：关节空间数据为弧度、笛卡尔空间数据为米 以及弧度，1：关节空间数据为度、笛卡尔空间数据为毫米以及弧度（可选参数）。",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，当前微段文件以及相应配置下加载的微段序号。",
+        "tips": ""
+    },
+    {
+        "name": "micro_line_set_pcs",
+        "description": " 该指令用于设置当前微段序号对应微段文件的局部坐标； \n 另请参阅：2.1.34 load_micro_line_file()指令，micro_line_index通常由load_micro_line_file()获得。",
+        "parameters": [
+            {
+                "name": "micro_line_index",
+                "description": "微段序号，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "part_coordinate_system",
+                "description": "局部坐标，list型数据。",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_micro_line_values_by_index",
+        "description": " 该指令用于以关节空间数据或笛卡尔空间数据的方式返回微段序号对应微段文件对应行的数据； \n 另请参阅：2.1.34 load_micro_line_file()指令，micro_line_index通常由load_micro_line_file()获得。",
+        "parameters": [
+            {
+                "name": "micro_line_index",
+                "description": "微段序号，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "pos_type",
+                "description": "获取的数据类型，integer型数据：0：关节空间数据，1：笛卡尔空间数据（可选参数）； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "line_index",
+                "description": "微段文件行序号，integer型数据。",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ",关节空间数据或笛卡尔空间数据。",
+        "tips": ""
+    },
+    {
+        "name": "moveml",
+        "description": " 该指令用于运行微段序号对应的微段文件，从设定的起始行运行至设定的终止行； \n 另请参阅：2.1.34 load_micro_line_file()指令，micro_line_index通常由load_micro_line_file()获得。",
+        "parameters": [
+            {
+                "name": "micro_line_index",
+                "description": "微段序号，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "start_line",
+                "description": "运行的起始行，默认为0代表从微段文件首行运行，integer型数据（可选参数）； ",
+                "type": "int",
+                "default": "0"
+            },
+            {
+                "name": "end_line",
+                "description": "运行的终止行，默认为0代表运行至微段文件末行，integer型数据（可选参数）。",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "freedrive_mode",
+        "description": " 该指令用于开启拖动模式，该模式下可以自由拖动机器人。默认参数状态下，机器人将进入完全自由拖动模式，通过修改参数也可以进入锁轴拖动模式。",
+        "parameters": [
+            {
+                "name": "freeAxes",
+                "description": "长度为6的数据，每位数据为0或1，0表示不能拖动，1表示可以拖动，前三个数据表示沿笛卡尔空间的x、y、z三个方 向拖动的使能状态，后三位表示绕笛卡尔空间的rx、ry、rz轴旋转的拖动使能状态。该参数表示在选择的坐标系空间内的状态。该参数为可选参数。 ",
+                "type": "list",
+                "default": "[1,1,1,1,1,1]"
+            },
+            {
+                "name": "frame",
+                "description": "RPY位姿数据，定义了拖动模式的坐标系数据（相对于机器人坐标系），该参数也可以使用base与tool表示机器人坐 标系与动态的TCP坐标系。该参数为可选参数。",
+                "type": "list",
+                "default": "[0,0,0,0,0,0]"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "end_freedrive_mode",
+        "description": " 该指令用于关闭拖动模式，使机器人进入位置模式，任务运行结束后也会自动退出拖动模式。",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

@@ -1,0 +1,61 @@
+[
+    {
+        "name": "force_mode_set_damping",
+        "description": " This command is used to set the damping parameter for the force control mode.",
+        "parameters": [
+            {
+                "name": "damping",
+                "description": "the damping parameter, ranges from 0 to 1. The default value is 0. When this parameter is set as 1, it is full damping. The robot will decelerate quickly if there is no external force. When this parameter is set as 0, there is no damping. The robot will move at the current speed. The smaller the damping value is, the weaker damping in the direction of compliant axes is, the weaker the force tracking oscillation restraints are, and the faster the force tracking responses are; conversely, the greater the damping value is, the stronger damping in the direction of compliant axes is, the stronger the force tracking oscillation restraints are, and the slower the force tracking responses are. float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "zero_ftsensor",
+        "description": " This command is used to zero the force/torque applied to the TCP measured by the sensor (tare sensor), whose value is the vector of the force/torque applied to the TCP and acquired from the command get_tcp_force(True). This vector has been compensated. \n The current measured force/torque value will be saved as the referenced one after this command is performed. The referenced one will be subtracted from the subsequent measured force/torque value (tare sensor). \n Notice: The referenced force/torque value mentioned above will be renewed when this command is performed. It will be reset as 0 after the controller is rebooted.",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "force",
+        "description": " This command is used to get the external force applied in the TCP. \n Get the external force applied in the TCP, whose value is the norm of Fx, Fy, and Fz calculated by the command get_tcp_force(True). \n For zero the value measured by the force/torque sensor, see also 3.4 zero_ftsensor command.",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "the force with the unit of n, ",
+        "tips": ""
+    },
+    {
+        "name": "get_tcp_force",
+        "description": " This command is used to get the force/torque vector applied in the TCP. \n For zero the value measured by the force/torque sensor, see also 3.4 zero_ftsensor command.",
+        "parameters": [
+            {
+                "name": "enable_compensation",
+                "description": "boolean type data. True: the return value will be compensated; False: the return value is the raw data measured by the force/torque sensor.",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "end_force_mode",
+        "description": " This command is used to disable the force control mode. It also will be performed when the procedure ends.",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

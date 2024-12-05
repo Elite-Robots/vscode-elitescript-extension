@@ -1,0 +1,722 @@
+[
+    {
+        "name": "movej",
+        "description": " This command is used for joint movement, that is, the robot can be moved to a target position q. This can be used when the robot is in stopped state or come from a movej or movel with a blend.",
+        "parameters": [
+            {
+                "name": "q",
+                "description": "joint positions of the target point (the user can use the inverse kinematics function to convert Cartesian coordinates into the joint coordinates and then input the result), the format is [Base, Shoulder, Elbow, Wrist1, Wrist2, Wrist3], list type data. The unit is rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "Joint acceleration, unit is rad/s2, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "v",
+                "description": "Joint velocity, unit is rad/s, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "t",
+                "description": "Time, unit is s, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "r",
+                "description": "Blend radius, unit m, float type data.",
+                "type": "float",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "movec",
+        "description": " This command is used for arc trajectory motion command. The robot will start its motion from the current position to the target position pose_to passing through an intermidiate point pose_via. The robot will accelerate to a tool speed v, then moves constantly at speed v.",
+        "parameters": [
+            {
+                "name": "pose_via",
+                "description": "Intermidiate point (Pose_via can also be specified as joint positions, the user can use the forward kinematics function to convert the joint space coordinates into Cartesian coordinates and then input the result), the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z unit is m, Rx, Ry, Rz unit is rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "pose_to",
+                "description": "target pose (the user can use the forward kinematics function to convert the joint space coordinates into Cartesian coordinates and then input the result), the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z unit is m, Rx, Ry, Rz unit is rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "Tool acceleration, unit is m/$s^2$, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "v",
+                "description": "Tool speed, unit is m/s, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "r",
+                "description": "Blend radius, unit m, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "mode",
+                "description": "arc mode (0 is fixed mode, other values are at unconstrained mode, default is 0 if not written), integer type data.",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "movel",
+        "description": " This command is used for linear movement. The robot can move to position p linearly through this command. When using this command, the robot must be in a standstill, or transition state of movej and movel.",
+        "parameters": [
+            {
+                "name": "p",
+                "description": "target pose(the user can use the forward kinematics function to convert the joint space coordinates into Cartesian coordinates and then input the result), the format is [x, y, z, Rx, Ry, Rz], list type data, where x, y, z unit is m, Rx, Ry, Rz unit is rad; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "tool acceleration, unit is m/$s^2$, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "v",
+                "description": "tool speed, unit is m/s, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "t",
+                "description": "time, unit is s, float type data; ",
+                "type": "float",
+                "default": "0"
+            },
+            {
+                "name": "r",
+                "description": "Blend radius, unit m, float type data.",
+                "type": "float",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_joint_positions",
+        "description": " This command obtains the actual joint positions of each joint. The position is returned in radians as a vector of length 6.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": ": [base, shoulder, elbow, wrist1, wrist2, wrist3], the current actual joint angle position in rad.",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_joint_speeds",
+        "description": " This command obtains the actual joint velocity of each joint. The velocity is returned in rad/s as a vector of length 6.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": ": [base, shoulder, elbow, wrist1, wrist2, wrist3], the current actual joint speed in rad/s.",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_tcp_pose",
+        "description": " This command is used to obtain the current TCP pose. Return 6D pose - The 6D pose represents the tool position and orientation specified in the base frame. The calculation of this pose is based on the actual robot encoder readings.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the current actual tcp pose is in the format of [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_tcp_speed",
+        "description": " This command is used to obtain the current TCP speed. Return the speed list with the length of 6. The first three values are velocity component in the direction of x, y and z axis of TCP. The last three values indicate the direction of the rotation axis in the current TCP pose.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the current actual tcp speed vector, the format is [vx, vy, vz, rvx, rvy, rvz], , where vx, vy, vz indicates the velocity component in the direction of x, y and z axis of tcp, units are m/s, rvx, rvy, rvz indicates the direction of the rotation axis in the current tcp pose (based on the base coordinate system), the length of the vectors indicates the rotating speed on the rotation axis, units are rad/s.",
+        "tips": ""
+    },
+    {
+        "name": "get_controller_temperature",
+        "description": " This command is used to obtain the control box motherboard temperature.",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", control box motherboard temperature, unit: celsius.",
+        "tips": ""
+    },
+    {
+        "name": "get_joint_temperatures",
+        "description": " This command obtains the torque of each joint in Nm as a vector of length 6.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": ": [base, shoulder, elbow, wrist1, wrist2, wrist3], the temperature of all joints, unit: celsius.",
+        "tips": ""
+    },
+    {
+        "name": "get_joint_torques",
+        "description": " This command is used to obtain the torques of all joints, in units: Nm; \n Joint torque - through the required torque correction to make the robot itself move (gravity, friction, etc.), returned in a vector of length 6.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", joint torque vector.",
+        "tips": ""
+    },
+    {
+        "name": "get_target_joint_positions",
+        "description": " This command obtains the target joint position of each joint. The position is returned in radians as a vector of length 6.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": ": [base, shoulder, elbow, wrist1, wrist2, wrist3], the current target joint angle position in rad.",
+        "tips": ""
+    },
+    {
+        "name": "get_target_joint_speeds",
+        "description": " This command is used to get the target joint velocities of all joints. The target joint velocity is in rad/s and returned in a vector of length 6.。",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": ": [base, shoulder, elbow, wrist1, wrist2, wrist3], the target joint speed in rad/s.",
+        "tips": ""
+    },
+    {
+        "name": "get_target_tcp_pose",
+        "description": " This command is used to get the current target tool pose. Returns a 6D pose, which represents the tool position and orientation specified in the base frame. The calculation of this pose is based on the current target joint positions.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the current target tcp vector: [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "get_target_tcp_speed",
+        "description": " This command is used to obtain the target TCP speed. Return the speed list with the length of 6. The first three values are velocity component in the direction of x, y and z axis of TCP. The last three values indicate the direction of the rotation axis in the current TCP pose",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the target tcp speed vector, the format is [vx, vy, vz, rvx, rvy, rvz], , where vx, vy, vz indicates velocity component in the direction of x, y and z axis of tcp, units are m/s, rvx, rvy, rvz indicates the direction of the rotation axis in the current tcp pose (based on the base coordinate system), the length of the vectors indicates the rotating speed on the rotation axis, units are rad/s.",
+        "tips": ""
+    },
+    {
+        "name": "set_gravity",
+        "description": " This command is used to set the direction of the acceleration experienced by the robot. When the robot mounting is fixed, this corresponds to the acceleration away from the earth’s center.",
+        "parameters": [
+            {
+                "name": "d",
+                "description": "3D vector, describing the direction of the gravity, relative to the base of the robot, list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_payload",
+        "description": " This command is used to set the mass, center of gravity and moment of inertia of the robot payload; When the payload of the robot changes significantly (such as picking up or dropping a heavier workpiece), the function needs to be called to set the new payload information.",
+        "parameters": [
+            {
+                "name": "m",
+                "description": "the mass of the payload, float type data: the range is not less than 0, not greater than the maximum nominal load of the current model robot, unit: kg; ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "CoG",
+                "description": "The coordinates of the center of gravity of the payload (relative to the flange frame), list type data: [CoGx, CoGy, CoGz], unit: m; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "inertia",
+                "description": "moment of inertia of the payload, optional parameters, list type data: [lxx, lyy, lzz, lxy, lxz, lyz], unit: kg/$m^2$.",
+                "type": "list",
+                "default": "[0,0,0,0,0,0]"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_target_payload_cog",
+        "description": " This command obtains the center of the gravity coordinates of the current load that the robot is carrying. The units is m.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，[cogx, cogy, cogz].",
+        "tips": ""
+    },
+    {
+        "name": "get_target_payload_mass",
+        "description": " This command is used to obtain the mass of the robot's current payload.",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", mass in kg.",
+        "tips": ""
+    },
+    {
+        "name": "set_tcp",
+        "description": " This command is used to set the coordinates and pose of the center point of the robot tool.",
+        "parameters": [
+            {
+                "name": "pose",
+                "description": "A pose describing the transformation. [x, y, z, Rx, Ry, Rz], list type data, where x, y, z units are m, Rx, Ry, Rz units are rad.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "encoder_enable_set_tick_count",
+        "description": " This command is used to set up an encoder expecting to be updated with tick counts via the function.",
+        "parameters": [
+            {
+                "name": "encoder_index",
+                "description": "the ordinal number of the encoder, which must be 0 or 1, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "range_id",
+                "description": "the ordinal number of the decoder: used to specify the range of the encoder, integer type data. The right range needs to be selected for the encoder,  0 is a 32-bit signed decoder with a range of [-2147483648 : 2147483647];  1 is an 8-bit unsigned decoder with a range of [0 : 255];  2 is a 16-bit unsigned decoder with a range of [0 : 65535];  3 is a 24-bit unsigned decoder with a range of [0 : 16777215];  4 is a 32-bit unsigned decoder with a range of [0 : 4294967295], integer type data.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "encoder_get_tick_count",
+        "description": " This command is used to return the tick count of the selected encoder.",
+        "parameters": [
+            {
+                "name": "encoder_index",
+                "description": "the encoder ordinal number to be accessed, the ordinal value must be 0 or 1, integer type data.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the conveyor encoder tick count.",
+        "tips": ""
+    },
+    {
+        "name": "encoder_set_tick_count",
+        "description": " This command is used to tell the robot controller the tick count of the current encoder. The function can be used under absolute encoders(e.g. Modbus); \n See also:2.1.20 encoder_enable_set_tick_count() command.",
+        "parameters": [
+            {
+                "name": "encoder_index",
+                "description": "encoder ordinal number, the ordinal value must be 0 or 1, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "count",
+                "description": "The tick count to set. Must be within the range of the encoder, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "encoder_unwind_delta_tick_count",
+        "description": " This command is used to return refactored delta_tick_count if the encoder has counted out of bounds. If the encoder does not occur count out of bounds, the delta_tick_count will be returned directly without any modifications.",
+        "parameters": [
+            {
+                "name": "encoder_index",
+                "description": "the encoder ordinal number to be accessed, the ordinal value must be 0 or 1, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "delta_tick_count",
+                "description": "the difference between the two tick counts that need to be reconstructed, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", reconstructed delta_tick_count.",
+        "tips": ""
+    },
+    {
+        "name": "stop_conveyor_tracking",
+        "description": " This command stops the conveyor tracking function triggered by track_conveyor_linear() or track_conveyor_circular(), and decelerate the tool speed to zero.",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "speedj",
+        "description": " The command accelerate each joint to speed qd, then moves constantly at speed qd. The time parameter t is optional. If t is not specified, the function will return when the target speed is reached; else the function will return after t second, regardless whether the joint reached the target speed or not. This command is affected by the speed percentage and meets the expected parameter effect if and only if the speed percentage is 100\\%.",
+        "parameters": [
+            {
+                "name": "qd",
+                "description": "joint speeds(rad/s), list type data: the length is 6, each element in turn refers to the joint target speed; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "(spindle) joint acceleration (rad/$s^2$), float type data； ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "t",
+                "description": "the shortest time (s) returned by the function, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "speedl",
+        "description": " The command accelerate the tool to speed xd, then moves constantly at speed xd. The time parameter t is optional. If t is not specified, the function will return when the target speed is reached; else the function will return after t second, regardless whether the tool reached the target speed. The angular acceleration parameter aRot is optional. If aRot is used, ensure that the time parameter t has been specified first. This command is affected by the speed percentage and meets the expected parameter effect if and only if the speed percentage is 100\\%.",
+        "parameters": [
+            {
+                "name": "xd",
+                "description": "tool speed (m/s), the format is [Vx, Vy, Vz, RVx, RVy, RVz], list type data, where Vx, Vy, Vz units are m/s, RVx, RVy, RVz units are rad/s; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "a",
+                "description": "tool acceleration (m/$s^2$), float type data; ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "t",
+                "description": "the shortest time before the function returns, float type data. ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "aRot",
+                "description": "angular acceleration (rad/$s^2$), defaults to be a. If angular acceleration is set, the preset one will be used as the angular acceleration; if only linear acceleration is set, angular acceleration defaults to the linear acceleration.",
+                "type": "str",
+                "default": "'a'"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "stopj",
+        "description": " This command is used to decelerate joint speeds to zero.",
+        "parameters": [
+            {
+                "name": "a",
+                "description": "Joint acceleration, unit is rad/$s^2$, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "stopl",
+        "description": " This command is used to decelerate tool speed to zero.",
+        "parameters": [
+            {
+                "name": "a",
+                "description": "Joint acceleration, in m/$s^2$. float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "track_conveyor_circular",
+        "description": " This command used to make robot movements (movej(etc.)) track circular conveyor.",
+        "parameters": [
+            {
+                "name": "center",
+                "description": "pose vector, to determine the center position of the conveyor in the base frame of the robot, list type data; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "ticks_per_revolution",
+                "description": "the number of ticks of the encoder change when the conveyor is moved one turn, float type data; ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "rotate_tool",
+                "description": "the tool should rotate with the conveyor or stay in the direction specified by the trajectory (movel(, etc.)). When no boolean value is specified, use the default boolean value as False, boolean type data (optional parameter); ",
+                "type": "bool",
+                "default": "False"
+            },
+            {
+                "name": "encoder_index",
+                "description": "the encoder serial number associated with the conveyor tracking, the ordinal number value must be 0 or 1. When no ordinal value is specified, use the default ordinal value of 0, integer type data (optional parameter).",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "track_conveyor_linear",
+        "description": " This command is used to make robot movements (movej(etc.)) track linear conveyor.",
+        "parameters": [
+            {
+                "name": "direction",
+                "description": "pose vector, to determine the direction of the conveyor in the base frame of the robot, list type data; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "ticks_per_meter",
+                "description": "the number of ticks of the encoder change when the conveyor moves one meter, float type data; ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "encoder_index",
+                "description": "The encoder serial number associated with the conveyor tracking, and the ordinal number value must be 0 or 1. When no ordinal value is specified, use the default ordinal value of 0, integer type data (optional parameter).",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_actual_tool_flange_pose",
+        "description": " This command is used to obtain the current tool flange pose.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the current measured tool flange pose, the format is [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "get_target_waypoint",
+        "description": " This command is used to obtain the target waypoint is currently moving to.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the current target waypoint, the format is [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "get_tcp_offset",
+        "description": " This command is used to obtain the current TCP offset.",
+        "parameters": [],
+        "note": "",
+        "return_type": "list",
+        "return_description": "the current tcp offset in the format [x, y, z, rx, ry, rz], , where x, y, z units are m, rx, ry, rz units are rad.",
+        "tips": ""
+    },
+    {
+        "name": "load_micro_line_file",
+        "description": " This command is used to load the micro-segment file through the micro-segment file name, set the time interval between two adjacent points of the micro-segment, the data type of the micro-segment file, and the parameters of the unit type of the micro-segment file, then generate and return a unique identification number.",
+        "parameters": [
+            {
+                "name": "file_name",
+                "description": "micro-segment file name, string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "interval_time",
+                "description": "the time interval between two points in a micro-segment file, in ms, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "pos_type",
+                "description": "micro-segment file data type, integer type data: 0: joint space data, 1: Cartesian data (optional parameters); ",
+                "type": "int",
+                "default": "0"
+            },
+            {
+                "name": "unit_type",
+                "description": "micro-segment file unit type, integer type data: 0: joint space data is radians, Cartesian data is meters and radians, 1: joint space data is degrees, Cartesian data is millimeters and radians (optional parameters).",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the current micro-segment file and the mini-segment sequence number loaded under the corresponding configuration.",
+        "tips": ""
+    },
+    {
+        "name": "micro_line_set_pcs",
+        "description": " This command is used to set the local coordinates of the current micro-segment sequence number corresponding to the micro-segment file; \n See also: 2.1.34 load_micro_line_file() command, micro_line_index are usually obtained by load_micro_line_file().",
+        "parameters": [
+            {
+                "name": "micro_line_index",
+                "description": "micro-segment ordinal number, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "part_coordinate_system",
+                "description": "local coordinates, list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_micro_line_values_by_index",
+        "description": " This command returns the data correspnding to the micro-egment file in the form of the joint space data or Cartesian data; See also: 2.1.34 load_micro_line_file() command, micro_line_index are usually obtained by load_micro_line_file().",
+        "parameters": [
+            {
+                "name": "micro_line_index",
+                "description": "micro-segment ordinal number, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "pos_type",
+                "description": "data type obtained, integer type data: 0: joint space data, 1: Cartesian data (optional parameters); ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "line_index",
+                "description": "micro-segment file line sequence number, integer type data.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", joint space data or cartesian data.",
+        "tips": ""
+    },
+    {
+        "name": "moveml",
+        "description": " This command is used to run the micro-segment file corresponding to the micro-segment sequence number, running from the set start line to the set end line; \n See also: 2.1.34 load_micro_line_file() command, micro_line_index are usually obtained by load_micro_line_file().",
+        "parameters": [
+            {
+                "name": "micro_line_index",
+                "description": "micro-segment ordinal number, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "start_line",
+                "description": "the starting line of the run, the default is 0 for running from the first row of the micro-segment file, integer type data (optional parameter); ",
+                "type": "int",
+                "default": "0"
+            },
+            {
+                "name": "end_line",
+                "description": "the end line of the run, the default is 0 to run to the last line of the micro-segment file, integer type data (optional parameter).",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "freedrive_mode",
+        "description": " This command is used to enable the freedrive mode, which allows the robot to be  hand guided freely. With default parameters, the robot will be in fully free hand-guiding mode. And the robot  can be in the hand-guiding mode with locking axes by modifying parameters.",
+        "parameters": [
+            {
+                "name": "freeAxes",
+                "description": "the data of length 6, each one is 0 or 1, 0: can not be hand guided, 1: can be hand guided. The first three  data indicate the enabling state of hand-guiding along the x, y, and z direction of Cartesian space; the last three indicate  the enabling state of hand-guiding rotating around the rx, ry, and rz axes of Cartesian space. This parameter indicates the  state in the selected coordinate system space and it is optional. ",
+                "type": "list",
+                "default": "[1,1,1,1,1,1]"
+            },
+            {
+                "name": "frame",
+                "description": "RPY position data, defines the coordinate system data (relative to the robot coordinate system)  for the hand-guiding mode. This parameter can also be used with base coordinate system and tool coordinate system  to indicate the robot coordinate system  and the dynamic TCP coordinate system. This parameter is optional.",
+                "type": "list",
+                "default": "[0,0,0,0,0,0]"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "end_freedrive_mode",
+        "description": " This command is used to disable the hand-guiding mode and makes the robot be  in the position mode. If the running task is finished, the robot will exit hand-guiding mode automatically.",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

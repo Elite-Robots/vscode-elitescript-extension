@@ -1,0 +1,16 @@
+---
+${basename}-${prefix}line:
+  name: ${scopename}
+  begin: \b(([uU]r)|(${modifier}r)|(r${modifier}?))${bquote}
+  end: ${equote}
+  beginCaptures:
+    '2': {name: invalid.deprecated.prefix.elitescript}
+    '3': {name: storage.type.string.elitescript}
+    '4': {name: storage.type.string.elitescript}
+    '5': {name: punctuation.definition.string.begin.elitescript}
+  endCaptures:
+    '1': {name: punctuation.definition.string.end.elitescript}
+    '2': {name: invalid.illegal.newline.elitescript}
+  patterns:
+    - include: '#${prefix}${basename}-expression'
+...

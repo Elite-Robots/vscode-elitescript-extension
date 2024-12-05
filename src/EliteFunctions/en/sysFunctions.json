@@ -1,0 +1,418 @@
+[
+    {
+        "name": "start_thread",
+        "description": " This command is used to start threads.",
+        "parameters": [
+            {
+                "name": "fundef",
+                "description": "defined function, any type data ",
+                "type": "any",
+                "default": ""
+            },
+            {
+                "name": "arg",
+                "description": "pass in the arguments of fundef, tuple type data",
+                "type": "tuple",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "stop_thread",
+        "description": " This command is used to shut down threads; outside of threads to close threads.",
+        "parameters": [
+            {
+                "name": "thread_id",
+                "description": "The thread ID returned by the starting thread. any型数据",
+                "type": "any",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "pause",
+        "description": " This command is used to pause the task.",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "halt",
+        "description": " This command is used to stop the task.",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "textmsg",
+        "description": " This command is used to send the string connected by s1 and s2 to EliRobot and display it in the log column of EliRobot.",
+        "parameters": [
+            {
+                "name": "s1",
+                "description": "message string, can also send other types of variables, integer, boolean, list type data, etc.; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "s2",
+                "description": "message string, can also send other types of variables, integer, boolean, list type data, etc. (optional parameters, default is an empty string).",
+                "type": "list",
+                "default": "''"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "popup",
+        "description": " This command is used for popup windows and display messages.",
+        "parameters": [
+            {
+                "name": "s",
+                "description": "message string that can support Python built-in data types: string, list, boolean, integer,  float and other data types; any型数据",
+                "type": "any",
+                "default": ""
+            },
+            {
+                "name": "title",
+                "description": "title string that can support Python built-in data types: string, list, boolean, integer, float and other data types; any型数据",
+                "type": "any",
+                "default": "'Popup'"
+            },
+            {
+                "name": "warning",
+                "description": "warning message, boolean type data; ",
+                "type": "bool",
+                "default": "False"
+            },
+            {
+                "name": "error",
+                "description": "Error message, boolean type data; ",
+                "type": "bool",
+                "default": "False"
+            },
+            {
+                "name": "blocking",
+                "description": "whether it is a blocking pop-up window (it must be a non-blocking pop-up window in the function of sec).",
+                "type": "bool",
+                "default": "False"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "str_at",
+        "description": " This command is used to provide direct access to string bytes. This interface returns a string that contains characters in the source string that correspond to the specified index.",
+        "parameters": [
+            {
+                "name": "src",
+                "description": "source string, string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "index",
+                "description": "specifies the position in the string, integer type data.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": ", the character corresponding to the index number, if the index is not valid, it will throw an exception.",
+        "tips": ""
+    },
+    {
+        "name": "str_cat",
+        "description": " This command is used to implement the two input data according to certain rules to convert to a string and concatenate. The input of two data can be any Python built-in data type. The floating-point number type is formatted as a 6-digit decimal place and the invalid 0 at the end is removed. The maximum length of the concatenated string is 1023 characters, beyond which a runtime exception is triggered.",
+        "parameters": [
+            {
+                "name": "object1",
+                "description": "the first data, string, boolean, integer, float, list type data; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "object2",
+                "description": "the second data, string, boolean, integer, float, list type data.",
+                "type": "list",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": ", a string after stitching.",
+        "tips": ""
+    },
+    {
+        "name": "str_empty",
+        "description": " This command is used to return true when str is empty, false otherwise.",
+        "parameters": [
+            {
+                "name": "str",
+                "description": "source string, string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", true if the string is empty, false otherwise.",
+        "tips": ""
+    },
+    {
+        "name": "str_find",
+        "description": " This command is used to find the first match of the substring target in src, with a zero index of the string.",
+        "parameters": [
+            {
+                "name": "src",
+                "description": "source string, string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "target",
+                "description": "the substring to search, string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "start_from",
+                "description": "optional starting position (default is 0), integer type data.",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", if the target string is found in src, the position of the target string is returned. if the target string is not found in src,-1.",
+        "tips": ""
+    },
+    {
+        "name": "str_len",
+        "description": " This command is used to return the number of bytes in a string.",
+        "parameters": [
+            {
+                "name": "str",
+                "description": "source string, string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the number of bytes in the input string.",
+        "tips": ""
+    },
+    {
+        "name": "str_sub",
+        "description": " This command is used to return substrings of src. The result is a substring of src, starting with the bytes specified by index and up to len bytes in length. If the requested substring exceeds the end of the original string (that is, index+len>src length), the length of the resulting substring is limited to the size of src. If index or len is not in range, an exception is thrown. The string is zero indexed.",
+        "parameters": [
+            {
+                "name": "src",
+                "description": "source string, string type data; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "index",
+                "description": "integer value, specifying the initial byte in the range [0,src length], integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "The length of the substring. If len is not specified, it is a string in the range [index, src length], integer type data (optional).",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": ", src starts at the index and intercepts the part of the len character.",
+        "tips": ""
+    },
+    {
+        "name": "to_num",
+        "description": " This command is used to convert strings to integer or float type numbers. '.' The decimal point is the key to distinguishing the two, but note that scientific notation defaults to float type. The legal strings consist of an optional leading \"+\"/\"-\" sign followed by the following strings (case-insensitive): \n (1). A decimal number consisting of a decimal number (e.g., 40), with '.' Floating-point numbers (e.g., 10.1, -2.,.3), floating-point numbers expressed in scientific notation (e.g., 10E1, 1.5E4). \n (2). Hexadecimal numbers beginning with '0X' (e.g., 0XABC, 0x4a). \n (3). Infinity represented by \"INF\" or \"INFINITY\". \n (4). A meaningless number represented by \"NAN\". \n An exception will occur if the number represented by the string is too large (for example, 1.18973e+4932).",
+        "parameters": [
+            {
+                "name": "str",
+                "description": "string to convert, string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "float type data or , the numeric value represented by the string.",
+        "tips": ""
+    },
+    {
+        "name": "to_str",
+        "description": " This command is used to get a string representation of a value; \n The result string cannot exceed 1023 characters. Floating-point numbers are formatted as 6 decimal places, and trailing 0s will be removed.",
+        "parameters": [
+            {
+                "name": "val",
+                "description": "the value to be converted, float type data or integer type data.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": ", a string representation of a given value.",
+        "tips": ""
+    },
+    {
+        "name": "sleep",
+        "description": " This command is used for a period of sleep.",
+        "parameters": [
+            {
+                "name": "t",
+                "description": "time [s], float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_flag",
+        "description": " This command is used to set the value of the internal tag bit of the system, similar to the virtual digital output IO, which is used to save data information when different programs are running.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "index of the flag, integer type data: [0:31] ; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "b",
+                "description": "flag value, boolean type data.",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_flag",
+        "description": " This command is used to obtain the value of the internal flag of the system, similar to the virtual digital output IO, which is used to save data information when different programs are running.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "index of the flag, integer type data: [0:31].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", the value of the internal flag.",
+        "tips": ""
+    },
+    {
+        "name": "get_steptime",
+        "description": " This command is used to return the duration of the robot's time step in seconds. In every time step, the robot controller receives the measured joint positions and velocity from the robot and sends the desired joint positions and velocity back to the robot. The above process occurs at regular intervals with a predetermined frequency. The interval length is the time step of the robot.",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the duration of the robot's step in seconds.",
+        "tips": ""
+    },
+    {
+        "name": "rtsi_set_watchdog",
+        "description": " This command is used to activate a watchdog which can monitor the set frequency of the RTSI input variable. If the monitored frequency is less than the set frequency, the running program will trigger the actions like none, pause or stop. When the program stops, all monitored variables will be no longer monitored.",
+        "parameters": [
+            {
+                "name": "variable",
+                "description": "the variable name to be monitored, string type data, e.g. \"speed_slider_mask\"; ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "frequency",
+                "description": "the specified frequency; float type data ",
+                "type": "float",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "the action to be triggered, string data, e.g. \"ignore\", \"pause\", \"stop\". string type data",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "servoj",
+        "description": " This command is used to control the position of the robot joints in real time. Within a prospective timing, it takes advantage of the interval to process the joint angles received, implement the mean filtering and afterwards, fit spline on the data filtered.",
+        "parameters": [
+            {
+                "name": "q",
+                "description": "the joint angle, unit: radian, list type data (optional parameter); ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "t",
+                "description": "the interval, unit: second, range is greater than 0.008, when executing the command, the time interval is blocked, floating type data (optional parameter); ",
+                "type": "float",
+                "default": "0.010"
+            },
+            {
+                "name": "lookahead_time",
+                "description": "prospective timing, unit: second, range is [0.03, 0.2], floating type data (optional parameter); ",
+                "type": "float",
+                "default": "0.1"
+            },
+            {
+                "name": "gain",
+                "description": "gain, no data range, the parameter is not available at present and will be valid in the later versions, float type data (optional paramter).",
+                "type": "float",
+                "default": "300"
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "powerdown",
+        "description": " This command is used to stop the robot and disconnect the robot and the controller from power.",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

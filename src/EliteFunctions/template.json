@@ -1,0 +1,21 @@
+[
+    {
+        "//": "This file just a template, not be used"
+    },
+    {
+        "name": "",
+        "description": "",
+        "parameters": [
+            {
+                "name": "",
+                "description": "",
+                "type" : "",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "",
+        "return_description": "",
+        "tips": ""
+    }
+]

@@ -1,0 +1,117 @@
+---
+string-raw-quoted-${line}-line:
+  name: string.quoted.raw.${line}.elitescript
+  begin: \b(([uU]R)|(R))(${marker})
+  end: (\4)${guard}
+  beginCaptures:
+    '2': {name: invalid.deprecated.prefix.elitescript}
+    '3': {name: storage.type.string.elitescript}
+    '4': {name: punctuation.definition.string.begin.elitescript}
+  endCaptures:
+    '1': {name: punctuation.definition.string.end.elitescript}
+    '2': {name: invalid.illegal.newline.elitescript}
+  patterns:
+    - include: '#string-${line}-bad-brace1-formatting-raw'
+    - include: '#string-${line}-bad-brace2-formatting-raw'
+    - include: '#string-raw-guts'
+
+string-bin-quoted-${line}-line:
+  name: string.quoted.binary.${line}.elitescript
+  begin: (\b[bB])(${marker})
+  end: (\2)${guard}
+  beginCaptures:
+    '1': {name: storage.type.string.elitescript}
+    '2': {name: punctuation.definition.string.begin.elitescript}
+  endCaptures:
+    '1': {name: punctuation.definition.string.end.elitescript}
+    '2': {name: invalid.illegal.newline.elitescript}
+  patterns:
+    - include: '#string-entity'
+
+string-raw-bin-quoted-${line}-line:
+  name: string.quoted.raw.binary.${line}.elitescript
+  begin: (\b(?:R[bB]|[bB]R))(${marker})
+  end: (\2)${guard}
+  beginCaptures:
+    '1': {name: storage.type.string.elitescript}
+    '2': {name: punctuation.definition.string.begin.elitescript}
+  endCaptures:
+    '1': {name: punctuation.definition.string.end.elitescript}
+    '2': {name: invalid.illegal.newline.elitescript}
+  patterns:
+    - include: '#string-raw-bin-guts'
+
+string-quoted-${line}-line:
+  name: string.quoted.${line}.elitescript
+  begin: (?:\b([rR])(?=[uU]))?([uU])?(${marker})
+  end: (\3)${guard}
+  beginCaptures:
+    '1': {name: invalid.illegal.prefix.elitescript}
+    '2': {name: storage.type.string.elitescript}
+    '3': {name: punctuation.definition.string.begin.elitescript}
+  endCaptures:
+    '1': {name: punctuation.definition.string.end.elitescript}
+    '2': {name: invalid.illegal.newline.elitescript}
+  patterns:
+    - include: '#string-${line}-bad-brace1-formatting-unicode'
+    - include: '#string-${line}-bad-brace2-formatting-unicode'
+    - include: '#string-unicode-guts'
+
+string-${line}-bad-brace1-formatting-unicode:
+  comment: template using {% ... %}
+  begin: |
+    (?x)
+        (?= \{%
+              ( .*? (?!${marker}${guard}) )
+            %\}
+        )
+  end: (?=${marker}${guard})
+  patterns:
+    - include: '#escape-sequence-unicode'
+    - include: '#escape-sequence'
+    - include: '#string-line-continuation'
+
+string-${line}-bad-brace1-formatting-raw:
+  comment: template using {% ... %}
+  begin: |
+    (?x)
+        (?= \{%
+              ( .*? (?!${marker}${guard}) )
+            %\}
+        )
+  end: (?=${marker}${guard})
+  patterns:
+    - include: '#string-consume-escape'
+
+string-${line}-bad-brace2-formatting-unicode:
+  comment: odd format or format-like syntax
+  begin: |
+    (?x)
+        (?!\{\{)
+        (?= \{ (
+                  \w*? (?!${marker}${guard}) [^!:\.\[}\w]
+               )
+            .*?(?!${marker}${guard})
+            \}
+        )
+  end: (?=${marker}${guard})
+  patterns:
+    - include: '#escape-sequence-unicode'
+    - include: '#string-entity'
+
+string-${line}-bad-brace2-formatting-raw:
+  comment: odd format or format-like syntax
+  begin: |
+    (?x)
+        (?!\{\{)
+        (?= \{ (
+                  \w*? (?!${marker}${guard}) [^!:\.\[}\w]
+               )
+            .*?(?!${marker}${guard})
+            \}
+        )
+  end: (?=${marker}${guard})
+  patterns:
+    - include: '#string-consume-escape'
+    - include: '#string-formatting'
+...

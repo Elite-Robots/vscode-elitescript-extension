@@ -1,0 +1,1568 @@
+[
+    {
+        "name": "get_configurable_digital_in",
+        "description": " This command is used to obtain configurable digital input signal levels; \n See also: 4.5 get_standard_digital_in command.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the input, integer type data: [0:7].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "signal level, , true or false.",
+        "tips": ""
+    },
+    {
+        "name": "get_configurable_digital_out",
+        "description": " This command is used to obtain configurable digital output signal levels; \n See also: 4.6 get_standard_digital_out command.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the output, integer type data: [0:7].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "signal level, , true or false.",
+        "tips": ""
+    },
+    {
+        "name": "get_standard_analog_in",
+        "description": " This command is used to obtain standard analog input signal levels; \n See also: 4.7 get_tool_analog_in command.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the input, integer type data: [0:1].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "analog signal level, , in a or v.",
+        "tips": ""
+    },
+    {
+        "name": "get_standard_analog_out",
+        "description": " This command is used to obtain standard analog output signal levels; \n See also: 4.8 get_tool_analog_out command.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the output, integer type data: [0:1].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "analog signal level, , in a or v.",
+        "tips": ""
+    },
+    {
+        "name": "get_standard_digital_in",
+        "description": " This command is used to obtain standard digital input signal levels; \n See also: 4.1 get_configurable_digital_in command.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the input, integer type data: [0:15].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "signal level, , true or false.",
+        "tips": ""
+    },
+    {
+        "name": "get_standard_digital_out",
+        "description": " This command is used to obtain standard digital output signal levels; \n See also: 4.2 get_configurable_digital_out command.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the output, integer type data: [0:15].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "signal level, , true or false.",
+        "tips": ""
+    },
+    {
+        "name": "get_tool_analog_in",
+        "description": " This command is used to obtain tool analog input levels; \n See also: 4.3 get_standard_analog_in command.",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "analog input level, , in a or v.",
+        "tips": ""
+    },
+    {
+        "name": "get_tool_analog_out",
+        "description": " This command is used to obtain the tool analog output levels; \n See also: 4.4 get_standard_analog_out command.",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "analog output level, , in a or v.",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_analog_output_domain",
+        "description": " This command is used to set domain of analog outputs; \n See also: 4.15 set_tool_analog_output_domain command.",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "the index of the analog output, integer type data: [0:1]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "domain",
+                "description": "analog output domain, integer type data: 0: current mode (4-20mA), 1: voltage mode (0-10V).",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_configurable_digital_out",
+        "description": " This command is used to set configurable digital output signal levels; \n See also: 4.13 set_standard_digital_out command.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the output, integer type data: [0:7]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "b",
+                "description": "Signal level, boolean type data, True or False.",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_analog_input_domain",
+        "description": " This command is used to set the domain of the standard analog input in the control box; \n See also: 4.14 set_tool_analog_input_domain command.",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "input index, integer type data: [0:1] ; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "domain",
+                "description": "analog input domains, integer type data: 0 represents the current mode (4-20mA), 1 represents the voltage mode (0-10V).",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_analog_out",
+        "description": " This command is used to set the relative signal level value of the standard analog output IO.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the output, integer type data: [0:1]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "f",
+                "description": "relative to the analog signal level (percentage of analog output range), float type data: [0:1], if the given value is greater than 1, Then set to 1, less than 0, set to 0.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_digital_out",
+        "description": " This command is used to set standard digital output IO signal levels; \n See also: 4.10 set_configurable_digital_out command.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "The index of the output, integer type data: [0:15]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "b",
+                "description": "Signal level, boolean type data, True or False.",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_analog_input_domain",
+        "description": " This command is used to set the domain of analog inputs at the end of the tool; \n For control box input, see also 4.11 set_standard_analog_input_domain command.",
+        "parameters": [
+            {
+                "name": "domain",
+                "description": "analog input domains, integer type data: 0 represents the current mode (4-20mA), 1 represents the voltage mode (0-10V).",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_analog_output_domain",
+        "description": " This command is used to set the domain of the analog output at the end of the tool; \n For control box output, see also 4.9 set_standard_analog_output_domain command.",
+        "parameters": [
+            {
+                "name": "domain",
+                "description": "analog output domain, integer type data: 0 represents current mode (4-20mA), 1 represents voltage mode (0-10V).",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_digital",
+        "description": " This command is used to set the digital IO level of the tool corresponding to a given index.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "Index of the tool digital IO, integer type data: [0:3]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "b",
+                "description": "Signal level, boolean type data, True or False.",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_tool_digital",
+        "description": " This command is used to obtain the digital IO signal level of the tool corresponding to a given index.",
+        "parameters": [
+            {
+                "name": "n",
+                "description": "Index of the tool digital IO, integer type data: [0:3].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "signal level, , true or false.",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_configurable_digital_output_to_value",
+        "description": " This command is used to set the output signal level to follow the task running state change (run or stop); \n See also: \n 4.19 set_runstate_gp_boolean_output_to_value command \n 4.22 set_runstate_standard_digital_output_to_value command \n 4.23 set_runstate_tool_digital_output_to_value command",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "index of output, integer type data: [0:7]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer type data: [0:3];  0: Maintain the signal level unchanged;  1: The signal level of the task is low when it is not running, and the signal level of the task running state is unchanged;  2: The signal level of the task is high when it is not running, and the signal level of the task running state is unchanged;  3: The signal level of the task is low when it is not running, and the signal level of the task running state is high.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_gp_boolean_output_to_value",
+        "description": " This command is used to set the output signal level to follow the task running state change (run or stop); \n See also: \n 4.18 set_runstate_configurable_digital_output_to_value command \n 4.22 set_runstate_standard_digital_output_to_value command \n 4.23 set_runstate_tool_digital_output_to_value command",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "index of output, integer type data: [0:127] ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer type data: [0:3]  0: Maintain the signal level unchanged;  1: The signal level of the task is low when it is not running, and the signal level of the task running state is unchanged;  2: The signal level of the task is high when it is not running, and the signal level of the task running state is unchanged;  3: The signal level of the task is low when it is not running, and the signal level of the task running state is high.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_standard_analog_output_to_value",
+        "description": " This command is used to set the output analog signal level to change (run or stop) with the operation state of the task.",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "index of output, integer type data: [0:1]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer type data: [0:3];  0: Maintain the analog signal level unchanged;  1: The simulating signal level of the task is at the lowest value when it is not running, and the signal level of the task running state is unchanged;  2: The simulating signal level of the task is at the highest value when it is not running, and the signal level of the task running state is unchanged;  3: The simulating signal level of the task is at the lowest value when it is not running, and the signal level of the task running state is at the highest value;",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_tool_analog_output_to_value",
+        "description": " This command is used to set the analog output analog signal level of the tool to change (run or stop) with the operation state of the task.",
+        "parameters": [
+            {
+                "name": "runstate",
+                "description": "integer type data: [0:3];  0: Maintain the analog signal level unchanged;  1: The simulating signal level of the task is at the lowest value when it is not running, and the signal level of the task running state is unchanged;  2: The simulating signal level of the task is at the highest value when it is not running, and the signal level of the task running state is unchanged;  3: The simulating signal level of the task is at the lowest value when it is not running, and the signal level of the task running state is at the highest value;",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_standard_digital_output_to_value",
+        "description": " This command is used to set the output signal level to follow the task running state change (run or stop); \n See also: \n 4.18 set_runstate_configurable_digital_output_to_value command \n 4.19 set_runstate_gp_boolean_output_to_value command \n 4.23 set_runstate_tool_digital_output_to_value command",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "index of output, integer type data: [0:15]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer type data: [0:3];  0: Maintain the signal level unchanged;  1: The signal level of the task is low when it is not running, and the signal level of the task running state is unchanged;  2: The signal level of the task is high when it is not running, and the signal level of the task running state is unchanged;  3: The signal level of the task is low when it is not running, and the signal level of the task running state is high.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_runstate_tool_digital_output_to_value",
+        "description": " This command is used to set the output signal level to follow the task running state change (run or stop); \n See also: \n 4.18 set_runstate_configurable_digital_output_to_value command \n 4.19 set_runstate_gp_boolean_output_to_value command \n 4.22 set_runstate_standard_digital_output_to_value command",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "index of output, integer type data: [0:3]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "runstate",
+                "description": "integer type data: [0:3];  0: Maintain the signal level unchanged;  1: The signal level of the task is low when it is not running, and the signal level of the task running state is unchanged;  2: The signal level of the task is high when it is not running, and the signal level of the task running state is unchanged;  3: The signal level of the task is low when it is not running, and the signal level of the task running state is high.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_input_actions_to_default",
+        "description": " This command is used to reset the IO trigger action of all standard digital inputs, configurable digital inputs, tool digital inputs, and universal boolean input registers to \"defalut\"; \n See also: \n 4.26 set_standard_digital_input_action command \n 4.25 set_configurable_digital_input_action command \n 4.27 set_tool_digital_input_action command \n 4.28 set_gp_boolean_input_action command",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_configurable_digital_input_action",
+        "description": " This command is used to bind configurable digital inputs to trigger actions, including default trigger actions (\"default\") and drag mode trigger actions (\"freedrive\"), and to trigger corresponding actions when the bound input signal level is high; \n See also: \n 4.24 set_input_actions_to_default command \n 4.26 set_standard_digital_input_action command \n 4.27 set_tool_digital_input_action command \n 4.28 set_gp_boolean_input_action command",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "input index, integer type data: [0:7]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "trigger action type \"default\" or \"freedrive\", string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_standard_digital_input_action",
+        "description": " This command is used to bind standard digital inputs to trigger actions, including default trigger actions (\"default\") and drag mode trigger actions (\"freedrive\"), and to trigger corresponding actions when the bound input signal level is high; \n See also: \n 4.24 set_input_actions_to_default command \n 4.25 set_configurable_digital_input_action command \n 4.27 set_tool_digital_input_action command \n 4.28 set_gp_boolean_input_action command",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "input index, integer type data: [0:15]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "trigger action type \"default\" or \"freedrive\", string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_digital_input_action",
+        "description": " This command is used to bind the tool digital input to trigger actions, including default trigger actions (\"default\") and drag mode trigger actions (\"freedrive\"), and trigger corresponding actions when the bound input signal level is high; \n See also: \n 4.24 set_input_actions_to_default command \n 4.25 set_configurable_digital_input_action command \n 4.26 set_standard_digital_input_action command \n 4.28 set_gp_boolean_input_action command",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "input index, integer type data: [0:3]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "trigger action type \"default\" or \"freedrive\", string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "set_gp_boolean_input_action",
+        "description": " This command is used to bind universal boolean input registers to trigger actions, including default trigger actions (\"default\") and drag mode trigger actions (\"freedrive\"), and trigger corresponding actions when the bound input signal level is high; \n See also: \n 4.24 set_input_actions_to_default command \n 4.25 set_configurable_digital_input_action command \n 4.26 set_standard_digital_input_action command \n 4.27 set_tool_digital_input_action command",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "input index, integer type data: [0:127]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "action",
+                "description": "trigger action type \"default\" or \"freedrive\", string type data.",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_is_open",
+        "description": " This command is used to return to the enabled or disabled state of the RS-485 communication function of the robot tool terminal.",
+        "parameters": [],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "the open state of serial communication, , true is open, false is closed.",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_config",
+        "description": " This command is used to enable or disable the RS-485 communication function of the robot tool terminal, and configure the serial port.",
+        "parameters": [
+            {
+                "name": "enabled",
+                "description": "enabled state of tool serial port communication, boolean type data; ",
+                "type": "bool",
+                "default": ""
+            },
+            {
+                "name": "baud_rate",
+                "description": "Serial port baud rate, integer type data: 9600, 19200, 38400, 57600, 115200, 1000000, 2000000; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "parity",
+                "description": "parity bit, integer type data: 0(none), 1(odd), 2(even); ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "stop_bits",
+                "description": "stop bits, integer type data: 1, 2; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "size",
+                "description": "The bit width of the serial port. When not specified, the default parameter 8 is used, If modbus-rtu is enabled, this parameter is automatically set to 8; ",
+                "type": "int",
+                "default": "8"
+            },
+            {
+                "name": "modbus_rtu",
+                "description": "Whether to enable modbus-rtu mode, when specified as True, it is Modbusrtu mode, when specified as False, it is RS485 mode. If not specified, use the default parameter False, boolean type data; ",
+                "type": "bool",
+                "default": "False"
+            },
+            {
+                "name": "usage",
+                "description": "optional parameter, integer type data: 0(Script Mode), 1(Daemon Mode). When not specified, the default value 0 is used, namely, the Script Mode. When selecting the \"Script  Mode\", the user can access to the serial port via the script interface. Please refer to the related tool interfaces, i.e. tool_serial, tool_modbus. When selecting the \"Daemon Mode\", the user can access to the serial port named ttyTCI0 via the ELITECO SDK Daemon plugin and open the serial port for reading and writing. If the user access to the port via the script interface, it will trigger the abnormal alarm at run-time.",
+                "type": "int",
+                "default": "0"
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "the open state of serial communication, , true is open, false is closed.",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_read",
+        "description": " This command is used to read the RS-485 communication data from the robot tool terminal.",
+        "parameters": [
+            {
+                "name": "read_count",
+                "description": "read data length, integer type data: greater than or equal to 0; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "is_number",
+                "description": "whether to return byte data in integer format, boolean type data; ",
+                "type": "bool",
+                "default": ""
+            },
+            {
+                "name": "time_out",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is infinitely long, float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_write",
+        "description": " This command is used to send out the data via the robot tool terminal RS-485 communication.",
+        "parameters": [
+            {
+                "name": "write_data",
+                "description": "the byte data to be sent, string type data, integer type data, integer list type data or bytearray type data, if it is integer or integer list type data, one or more integer data will be written, and if the data value exceeds the range of [0-255], it will be automatically cast into the range according to the way of memory type conversion or memory truncation.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the length of the byte data successfully sent, less than or equal to 0, indicates that the send failed.",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_read_registers",
+        "description": " This command is used to read the MODBUS-RTU slave holding registers via the robot tool terminal RS-485 communication, the MODBUS function code is 0x03.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "to read the length of the data, the range is 1 - 125, when the len is greater than 1, the data will be read down sequentially from the slave's addr, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "time_out",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is infinitely long, float type data.",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", read data list.",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_read_bits",
+        "description": " This command is used to read the Modbus-RTU slave coils via the robot tool terminal RS- 485 communication, the MODBUS function code is 0x01.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "to read the length of the data, the range is 1 - 125, when the len is greater than 1, the data will be read down sequentially from the slave's addr, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "time_out",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is infinitely long, float type data.",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", read data list.",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_write_registers",
+        "description": " This command is used to write the multiple Modbus-RTU slave holding registers via the robot tool terminal RS-485 communication, the MODBUS function code is 0x10.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "The data to be written, integer [0, 65535], list type data (each element of the list must be integer [0, 65535]). When the data is list, it is written sequentially down to the slave's addr address; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time  is infinitely long, float type data.",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", write successfully return true, otherwise false.",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_write_bits",
+        "description": " This command is used to write the multiple Modbus-RTU slave coils via the robot tool terminal RS-485 communication, the MODBUS function code is 0x0F.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "The data to be written, Boolean, integer (0 will be implicitly converted to False and the nonzero elements will be implicitly converted to True), list type data (each element of the list must be integer or boolean). When the data is list, it is written sequentially down to the slave's addr address; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time  is infinitely long, float type data.",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", write successfully return true, otherwise false.",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_read_input_registers",
+        "description": " This command is used to read the Modbus-RTU slave registers via the robot tool terminal RS-485 communication, the MODBUS function code is 0x04.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "to read the length of the data, the range is 1 - 125, when the len is greater than 1, the data will be read down sequentially from the slave's addr, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is infinitely long, float type data.",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", data list that has been read.",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_read_input_bits",
+        "description": " This command is used to read the Modbus-RTU slave coils via the robot tool terminal RS- 485 communication, the MODBUS function code is 0x02.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "to read the length of the data, the range is 1 - 125, when the len is greater than 1, the data will be read down sequentially from the slave's addr, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is infinitely long, float type data.",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", data list that has been read.",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_write_single_bit",
+        "description": " This command is used to read a single Modbus-RTU slave coil via the robot tool terminal RS-485 communication, the MODBUS function code is 0x05.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "The data to be written, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout  time is infinitely long, float type data.",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the data volume that has been written successfully, i.e. 1, if it is less or equal to 0, it indicates a writing failure.",
+        "tips": ""
+    },
+    {
+        "name": "tool_modbus_write_single_register",
+        "description": " This command is used to read a single Modbus-RTU slave register via the robot tool terminal RS-485 communication, the MODBUS function code is 0x06.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "addr",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "The data to be written, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout  time is infinitely long, float type data.",
+                "type": "float",
+                "default": "5"
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the data volume to be read successfully, i.e. 1, if it is less or equal to 0, it indicates a writing failure.",
+        "tips": ""
+    },
+    {
+        "name": "tool_serial_mode",
+        "description": " This command is used to view which mode the robot tool terminal RS-485 communication is in.",
+        "parameters": [],
+        "note": "",
+        "return_type": "str",
+        "return_description": ", modbus-rtu\" or \"rs485\", \"close\" if neither is enabled.",
+        "tips": ""
+    },
+    {
+        "name": "set_tool_voltage",
+        "description": " This command is used to set the voltage of the external tool connector of the robot tool flange to provide the power supply, which can be 0, 12 or 24 V.",
+        "parameters": [
+            {
+                "name": "voltage",
+                "description": "External tool connector provides the voltage of the power supply, unit: volts, integer type data: 0, 12 or 24.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "serial_config",
+        "description": " This command is used to enable or disable the RS-485 communication function of the robot controller, and configure the serial port.",
+        "parameters": [
+            {
+                "name": "enable",
+                "description": "The communication of the serial port is enabled or disabled, boolean type data; ",
+                "type": "bool",
+                "default": ""
+            },
+            {
+                "name": "baud",
+                "description": "integer type data: 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600, 500000; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "parity_bit",
+                "description": "Serial port parity, integer type data: 0 (not checked), 1 (odd check), 2 (even check); ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "stop_bit",
+                "description": "Serial port stop bit, integer type data: 1, 2; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "size",
+                "description": "The bit width of the serial port. When not specified, use the default parameter 8, integer type data: 7 or 8 (optional parameter), if it is in the MODBUS RTU mode, the size must be 8; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "modbus_rtu",
+                "description": "Whether to enable modbus-rtu mode, when specified as True, it is Modbusrtu mode, when specified as False, it is RS485 mode. If not specified, use the default parameter False, boolean type data; ",
+                "type": "bool",
+                "default": ""
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "if the port configured successfully, the function returns true, otherwise returns false, .",
+        "tips": ""
+    },
+    {
+        "name": "serial_read",
+        "description": " This command is used to read the RS-485 communication data from the robot controller.",
+        "parameters": [
+            {
+                "name": "len",
+                "description": "The number of bytes to be read, note that the number of bytes to be read is 5, but only 2 bytes of data are actually received, and the length of the final read is 2 bytes。integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "is_number",
+                "description": "Whether to return byte data in integer format. If not specified, use the default parameter True, boolean type data (optional parameter); ",
+                "type": "bool",
+                "default": "True"
+            },
+            {
+                "name": "time_out",
+                "description": "timeout, in seconds, if less than or equal to 0, the wait timeout is infinitely long, when not specified, use the default value of 0.1, float type data (optional parameter); ",
+                "type": "float",
+                "default": "0.1"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "serial_write",
+        "description": " This command is used to send out the data via the robot controller.",
+        "parameters": [
+            {
+                "name": "data",
+                "description": "data to be sent, string type data, integer type data, integer list type data, bytes type data or bytearray type data, if it is integer or integer list type data, one or more integer data will be written, and if the data value exceeds the range of [0-255], it will be automatically cast into the range according to the way of memory type conversion or memory truncation; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "port",
+                "description": "the port name of the serial port, currently only supported: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "if the data sent successfully, the function returns true, otherwise returns false, .",
+        "tips": ""
+    },
+    {
+        "name": "serial_is_open",
+        "description": " This command is used to return to the enabled or disabled state of the RS-485 communication function of the robot controller.",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "if the port is opened, the function returns true, otherwise returns false, .",
+        "tips": ""
+    },
+    {
+        "name": "serial_mode",
+        "description": " This command is used to view which mode the robot controller RS-485 communication is in.",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": ", \"modbus-rtu\" or \"rs485\", \"close\" if neither is enabled.",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_write_registers",
+        "description": " This command is used to write the multiple MODBUS-RTU slave holding registers via the robot controller RS-485 communication, the MODBUS function code is 0x10.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "The data to be written, integer [0, 65535], list type data (each element of the list must be integer [0, 65535]). When the data is list, it is written sequentially down to the slave's addr address; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is  infinitely long, default to be 5s, float type data (option); ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ". the number of the register is written successfully. if it is less or equal to 0, there is a failure in writing the number of the register.",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_write_bits",
+        "description": " This command is used to write the multiple MODBUS-RTU slave coils via the robot controller RS-485 communication, the MODBUS function code is 0x0F.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "The data to be written, Boolean, integer (0 will be implicitly converted to False and the nonzero elements will be implicitly converted to True), list type data (each element of the list must be integer or boolean). When the data is list, it is written sequentially down to the slave's addr address; ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is  infinitely long, default to be 5s, float type data (option); ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ". the number of the coil is written successfully. if it is less or equal to 0, there is a failure in writing the number of the coil.",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_read_registers",
+        "description": " This command is used to read the MODBUS-RTU slave holding registers via the robot controller RS-485 communication, the MODBUS function code is 0x03.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "length of the data to be read, the range is 1 - 125, when the len is greater than 1, the data will be read down sequentially from the slave's addr, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is infinitely long, default to be 5s, float type data (option); ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", data list that has been read.",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_read_bits",
+        "description": " This command is used to read the MODBUS-RTU slave coils via the robot controller RS-485 communication, the MODBUS function code is 0x01.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "length of the data to be read, the range is 1 - 125, when the len is greater than 1, the data will be read down sequentially from the slave's addr, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout time is infinitely long, default to be 5s, float type data (option); ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", data list that has been read.",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_read_input_registers",
+        "description": " This command is used to read the MODBUS-RTU slave registers via the robot controller RS- 485 communication, the MODBUS function code is 0x04.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "length of the data to be read, the range is 1 - 125, when the len is greater than 1, the data will be read down sequentially from the slave's addr, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting time is infinitely long, default to be 5s, float type data (option); ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", data list that has been read.",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_read_input_bits",
+        "description": " This command is used to read the MODBUS-RTU slave input coils via the robot controller RS-485 communication, the MODBUS function code is 0x02.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "len",
+                "description": "length of the data to be read, the range is 1 - 125, when the len is greater than 1, the data will be read down sequentially from the slave's addr, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting time is infinitely long, default to be 5s, float type data (option); ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": ", data list that has been read.",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_write_single_bit",
+        "description": " This command is used to write a single MODBUS-RTU slave coil via the robot controller RS- 485 communication, the MODBUS function code is 0x05.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "The data to be written, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout  time is infinitely long, default to be 5s, float type data (option); ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the data volume that has been written successfully, i.e. 1, if it is less or equal to 0, it indicates a writing failure.",
+        "tips": ""
+    },
+    {
+        "name": "serial_modbus_write_single_register",
+        "description": " This command is used to write a single MODBUS-RTU slave register via the robot controller RS-485 communication, the MODBUS function code is 0x06.",
+        "parameters": [
+            {
+                "name": "slave",
+                "description": "slave, range 1 - 247, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "address",
+                "description": "address, the range is greater than or equal to 0, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "data",
+                "description": "The data to be written, integer type data; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "timeout",
+                "description": "timeout time, unit: seconds, if less than or equal to 0, the waiting timeout  time is infinitely long, default to be 5s, float type data (option); ",
+                "type": "float",
+                "default": "5"
+            },
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the data volume that has been written successfully, i.e. 1, if it is less or equal to 0, it indicates a writing failure.",
+        "tips": ""
+    },
+    {
+        "name": "serial_flush",
+        "description": " The command is used to refresh the RS-485 data from the controller.",
+        "parameters": [
+            {
+                "name": "port",
+                "description": "The port name of the serial port, which currently only supports: \"_dev_ttymxc0\". When the name is not specified, the default name \"_dev_ttymxc0\" will be used. String type data (optional parameter).",
+                "type": "str",
+                "default": "\"_dev_ttymxc0\""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "get_task_path",
+        "description": " The command is used to return to the storage directory of the EliRobot tasks.",
+        "parameters": [],
+        "note": "",
+        "return_type": "str",
+        "return_description": ", the storage directory of the elirobot tasks.",
+        "tips": ""
+    },
+    {
+        "name": "read_input_boolean_register",
+        "description": " This command is used to read boolean values from input registers and can also be accessed via fieldbus. This register is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:127].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", the value of the selected input register.",
+        "tips": ""
+    },
+    {
+        "name": "read_input_float_register",
+        "description": " This command is used to read floating-point numbers from input registers and can also be accessed via fieldbus. This register is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:47].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the value of the selected input register.",
+        "tips": ""
+    },
+    {
+        "name": "read_input_integer_register",
+        "description": " This command is used to read integers from the input registers and can also be accessed via a fieldbus. This register is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:47].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the value of the selected input register.",
+        "tips": ""
+    },
+    {
+        "name": "read_output_boolean_register",
+        "description": " This command is used to read boolean values from the output registers and can also be accessed via a fieldbus. This register is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:127].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": ", the value of the selected output register.",
+        "tips": ""
+    },
+    {
+        "name": "read_output_float_register",
+        "description": " This command is used to read floating-point numbers from the output registers and can also be accessed via fieldbus. This register is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:47].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": ", the value of the selected output register.",
+        "tips": ""
+    },
+    {
+        "name": "read_output_integer_register",
+        "description": " This command is used to read integers from output registers and can also be accessed via fieldbus. This register is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:47].",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": ", the value of the selected output register.",
+        "tips": ""
+    },
+    {
+        "name": "write_output_boolean_register",
+        "description": " This command is used to write boolean values to an output register which is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:127]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "the value of the register that needs to be written, boolean type data.",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "write_output_float_register",
+        "description": " This command is used to write floating-point numbers to an output register which is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:47]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "The value that needs to be written to the register. float type data.",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "write_output_integer_register",
+        "description": " This command is used to write integers to an output register which is stored in the system memory space.",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "Register address. Integer type data: [0:47]; ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "value",
+                "description": "The value that needs to be written to the register. integer type data.",
+                "type": "int",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]

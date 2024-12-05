@@ -1,0 +1,268 @@
+[
+    {
+        "name": "socket_open",
+        "description": " 该指令用于建立TCP/IP网络通信，连接超时时间为2秒。",
+        "parameters": [
+            {
+                "name": "address",
+                "description": "服务器地址，string型数据； ",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "port",
+                "description": "端口号，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）。",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "。首次调用：若连接成功返回true，失败返回false；重复调用：若处于连接状态返回true，若处于未连接状态将会关闭当前socket并重新连接，重连成功返回true，失败返回false。",
+        "tips": ""
+    },
+    {
+        "name": "socket_close",
+        "description": " 该指令用于关闭TCP/IP网络通信。",
+        "parameters": [
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）。",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "socket_is_connected",
+        "description": " 该指令用于获取TCP/IP网络通信状态，判断是否连接到服务器。",
+        "parameters": [
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）。",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，若未连接，返回false，若已连接，返回true。",
+        "tips": ""
+    },
+    {
+        "name": "socket_read_ascii_float",
+        "description": " 该指令用于从连接的TCP/IP服务器读取多个ASCII格式的float型数据； \n 服务器传输过来的数据需要使用括号括起来，数据之间使用逗号“,”或者空格“”分开，类似 “(3.14,2.562,8.24,3.4434)”； \n 如果传输过来的数据格式类似“(3.14,,,2.562,,8.24,3.4434)”，仍会正确读取四个数据。",
+        "parameters": [
+            {
+                "name": "number",
+                "description": "需要读取的数据个数，integer型数据：[1:30]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）； ",
+                "type": "str",
+                "default": "\"socket_0\""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位：秒，若小于等于0，则等待超时时间为无限长，float型数据（可选参 数）。",
+                "type": "float",
+                "default": "2"
+            }
+        ],
+        "note": "",
+        "return_type": "float",
+        "return_description": "list型数据，读取的数据列表，列表的第一个元素为所有成功读取的数据个数，第二个元素开始为读取的；\n若读取失败，则列表第一个元素为0，其他元素为nan，类似[0,nan,nan]；\n若读取成功，会返回数据列表，内容类似[3,1.444,2.234,3.444]；\n若接收的数据长度不满足<number>的数量，返回的数据列表包括成功读取的数据长度以及数据，未读取到的数据为nan，[2,1.444,2.234,nan]。",
+        "tips": ""
+    },
+    {
+        "name": "socket_read_binary_integer",
+        "description": " 该指令用于从连接的TCP/IP服务器读取多个32位整数数据，数据格式为网络字节序 （networkbyte order）。",
+        "parameters": [
+            {
+                "name": "number",
+                "description": "需要读取的数据个数，integer型数据：[1:30]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）； ",
+                "type": "str",
+                "default": "\"socket_0\""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位：秒，若小于等于0，则等待超时时间为无限长，float型数据（可选参数）。",
+                "type": "float",
+                "default": "2"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表，列表的第一个元素为成功读取的数据个数，第二个元素开始为读取的integer数据；\n若读取失败，则列表第一个元素为0，其他元素为-1，类似[0,-1,-1,-1]；\n若读取成功，会返回数据列表，内容类似[2,100,200]；\n若接收的数据长度不满足<number>的数量，返回的数据列表包括成功读取的数据长度以及数据，未读取到的数据为-1，[2,100,200,-1]。",
+        "tips": ""
+    },
+    {
+        "name": "socket_read_byte_list",
+        "description": " 该指令用于从连接的TCP/IP服务器读取多个字节数据。",
+        "parameters": [
+            {
+                "name": "number",
+                "description": "需要读取的数据个数，integer型数据：[1:512]； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）； ",
+                "type": "str",
+                "default": "\"socket_0\""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位：秒，若小于等于0，则等待超时时间为无限长，float型数据（可选参数）。",
+                "type": "float",
+                "default": "2"
+            }
+        ],
+        "note": "",
+        "return_type": "list",
+        "return_description": "，读取的数据列表，列表的第一个元素为成功读取的数据个数，第二个元素开始为读取的字节数据；\n若读取失败，则列表第一个元素为0，其他元素为-1，类似[0,-1,-1,-1]；\n若读取成功，会返回数据列表，内容类似[2,100,200]；\n若接收的数据长度不满足<number>的数量，返回的数据列表包括成功读取的数据长度以及数据，未读取到的数据为-1，[2,100,200,-1]。",
+        "tips": ""
+    },
+    {
+        "name": "socket_send_byte_list",
+        "description": " 该指令用于向连接的TCP/IP服务器发送一组字节数据。",
+        "parameters": [
+            {
+                "name": "value",
+                "description": "需要发送的字节数据，整数列表，list型数据； ",
+                "type": "list",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）。",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "int",
+        "return_description": "，返回成功发送的字节长度。",
+        "tips": ""
+    },
+    {
+        "name": "socket_read_string",
+        "description": " 该指令用于从连接的TCP/IP服务器读取全部数据，并根据<prefix>与<suffix>的设置，返回 符合规则的字符串数据。",
+        "parameters": [
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）； ",
+                "type": "str",
+                "default": "\"socket_0\""
+            },
+            {
+                "name": "prefix",
+                "description": "字符串匹配前缀，string型数据（可选参数）； ",
+                "type": "str",
+                "default": "\"\""
+            },
+            {
+                "name": "suffix",
+                "description": "字符串匹配后缀，string型数据（可选参数）； ",
+                "type": "str",
+                "default": "\"\""
+            },
+            {
+                "name": "timeout",
+                "description": "超时时间，单位：秒，若小于等于0，则等待超时时间为无限长，float型数据（可选参 数）。",
+                "type": "float",
+                "default": "2"
+            }
+        ],
+        "note": "",
+        "return_type": "str",
+        "return_description": "，读取到的字符串变量。未指定prefix和suffix时，返回读取的全部字符串数据；只指定了prefix时，会返回prefix后所有读取到的字符串数据，不包括prefix字符串本身；只指定了suffix时，会返回suffix前所有读取到的字符串数据，不包括suffix字符串本身。prefix和suffix都指定了时，返回prefix和suffix之间的字符串，不包括prefix和suffix字符串本身。本次未被读取的数据，会保留在socket中，可以进行循环读取。读取超时，返回空字符串。",
+        "tips": ""
+    },
+    {
+        "name": "socket_send_int",
+        "description": " 该指令用于向连接的TCP/IP服务器发送整数（int32_t）数据，发送格式为网络字节序（network byte order）。",
+        "parameters": [
+            {
+                "name": "value",
+                "description": "需要发送的字节数据，integer型数据； ",
+                "type": "int",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）。",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，如果发送成功，返回true，如果发送失败，返回false。",
+        "tips": ""
+    },
+    {
+        "name": "socket_send_string",
+        "description": " 该指令用于向连接的TCP/IP服务器以ASCII编码发送字符串数据。",
+        "parameters": [
+            {
+                "name": "str",
+                "description": "支持Python内置数据类型：string、list、boolean、integer、float等数据类型； any型数据 ",
+                "type": "any",
+                "default": ""
+            },
+            {
+                "name": "socket_name",
+                "description": "服务器名称，不指定名称或指定的名称为空时，使用默认名称“socket_0”，string 型数据（可选参数）",
+                "type": "str",
+                "default": "\"socket_0\""
+            }
+        ],
+        "note": "",
+        "return_type": "bool",
+        "return_description": "，如果发送成功，返回true，如果发送失败，返回false。",
+        "tips": ""
+    },
+    {
+        "name": "rpc_factory",
+        "description": " 该指令用于创建一个远程调用（RPC）句柄，用于实现远程调用功能。",
+        "parameters": [
+            {
+                "name": "type",
+                "description": "RPC类型，目前仅支持“xmlrpc”类型，string型数据；",
+                "type": "str",
+                "default": ""
+            },
+            {
+                "name": "url",
+                "description": "RPC服务器地址， 格式为“<ip-address>:<port>” 或“http://<ip address>:<port>/<path>”，如“127.0.0.1:5050”或“http://127.0.0.1:5050/RPC2”，string型 数据。",
+                "type": "str",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    }
+]

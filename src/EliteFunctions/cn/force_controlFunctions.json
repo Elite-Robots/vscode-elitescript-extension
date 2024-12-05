@@ -1,0 +1,61 @@
+[
+    {
+        "name": "force_mode_set_damping",
+        "description": " 该指令用于设置力控模式过程的阻尼系数。",
+        "parameters": [
+            {
+                "name": "damping",
+                "description": "阻尼系数，该系数介于0到1之间，默认值为0。 该阻尼系数设置为1 时为全阻尼状态，若无外力作用，机器人将快速减速。该阻尼系数设置为0时 为无阻尼状态，机器人将保持当前速度运动。 阻尼系数越小，机器人在力控方向上的阻尼就越小，力跟踪的震荡抑制能力就越弱，力跟踪响应就 越快；反之，阻尼系数越大，机器人在力控方向上的阻尼就越大，力跟踪的震荡抑制能力就越强，力跟 踪响应就越慢。float型数据。",
+                "type": "float",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "zero_ftsensor",
+        "description": " 该指令用于将力/力矩传感器测量的施加在工具TCP上的力/力矩值清零（去皮），所述力/力矩值为 get_tcp_force(True)脚本指令获取的施加在工具TCP上的力/力矩矢量，该矢量已进行负载补偿等处 理。 \n 该指令执行后，当前的力/力矩测量值会被作为力/力矩参考值保存，后续所有的力/力矩测量值都 会减去该力/力矩参考值（去皮）。 \n 请注意，上述力/力矩参考值会在该指令执行时更新，在控制器重启后将重置为0。",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "force",
+        "description": " 该指令用于获取施加在工具TCP上的外力。 \n 获取当前施加在工具TCP上的外力，该力的值为使用get_tcp_force(True)脚本指令获取的Fx、 Fy和Fz的范数。 \n 有关清零力/力矩传感器读数，另请参阅：3.4 zero_ftsensor指令。",
+        "parameters": [],
+        "note": "",
+        "return_type": "float",
+        "return_description": "力，单位为n，。",
+        "tips": ""
+    },
+    {
+        "name": "get_tcp_force",
+        "description": " 该指令用于获取施加在工具TCP上的力/力矩矢量。 \n 有关清零力/力矩传感器读数，另请参阅：3.4 zero_ftsensor指令。",
+        "parameters": [
+            {
+                "name": "enable_compensation",
+                "description": "boolean型数据。True表示返回值进行负载补偿等处理，False表示返 回值为力/力矩传感器的原始读数，不做任何处理。",
+                "type": "bool",
+                "default": ""
+            }
+        ],
+        "note": "",
+        "return_type": "any",
+        "return_description": "None",
+        "tips": ""
+    },
+    {
+        "name": "end_force_mode",
+        "description": " 该指令用于关闭力控模式。程序结束时也会执行此命令。",
+        "parameters": [],
+        "note": "",
+        "return_type": "None",
+        "return_description": "None",
+        "tips": ""
+    }
+]
