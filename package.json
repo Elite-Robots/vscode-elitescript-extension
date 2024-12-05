@@ -2,7 +2,7 @@
   "name": "elitescript",
   "publisher": "Elite Robot",
   "displayName": "elitescript",
-  "description": "Elite robot python script",
+  "description": "Elite robot script",
   "license": "MIT",
   "version": "0.0.1",
   "icon": "resources/logo.png",
@@ -15,6 +15,10 @@
   "activationEvents": [
     "onLanguage:elitescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elite-Robots/vscode-elitescript-extension.git"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "languages": [
