@@ -11,6 +11,13 @@ EliteScript is the Elite Robots scripting language, like any other programming l
 
 - Hover prompt
 
+## Notice
+
+This extension **NOT INCLUDE** following feature:
+- Compiler, syntax check, debug, running. You should upload program to controller or simulator for compile and execute.
+- Formatting, go to definition, completion and signatures. But support soon.
+- Language Server Protocol(LSP).
+
 
 ## How to build
 1. Download and install node.js：[node.js official](https://nodejs.org)
@@ -19,11 +26,3 @@ EliteScript is the Elite Robots scripting language, like any other programming l
 4. If you have modified the file in the '.\syntaxes\src\ 'directory, you need to execute it: `./node_modules/.bin/syntaxdev build-plist --in ./syntaxes/src/elitescript.tmLanguage.yaml --out ./syntaxes/elitescript.tmLanguage` 。
 5. Compile: `vsce package`。
 6. Open VSCode and Run the command Extensions: Install from VSIX..., choose the vsix file generated in the previous step
-
-## Notice
-
-This extension **NOT INCLUDE** following feature:
-- Compiler, syntax check, debug, running. You should upload program to controller or simulator for compile and execute.
-- Formatting, go to definition, completion and signatures. But support soon.
-- Language Server Protocol(LSP).
-
