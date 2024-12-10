@@ -1,14 +1,21 @@
 {
   "name": "elitescript",
   "publisher": "elite-robots",
-  "displayName": "elitescript",
-  "description": "Elite robot script",
+  "displayName": "ELITE CS Script",
+  "description": "Code snippet and completion items for CS Series Script (ELITE ROBOTS).",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "resources/logo.png",
   "engines": {
     "vscode": "^1.95.0"
   },
+  "keywords": [
+    "elite",
+    "cs",
+    "elite cs",
+    "elite cs script",
+    "highlighter"
+  ],
   "categories": [
     "Programming Languages"
   ],
