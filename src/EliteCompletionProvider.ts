@@ -48,22 +48,5 @@ export class EliteCompletionItemProvider implements vscode.CompletionItemProvide
             ...this.eliteKeywords.keywordCmpItems,
             ...this.eliteKeywords.expKeywordCmpItems,
         ]);
-
-
-        // // 如果用户没有输入任何内容，则不提供补全
-        // if (!currentWord) {
-        //     return undefined;
-        // }
-
-        // // 过滤出匹配当前输入的函数名
-        // const matchingItems = this.functionCmpItems.filter(item => item.label.startsWith(currentWord));
-
-        // // 如果有匹配的补全项，则返回
-        // if (matchingItems.length > 0) {
-        //     return new vscode.CompletionList(matchingItems, false);  // `false` means no further suggestions
-        // }
-
-        // // 如果没有匹配，返回 undefined，表示没有补全
-        // return undefined;
     }
 }

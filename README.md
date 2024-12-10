@@ -7,9 +7,11 @@ EliteScript is the Elite Robots scripting language, like any other programming l
 ## Feature
 - Syntax highlighting
 
-- Code completion
+- Code completion.
 
-- Hover prompt
+- Hover prompt.
+
+- Switch language command. (Chinese and English provide)
 
 ## Notice
 

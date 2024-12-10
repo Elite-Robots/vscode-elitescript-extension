@@ -40,7 +40,17 @@
         "scopeName": "source.elitescript",
         "path": "./syntaxes/elitescript.tmLanguage"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "extension.switchLanguageToChinese",
+        "title": "Elite Script: Switch to Chinese"
+      },
+      {
+        "command": "extension.switchLanguageToEnglish",
+        "title": "Elite Script: Switch to English"
+      }
+  ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
